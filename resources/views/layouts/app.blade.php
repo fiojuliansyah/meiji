@@ -79,9 +79,11 @@ License: For each use you must have a valid license purchased only from above li
             </div>
         </div>
     </div>
+
     <script>
         var hostUrl = "/assets/";
     </script>
+        @yield('scripts')
     <script src="/assets/plugins/global/plugins.bundle.js"></script>
     <script src="/assets/js/scripts.bundle.js"></script>
     <script src="/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
@@ -104,5 +106,6 @@ License: For each use you must have a valid license purchased only from above li
     <script src="/assets/js/custom/utilities/modals/create-app.js"></script>
     <script src="/assets/js/custom/utilities/modals/new-target.js"></script>
     <script src="/assets/js/custom/utilities/modals/users-search.js"></script>
+
 </body>
 </html>
