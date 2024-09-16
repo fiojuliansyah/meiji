@@ -8,54 +8,51 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public function index(){
-       
+    public function index()
+    {
         $roles = Role::all();
-    
+
         $permissions = Permission::all()->groupBy('category');
-        // $roleListPermission= $roles->
 
         return view('role', compact('roles', 'permissions'));
     }
 
-
-    // Menyimpan role baru
     public function store(Request $request)
     {
-        // Validasi nama role dan permissions
-        $validatedData = $request->validate([
-            'name' => 'required|unique:roles',
-            'permissions' => 'required|array',
-        ]);
-  
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|unique:roles',
+                'permissions' => 'required|array',
+            ]);
 
-        // Membuat role baru
-        $role = Role::create(['name' => $validatedData['name']]);
+            $role = Role::create(['name' => $validatedData['name']]);
+            $role->syncPermissions($validatedData['permissions']);
 
-        // Menyimpan permissions ke role
-        $role->syncPermissions($validatedData['permissions']);
+            return redirect()->back()->with('success', 'Role and permissions added successfully!');
 
-        return redirect()->back()->with('success', 'Role berhasil dibuat.');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with('error', 'Failed to add role: ' . $e->getMessage());
+        }
     }
 
-    // Mengupdate role yang ada
     public function update(Request $request, $id)
     {
-      
-        // Validasi nama role dan permissions
-        $role = Role::findOrFail($id);
-        
-        $validatedData = $request->validate([
-            'name' => 'required|unique:roles,name,' . $role->id,
-            'permissions' => 'required|array',
-        ]);
+        try {
+            $role = Role::findOrFail($id);
 
-        // Update nama role
-        $role->update(['name' => $validatedData['name']]);
+            $validatedData = $request->validate([
+                'name' => 'required|unique:roles,name,' . $role->id,
+                'permissions' => 'required|array',
+            ]);
 
-        // Update permissions untuk role
-        $role->syncPermissions($validatedData['permissions']);
+            $role->update(['name' => $validatedData['name']]);
+            $role->syncPermissions($validatedData['permissions']);
 
-        return redirect()->back()->with('success', 'Role berhasil diupdate.');
+            return redirect()->back()->with('success', 'Role and permissions updated successfully!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update role: ' . $e->getMessage());
+        }
     }
 }
