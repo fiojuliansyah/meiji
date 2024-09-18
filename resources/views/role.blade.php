@@ -398,7 +398,6 @@
 
 @section('scripts')
 <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
-<script src="assets/plugins/global/plugins.bundle.js"></script>
     <script>
         toastr.options = {
             "closeButton": true,

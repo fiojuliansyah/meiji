@@ -40,6 +40,13 @@
                             </span>
                             <span class="menu-title">Roles</span>
                         </a>
+                        <a class="menu-link {{ request()->routeIs('users') ? 'active' : '' }}"
+                            href="{{ route('users') }}">
+                            <span class="menu-icon">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <span class="menu-title">Users</span>
+                        </a>
                     </div>
                 </div>
             </div>

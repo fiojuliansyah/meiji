@@ -74,7 +74,7 @@ class PermissionSeeder extends Seeder
 
         // Create a Super Admin user
         $adminUser = User::create([
-            'name' => 'Admin User',
+            'name' => 'Super Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('password'),  // Use secure password here
             'remember_token' => Str::random(10),
@@ -89,9 +89,9 @@ class PermissionSeeder extends Seeder
         ]);
 
         // Assign Super Admin role to the admin user
-        $adminUser->assignRole('Super Admin');
+        $adminUser->syncRoles('Super Admin');
 
         // Assign User role to the normal user
-        $normalUser->assignRole('User');
+        $normalUser->syncRoles('User');
     }
-}
+}                   
