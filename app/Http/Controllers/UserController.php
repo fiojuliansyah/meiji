@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Illuminate\Contracts\Filesystem\Cloud;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -14,8 +14,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'Super Admin');
+        })->get();
+ 
         $roles = Role::where('name', '!=', 'Super Admin')->get();
+
 
         return view('user', compact('users', 'roles'));
     }
@@ -120,6 +124,29 @@ class UserController extends Controller
             return redirect()
                 ->back()
                 ->with('error', 'Failed to delete user: ' . $e->getMessage());
+        }
+    }
+
+    public function bulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->user_ids;
+
+            $users = User::whereIn('id', $ids)->get();
+   
+
+            foreach ($users as $user) {
+                $user->syncRoles([]); 
+                $user->delete();
+            }
+
+            return redirect()
+                ->back()
+                ->with('success', "Users Deleted successfully.");
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete users: ' . $e->getMessage());
         }
     }
 }
