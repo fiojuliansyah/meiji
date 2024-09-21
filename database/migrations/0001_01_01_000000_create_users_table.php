@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,8 +14,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->longText('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('phone')->nullable();
+            $table->boolean('phone_verified')->default(false);
+            $table->boolean('is_admin')->default(false);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -36,6 +37,33 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        Schema::create('documents', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->string('type')->nullable();
+            $table->string('name')->nullable();
+            $table->date('validate_date')->nullable();
+            $table->text('image_url')->nullable();
+            $table->string('image_public_id')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+        });
+
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->text('avatar_url')->nullable();
+            $table->string('avatar_public_id')->nullable();
+            $table->string('nik', 16)->nullable();
+            $table->text('address')->nullable();
+            $table->string('gender',10)->nullable();
+            $table->string('birth_place')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+
+        });
     }
 
     /**
@@ -46,5 +74,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('documents');
     }
 };

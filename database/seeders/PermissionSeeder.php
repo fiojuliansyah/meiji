@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Profile;
+use App\Models\Document;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +19,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-   // Define permissions array
+        // Define permissions array
         $permissions = [
             [
                 'name' => 'role-list',
@@ -50,7 +52,6 @@ class PermissionSeeder extends Seeder
             Permission::create($permission);
         }
 
-        // Define roles array
         $roles = [
             [
                 'name' => 'Super Admin',
@@ -62,36 +63,41 @@ class PermissionSeeder extends Seeder
             ],
         ];
 
-        // Create roles
-        $superAdminRole = Role::create(['name' => 'Super Admin', 'guard_name' => 'web']);
-        $userRole = Role::create(['name' => 'User', 'guard_name' => 'web']);
+        // Create roles and assign permissions
+        foreach ($roles as $role) {
+            $newRole = Role::create($role); // Create role
 
-        // Sync permissions to Super Admin role
-        $superAdminRole->syncPermissions(Permission::all()); // Berikan semua permissions ke Super Admin
-
-        // Optionally, you can give specific permissions to User role
-        $userRole->syncPermissions(['role-list']); // Berikan permission 'role-list' ke User role
+            if ($role['name'] === 'Super Admin') {
+                // Sync all permissions to Super Admin role
+                $newRole->syncPermissions(Permission::all());
+            } else {
+                // Sync specific permission to User role
+                $newRole->syncPermissions(['role-list']);
+            }
+        }
 
         // Create a Super Admin user
         $adminUser = User::create([
             'name' => 'Super Admin',
             'email' => 'admin@example.com',
-            'password' => Hash::make('password'),  // Use secure password here
-            'remember_token' => Str::random(10),
-        ]);
-
-        // Create a regular User
-        $normalUser = User::create([
-            'name' => 'Normal User',
-            'email' => 'user@example.com',
-            'password' => Hash::make('password'),  // Use secure password here
+            'password' => Hash::make('password'),
+            'email_verified_at' => now(),
+            'phone'=> '085345435345', // Use secure password here
+            'phone_verified'=> true, // Use secure password here
+            'is_admin'=> true, // Use secure password here
             'remember_token' => Str::random(10),
         ]);
 
         // Assign Super Admin role to the admin user
-        $adminUser->syncRoles('Super Admin');
+        $adminUser->assignRole('Super Admin');
 
-        // Assign User role to the normal user
-        $normalUser->syncRoles('User');
+        // Optionally create Profile and Document for the admin user
+        Profile::create([
+            'user_id' => $adminUser->id,
+        ]);
+
+        Document::create([
+            'user_id' => $adminUser->id,
+        ]);
     }
-}                   
+}

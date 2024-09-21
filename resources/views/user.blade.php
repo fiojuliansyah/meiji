@@ -404,7 +404,7 @@
         <div class="modal-content">
             <div class="modal-header" id="kt_modal_add_user_header">
                 <h2 class="fw-bold">Add New User</h2>
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
                     <i class="ki-duotone ki-cross fs-1">
                         <span class="path1"></span>
                         <span class="path2"></span>

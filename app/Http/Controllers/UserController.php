@@ -149,4 +149,8 @@ class UserController extends Controller
                 ->with('error', 'Failed to delete users: ' . $e->getMessage());
         }
     }
+
+    public function changeAvatar( $request){
+
+    }
 }
