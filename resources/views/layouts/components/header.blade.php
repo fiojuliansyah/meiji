@@ -41,7 +41,7 @@
                         data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                         data-kt-menu-placement="bottom-end">
 
-                        <img src="{{Auth::user()->avatar?? 'https://ui-avatars.com/api/?name='. Auth::user()->name.'&font-size=0.4'}}" class="rounded-3" alt="user" />
+                        <img src="{{Auth::user()->profile->avatar_url?? 'https://ui-avatars.com/api/?name='. Auth::user()->name.'&font-size=0.4'}}" class="rounded-3" alt="user" />
                     </div>
                     <!--begin::User account menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
@@ -51,7 +51,7 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="{{Auth::user()->avatar?? 'https://ui-avatars.com/api/?name='. Auth::user()->name.'&font-size=0.4'}}" />
+                                    <img alt="Logo" src="{{Auth::user()->profile->avatar_url?? 'https://ui-avatars.com/api/?name='. Auth::user()->name.'&font-size=0.4'}}" />
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
@@ -71,7 +71,7 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="account/overview.html" class="menu-link px-5">My Profile</a>
+                            <a href="{{ route('my.profile') }}" class="menu-link px-5">My Profile</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->

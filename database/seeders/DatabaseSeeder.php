@@ -18,15 +18,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PermissionSeeder::class);
         User::factory(10)->create();
-        $users=User::all();
-       
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'Super Admin');
+        })->get();
+
         foreach ($users as $user) {
             Profile::create([
                 'user_id' => $user->id,
             ]);
-            Document::create([
-                'user_id' => $user->id,
-            ]);
+    
             $user->syncRoles('User');
         }
     }

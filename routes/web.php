@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +23,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/user', [UserController::class, 'index'])->name('users');
     Route::post('/user-store', [UserController::class, 'store'])->name('user.store');
-    Route::put('/user-update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/user-delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
     Route::delete('/user/bulk-delete', [UserController::class, 'bulkDelete'])->name('user.bulk-delete');
 
+    Route::get('/edit-profile/{id}', [UserController::class, 'viewProfile'])->name('edit.profile');
+    Route::get('/myprofile', [UserController::class, 'myProfile'])->name('my.profile');
+    Route::put('/account-update/{id}', [UserController::class, 'update'])->name('account.update');
+    Route::put('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('reset-password');
+
+    Route::put('/profile-update/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile-update/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/document-store', [ProfileController::class, 'storeDocument'])->name('document.store');
+    Route::delete('/document-delete/{id}', [ProfileController::class, 'destroyDocument'])->name('document.delete');
 });
 

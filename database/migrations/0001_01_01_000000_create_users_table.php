@@ -44,8 +44,8 @@ return new class extends Migration {
             $table->string('type')->nullable();
             $table->string('name')->nullable();
             $table->date('validate_date')->nullable();
-            $table->text('image_url')->nullable();
-            $table->string('image_public_id')->nullable();
+            $table->text('document_url')->nullable();
+            $table->string('document_public_id')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

@@ -180,7 +180,7 @@
                                         <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                             <a href="apps/user-management/users/view.html">
                                                 <div class="symbol-label">
-                                                    <img src="{{ $user->avatar ?? 'https://ui-avatars.com/api/?name=' . $user->name . '&font-size=0.3' }}"
+                                                    <img src="{{ $user->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . $user->name . '&font-size=0.3' }}"
                                                         alt="{{ $user->name }}" class="w-100" />
                                                 </div>
                                             </a>
@@ -212,14 +212,14 @@
                                             data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a class="menu-link px-3">View Profile</a>
+                                                <a href="{{route('edit.profile',$user->id)}}" class="menu-link px-3">Edit</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a type="button" data-bs-toggle="modal"
                                                     data-bs-target="#kt_modal_update_user-{{ $user->id }}"
-                                                    class="menu-link px-3">Edit</a>
+                                                    class="menu-link px-3">View Profile</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -239,119 +239,9 @@
                                         <!--end::Menu-->
                                     </td>
                                 </tr>
-                                <!--begin::Modal - Update task-->
-                                <div class=" modal fade" id="kt_modal_update_user-{{ $user->id }}"
-                                    tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                                        <div class="modal-content">
-                                            <div class="modal-header" id="kt_modal_update_user_header">
-                                                <h2 class="fw-bold">Update User</h2>
-                                                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
-                                                    <i class="ki-duotone ki-cross fs-1">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                    </i>
-                                                </div>
-                                            </div>
-                                            <div class="modal-body px-5 my-7">
-                                                <form id="kt_modal_update_user_form{{ $user->id }}"
-                                                    class="form"
-                                                    action="{{ route('users.update', $user->id) }}"
-                                                    method="POST" enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="d-flex flex-column scroll-y px-5 px-lg-10"
-                                                        id="kt_modal_update_user_scroll" data-kt-scroll="true"
-                                                        data-kt-scroll-activate="true"
-                                                        data-kt-scroll-max-height="auto"
-                                                        data-kt-scroll-dependencies="#kt_modal_update_user_header"
-                                                        data-kt-scroll-wrappers="#kt_modal_update_user_scroll"
-                                                        data-kt-scroll-offset="300px">
-                                                        <div class="fv-row mb-7">
-                                                            <label class="d-block fw-semibold fs-6 mb-5">
-                                                                Avatar
-                                                            </label>
-                                                            <style>
-                                                                .image-input-placeholder {
-                                                                    background-image: url('assets/media/svg/files/blank-image.svg');
-                                                                }
 
-                                                                [data-bs-theme="dark"] .image-input-placeholder {
-                                                                    background-image: url('assets/media/svg/files/blank-image-dark.svg');
-                                                                }
-                                                            </style>
-                                                            <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
-                                                                <div class="image-input-wrapper w-125px h-125px"
-                                                                    style="background-image: url('{{ $user->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&font-size=0.3' }}');">
-                                                                </div>
-                                                                <label
-                                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                                                    <i class="ki-duotone ki-pencil fs-7">
-                                                                        <span class="path1"></span>
-                                                                        <span class="path2"></span>
-                                                                    </i>
-                                                                    <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                                                    <input type="hidden" name="avatar_remove" value="{{ $user->avatar }}" />
-                                                                </label>
-                                                                <span
-                                                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                                                                    <i class="ki-duotone ki-cross fs-2">
-                                                                        <span class="path1"></span>
-                                                                        <span class="path2"></span>
-                                                                    </i>
-                                                                </span>
-                                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                                                                    <i class="ki-duotone ki-cross fs-2">
-                                                                        <span class="path1"></span>
-                                                                        <span class="path2"></span>
-                                                                    </i>
-                                                                </span>
-                                                            </div>
-                                                            <div class="form-text">
-                                                                Allowed file types: png, jpg, jpeg.
-                                                            </div>
-                                                        </div>
-                                                        <div class="fv-row mb-7">
-                                                            <label class="required fw-semibold fs-6 mb-2">
-                                                                Full Name
-                                                            </label>
-                                                            <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="{{ $user->name }}" />
-                                                        </div>
-                                                        <div class="fv-row mb-7">
-                                                            <label class="required fw-semibold fs-6 mb-2">Email</label>
-                                                            <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com" value="{{ $user->email }}" />
-                                                        </div>
-                                                        <div class="mb-5">
-                                                            <label class="required fw-semibold fs-6 mb-5">Role</label>
-                                                            <select class="form-select" data-control="select2"
-                                                                data-placeholder="Select an option"
-                                                                data-dropdown-parent="#kt_modal_update_user-{{ $user->id }}"
-                                                                name="role">
-                                                                <option></option>
-                                                                @foreach ($roles as $role)
-                                                                <option value="{{ $role->name }}"
-                                                                    {{ $user->roles->contains($role->id) ? 'selected' : '' }}>
-                                                                    {{ $role->name }}
-                                                                </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="text-center pt-10">
-                                                        <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">Discard</button>
-                                                        <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
-                                                            <span class="indicator-label">Submit</span>
-                                                            <span class="indicator-progress">Please wait...
-                                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                                            </span>
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end::Modal - Update task-->
+                                @include('layouts.components.user_management.update_modal_user')
+
                                 @endforeach
 
                             </tbody>
@@ -398,109 +288,10 @@
 </div>
 <!--end:::Main-->
 
-<!--begin::Modal - Add task-->
-<div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered mw-650px">
-        <div class="modal-content">
-            <div class="modal-header" id="kt_modal_add_user_header">
-                <h2 class="fw-bold">Add New User</h2>
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
-                    <i class="ki-duotone ki-cross fs-1">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i>
-                </div>
-            </div>
-            <div class="modal-body px-5 my-7">
-                <form id="kt_modal_add_user_form" class="form" action="{{ route('user.store') }}" method="POST">
-                    @csrf
-                    <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_add_user_scroll"
-                        data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto"
-                        data-kt-scroll-dependencies="#kt_modal_add_user_header"
-                        data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                        <div class="fv-row mb-7">
-                            <label class="required fw-semibold fs-6 mb-2">Full Name</label>
-                            <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0"
-                                placeholder="Enter your Full Name" />
-                        </div>
-                        <div class="fv-row mb-7">
-                            <label class="required fw-semibold fs-6 mb-2">Email</label>
-                            <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0"
-                                placeholder="Enter Your Email" />
-                        </div>
-                        <div class="fv-row mb-7">
-                            <label class="required fw-semibold fs-6 mb-2">Password</label>
-                            <div class="fv-row " data-kt-password-meter="true">
-                                <div class="mb-1">
-                                    <div class="position-relative mb-3">
-                                        <input class="form-control bg-transparent" type="password"
-                                            placeholder="Password" name="password" autocomplete="off" />
-                                        <span
-                                            class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
-                                            data-kt-password-meter-control="visibility">
-                                            <i class="fas fa-eye-slash "></i>
-                                            <i class="fas fa-eye  d-none"></i>
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center mb-3"
-                                        data-kt-password-meter-control="highlight">
-                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2">
-                                        </div>
-                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2">
-                                        </div>
-                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2">
-                                        </div>
-                                        <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-                                    </div>
-                                </div>
-                                <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &
-                                    symbols.</div>
-                            </div>
-                        </div>
-                        <div class="fv-row mb-7">
-                            <label class="required fw-semibold fs-6 mb-2">Confirm Password</label>
-                            <div class="fv-row " data-kt-password-meter="true">
-                                <div class="position-relative mb-3">
-                                    <input class="form-control bg-transparent" type="password"
-                                        placeholder="Confirmation Password" name="password_confirmation"
-                                        autocomplete="off" />
-                                    <span
-                                        class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
-                                        data-kt-password-meter-control="visibility">
-                                        <i class="fas fa-eye-slash "></i>
-                                        <i class="fas fa-eye  d-none"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <label class="required fw-semibold fs-6 mb-5">Role</label>
-                            <select class="form-select" data-control="select2" data-placeholder="Select an option"
-                                data-dropdown-parent="#kt_modal_add_user" name="role">
-                                <option></option>
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->name }}">
-                                    {{ $role->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="text-center pt-10">
-                        <button type="reset" class="btn btn-light me-3"
-                            data-kt-users-modal-action="cancel">Discard</button>
-                        <button type="submit" class="btn btn-primary">
-                            <span class="indicator-label">Submit</span>
-                            <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!--end::Modal - Add task-->
+
+@include('layouts.components.user_management.add_modal_user')
+
+
 @endsection
 
 @section('scripts')
@@ -514,8 +305,7 @@
 <script src="assets/js/scripts.bundle.js"></script>
 <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <script src="assets/js/custom/apps/user-management/users/list/table.js"></script>
-<script src="assets/js/custom/apps/user-management/users/list/export-users.js"></script>
-<script src="assets/js/custom/apps/user-management/users/list/add.js"></script>
+<!-- <script src="assets/js/custom/apps/user-management/users/list/add.js"></script> -->
 <script src="assets/js/widgets.bundle.js"></script>
 <script src="assets/js/custom/widgets.js"></script>
 <script src="assets/js/custom/apps/chat/chat.js"></script>
@@ -573,4 +363,5 @@
         });
     }
 </script>
+
 @endsection

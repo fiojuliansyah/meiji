@@ -89,15 +89,13 @@ class PermissionSeeder extends Seeder
         ]);
 
         // Assign Super Admin role to the admin user
-        $adminUser->assignRole('Super Admin');
+        $adminUser->syncRoles('Super Admin');
 
         // Optionally create Profile and Document for the admin user
         Profile::create([
             'user_id' => $adminUser->id,
         ]);
 
-        Document::create([
-            'user_id' => $adminUser->id,
-        ]);
+      
     }
 }
