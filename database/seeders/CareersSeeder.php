@@ -12,6 +12,41 @@ class CareersSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $this->call(DepartementFactory::class);
+        $this->call(LevelSeeder::class);
+        $this->call(LocationSeeder::class);
+        $this->call(TypeSeeder::class);
+
+        $careers = [
+            [
+                'user_id' => 1,
+                'departement_id' => 1,
+                'level_id' => 1,
+                'name' => 'Software Engineer',
+                'salary' => '10000000',
+                'type_id' => 1,
+                'placement' => 'Jakarta',
+                'experience' => '2 years',
+                'deadline_date' => '2024-12-31',
+                'description' => 'Develop and maintain software applications.',
+            ],
+            [
+                'user_id' => 2,
+                'departement_id' => 2,
+                'level_id' => 2,
+                'name' => 'Data Analyst',
+                'salary' => '8000000',
+                'type_id' => 2,
+                'placement' => 'Bandung',
+                'experience' => '1 year',
+                'deadline_date' => '2024-11-30',
+                'description' => 'Analyze and interpret complex data sets.',
+            ],
+            // Add more career entries as needed
+        ];
+
+        foreach ($careers as $career) {
+            \App\Models\Career::create($career);
+        }
     }
 }

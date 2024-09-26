@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(PermissionSeeder::class);
+        
         User::factory(10)->create();
         $users = User::whereDoesntHave('roles', function ($query) {
             $query->where('name', 'Super Admin');
@@ -29,5 +30,7 @@ class DatabaseSeeder extends Seeder
     
             $user->syncRoles('User');
         }
+
+        $this->call(CareersSeeder::class);
     }
 }
