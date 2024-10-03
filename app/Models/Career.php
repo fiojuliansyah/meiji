@@ -9,7 +9,7 @@ class Career extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'departement_id', 'level_id', 'name', 'salary', 'type_id', 'placement', 'experience', 'deadline_date', 'description'];
+    protected $fillable = ['user_id', 'departement_id', 'level_id', 'name', 'salary', 'type_id', 'placement', 'experience', 'deadline_date', 'description', 'location_id'];
 
     public function departement()
     {
@@ -29,5 +29,10 @@ class Career extends Model
     public function type()
     {
         return $this->belongsTo(Type::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 }

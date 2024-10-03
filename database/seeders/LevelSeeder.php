@@ -16,15 +16,15 @@ class LevelSeeder extends Seeder
         Level::create(
             [
                 'name' => 'Fresh Graduate',
-                'name' => 'Fresh Graduate'
+                'slug' => 'Fresh Graduate'
             ],
             [
                 'name' => 'Less Than 1 Year',
-                'name' => 'Less Than 1 Year'
+                'slug' => 'Less Than 1 Year'
             ],
             [
                 'name' => '1 Year',
-                'name' => '1 Year'
+                'slug' => '1 Year'
             ],
         );
     }

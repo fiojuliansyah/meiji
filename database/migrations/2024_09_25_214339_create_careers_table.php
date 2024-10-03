@@ -53,6 +53,7 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->index();
             $table->foreignId('departement_id')->nullable()->index();
             $table->foreignId('level_id')->nullable()->index();
+            $table->foreignId('location_id')->nullable()->index();
             $table->string('name')->nullable();
             $table->string('salary')->nullable();
             $table->foreignId('type_id')->nullable()->index();

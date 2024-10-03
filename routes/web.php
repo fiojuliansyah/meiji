@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CareerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -14,7 +15,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     Route::get('/roles', [RoleController::class, 'index'])->name('roles');
     Route::post('/roles-store', [RoleController::class, 'store'])->name('roles.store');
@@ -35,5 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/profile-update/{user}', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/document-store', [ProfileController::class, 'storeDocument'])->name('document.store');
     Route::delete('/document-delete/{id}', [ProfileController::class, 'destroyDocument'])->name('document.delete');
+
+    Route::get('/careers', [CareerController::class, 'index'])->name('careers.list');
+    Route::post('/career-store', [CareerController::class, 'store'])->name('career.store');
+    Route::put('/career-update/{id}', [CareerController::class, 'update'])->name('career.update');
+    Route::delete('/career-delete/{id}', [CareerController::class, 'destroy'])->name('career.delete');
+    Route::delete('/career/bulk-delete', [CareerController::class, 'bulkDelete'])->name('careers.bulk-delete');
+    
+    
 });
 
