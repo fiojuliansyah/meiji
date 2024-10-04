@@ -142,7 +142,11 @@ class CareerController extends Controller
         }
     }
 
-    //----- CRUD DEPARTEMENT ------
+
+
+
+
+//----- CRUD DEPARTEMENT ------
     public function departement()
     {
         $departements = Departement::all();
@@ -274,7 +278,10 @@ class CareerController extends Controller
     }
 
 
-    //----- END CRUD DEPARTEMENT ------
+//----- END CRUD DEPARTEMENT ------
+
+    
+
 
 
     //----- CRUD LOCATION ------
@@ -284,7 +291,103 @@ class CareerController extends Controller
 
         return view('location', compact('locations'));
     }
+
+    public function loctStore(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|unique:locations,name,',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable',
+            ]);
+            $location = new Location();
+            $location->name = $validatedData['name'];
+            $location->slug = $validatedData['name'];
+            $location->latlong = $validatedData['latitude'] . ',' . $validatedData['longitude'];
+
+
+            $location->save();
+
+            return redirect()->back()->with('success', 'Location uploaded successfully!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to upload Location. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function loctUpdate(Request $request, $id)
+    {
+        $location = Location::findorfail($id);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|unique:locations,name,' . $id . ',id',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable',
+            ]);
+
+            if (!$location) {
+                return redirect()->back()->with('error', 'location not found.');
+            }
+            $location->name = $validatedData['name'];
+            $location->slug = $validatedData['name'];
+            $location->latlong = $validatedData['latitude'] . ',' . $validatedData['longitude'];
+
+
+            $location->save();
+
+            return redirect()->back()->with('success', 'Location updated successfully!');
+        } catch (\Exception $e) {
+
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to update Location. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function loctDelete($id)
+    {
+
+        try {
+            $location = location::findOrFail($id);
+            $location->delete();
+
+            return redirect()->back()->with('success', 'Location deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete Location: ' . $e->getMessage());
+        }
+    }
+
+
+    public function loctBulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->location_ids;
+
+            $careers = Location::whereIn('id', $ids)->get();
+
+            foreach ($careers as $career) {
+                // Hapus file di Cloudinary
+                if ($career->img_public_id) {
+                    Cloudinary::destroy($career->img_public_id);
+                }
+                $career->delete();
+            }
+
+            return redirect()->back()->with('success', 'Locations Deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete Locations: ' . $e->getMessage());
+        }
+    }
     //----- END CRUD LOCATION ------
+
+
+
+
 
 
     //----- CRUD CRUD LEVEL ------
@@ -296,6 +399,12 @@ class CareerController extends Controller
         return view('level', compact('levels'));
     }
     //----- END CRUD LEVEL ------
+
+
+
+
+
+
 
 
     //----- CRUD TYPE ------
