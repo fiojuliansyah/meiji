@@ -42,6 +42,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/career-update/{id}', [CareerController::class, 'update'])->name('career.update');
     Route::delete('/career-delete/{id}', [CareerController::class, 'destroy'])->name('career.delete');
     Route::delete('/career/bulk-delete', [CareerController::class, 'bulkDelete'])->name('careers.bulk-delete');
+
+    Route::get('/departement', [CareerController::class, 'departement'])->name('departement');
+    Route::post('/departement-store', [CareerController::class, 'dptStore'])->name('departement.store');
+    Route::put('/departement-update/{id}', [CareerController::class, 'dptUpdate'])->name('departement.update');
+    Route::delete('/departement-delete/{id}', [CareerController::class, 'dptDelete'])->name('departement.delete');
+    Route::delete('/departement/bulk-delete', [CareerController::class, 'dptBulkDelete'])->name('departements.bulk-delete');
+
+    Route::get('/location', [CareerController::class, 'location'])->name('location');
+    Route::get('/level', [CareerController::class, 'level'])->name('level');
+    Route::get('/type', [CareerController::class, 'type'])->name('type');
+   
     
     
 });

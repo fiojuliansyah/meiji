@@ -7,6 +7,7 @@ use App\Models\Departement;
 use App\Models\Level;
 use App\Models\Location;
 use App\Models\Type;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -140,4 +141,172 @@ class CareerController extends Controller
                 ->with('error', 'Failed to delete Careers: ' . $e->getMessage());
         }
     }
+
+    //----- CRUD DEPARTEMENT ------
+    public function departement()
+    {
+        $departements = Departement::all();
+
+        return view('departement', compact('departements'));
+    }
+
+    public function dptStore(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'img' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            ]);
+            $departement = new Departement();
+            $departement->name = $validatedData['name'];
+            $departement->slug = $validatedData['name'];
+            // Upload file ke Cloudinary dan ambil URL & Public ID
+            $file = $request->file('img');
+            $uploadedFile = $file->storeOnCloudinary('departements'); // Folder 'documents'
+
+            // Simpan URL dan Public ID
+            $fileUrl = $uploadedFile->getSecurePath();
+            $filePublicId = $uploadedFile->getPublicId();
+
+            // Contoh penyimpanan data dokumen ke database (jika ada model terkait):
+            $departement->img_url = $fileUrl;
+            $departement->img_public_id = $filePublicId;
+
+            $departement->save();
+
+            // Berhasil upload dan simpan
+            return redirect()->back()->with('success', 'Departement uploaded successfully!');
+        } catch (\Exception $e) {
+            // Tangkap error saat upload
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to upload departement. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function dptUpdate(Request $request, $id)
+    {
+        try {
+            $departement = Departement::findorfail($id);
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'img' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
+            ]);
+
+            if (!$departement) {
+                return redirect()->back()->with('error', 'Departement not found.');
+            }
+            $departement->name = $validatedData['name'];
+            $departement->slug = $validatedData['name'];
+            // Hapus file di Cloudinary
+            if ($departement->img_public_id) {
+                Cloudinary::destroy($departement->img_public_id);
+            }
+            // Upload file ke Cloudinary dan ambil URL & Public ID
+            $file = $request->file('img');
+            if ($file) {
+                $uploadedFile = $file->storeOnCloudinary('departements'); // Folder 'documents'
+
+                // Simpan URL dan Public ID
+                $fileUrl = $uploadedFile->getSecurePath();
+                $filePublicId = $uploadedFile->getPublicId();
+
+                // Contoh penyimpanan data dokumen ke database (jika ada model terkait):
+                $departement->img_url = $fileUrl;
+                $departement->img_public_id = $filePublicId;
+            }
+
+            $departement->save();
+
+            // Berhasil upload dan simpan
+            return redirect()->back()->with('success', 'Departement updated successfully!');
+        } catch (\Exception $e) {
+            // Tangkap error saat upload
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to update departement. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function dptDelete(Request $request, $id)
+    {
+
+        try {
+            $departement = Departement::findOrFail($id);
+
+            // Hapus file di Cloudinary
+            if ($departement->img_public_id) {
+                Cloudinary::destroy($departement->img_public_id);
+            }
+
+            $departement->delete();
+
+            return redirect()->back()->with('success', 'Departement deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete departement: ' . $e->getMessage());
+        }
+    }
+
+
+    public function dptBulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->departement_ids;
+
+            $careers = Departement::whereIn('id', $ids)->get();
+
+            foreach ($careers as $career) {
+                // Hapus file di Cloudinary
+                if ($career->img_public_id) {
+                    Cloudinary::destroy($career->img_public_id);
+                }
+                $career->delete();
+            }
+
+            return redirect()->back()->with('success', 'Departements Deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete Departements: ' . $e->getMessage());
+        }
+    }
+
+
+    //----- END CRUD DEPARTEMENT ------
+
+
+    //----- CRUD LOCATION ------
+    public function location()
+    {
+        $locations = Location::all();
+
+        return view('location', compact('locations'));
+    }
+    //----- END CRUD LOCATION ------
+
+
+    //----- CRUD CRUD LEVEL ------
+    public function level()
+    {
+        $levels = Level::all();
+
+
+        return view('level', compact('levels'));
+    }
+    //----- END CRUD LEVEL ------
+
+
+    //----- CRUD TYPE ------
+    public function type()
+    {
+        $types = Type::all();
+
+        return view('type', compact('types'));
+    }
+    //----- END CRUD TYPE ------
+
+
+
 }

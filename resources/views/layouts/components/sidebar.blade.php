@@ -47,13 +47,74 @@
                             </span>
                             <span class="menu-title">Users</span>
                         </a>
-                        <a class="menu-link {{ request()->routeIs('careers.list') ? 'active' : '' }}"
-                            href="{{ route('careers.list') }}">
-                            <span class="menu-icon">
-                                <i class="fas fa-briefcase"></i>
+
+                        <!--begin:Menu item-->
+                        <div data-kt-menu-trigger="click" class="menu-item here  menu-accordion {{request()->routeIs('careers.list')|| request()->routeIs('departement')||request()->routeIs('location')||request()->routeIs('level')||request()->routeIs('type')? 'show': ''}}">
+                            <!--begin:Menu link-->
+                            <span class="menu-link">
+                                <span class="menu-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </span>
+                                <span class="menu-title">Careers</span>
+                                <span class="menu-arrow"></span>
                             </span>
-                            <span class="menu-title">Careers</span>
-                        </a>
+                            <!--end:Menu link-->
+                            <!--begin:Menu sub-->
+                            <div class="menu-sub menu-sub-accordion">
+                                <!--begin:Menu item-->
+                                <div class="menu-item">
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link {{ request()->routeIs('careers.list') ? 'active' : '' }}"
+                                        href="{{ route('careers.list') }}">
+                                        <span class=" menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Carrer List</span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link {{ request()->routeIs('departement') ? 'active' : '' }}"
+                                        href="{{ route('departement') }}">
+                                        <span class=" menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Departement</span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link {{ request()->routeIs('location') ? 'active' : '' }}"
+                                        href="{{ route('location') }}">
+                                        <span class=" menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Location</span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link {{ request()->routeIs('level') ? 'active' : '' }}"
+                                        href="{{ route('level') }}">
+                                        <span class=" menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Level</span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                    <!--begin:Menu link-->
+                                    <a class="menu-link {{ request()->routeIs('type') ? 'active' : '' }}"
+                                        href="{{ route('type') }}">
+                                        <span class=" menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Type</span>
+                                    </a>
+                                    <!--end:Menu link-->
+                                </div>
+                                <!--end:Menu item-->
+
+                            </div>
+                            <!--end:Menu sub-->
+                        </div>
+                        <!--end:Menu item-->
                     </div>
                 </div>
             </div>

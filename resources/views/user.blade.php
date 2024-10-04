@@ -161,7 +161,7 @@
                                     <th class="min-w-125px text-center">User</th>
                                     <th class="min-w-125px">Role</th>
                                     <th class="min-w-125px">Last login</th>
-                                    <th class="min-w-125px">Two-step</th>
+                                    <th class="min-w-125px">Verified</th>
                                     <th class="min-w-125px">Joined Date</th>
                                     <th class="text-end min-w-100px">Actions</th>
                                 </tr>
@@ -295,23 +295,10 @@
 @endsection
 
 @section('scripts')
-<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 
-<script>
-    var hostUrl = "assets/";
-</script>
-
-<script src="assets/plugins/global/plugins.bundle.js"></script>
-<script src="assets/js/scripts.bundle.js"></script>
 <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <script src="assets/js/custom/apps/user-management/users/list/table.js"></script>
-<!-- <script src="assets/js/custom/apps/user-management/users/list/add.js"></script> -->
-<script src="assets/js/widgets.bundle.js"></script>
-<script src="assets/js/custom/widgets.js"></script>
-<script src="assets/js/custom/apps/chat/chat.js"></script>
-<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="assets/js/custom/utilities/modals/create-app.js"></script>
-<script src="assets/js/custom/utilities/modals/users-search.js"></script>
+
 
 <script>
     toastr.options = {
