@@ -284,7 +284,7 @@ class CareerController extends Controller
 
 
 
-    //----- CRUD LOCATION ------
+//----- CRUD LOCATION ------
     public function location()
     {
         $locations = Location::all();
@@ -369,10 +369,6 @@ class CareerController extends Controller
             $careers = Location::whereIn('id', $ids)->get();
 
             foreach ($careers as $career) {
-                // Hapus file di Cloudinary
-                if ($career->img_public_id) {
-                    Cloudinary::destroy($career->img_public_id);
-                }
                 $career->delete();
             }
 
@@ -383,14 +379,14 @@ class CareerController extends Controller
                 ->with('error', 'Failed to delete Locations: ' . $e->getMessage());
         }
     }
-    //----- END CRUD LOCATION ------
+//----- END CRUD LOCATION ------
 
 
 
 
 
 
-    //----- CRUD CRUD LEVEL ------
+//----- CRUD CRUD LEVEL ------
     public function level()
     {
         $levels = Level::all();
@@ -398,7 +394,90 @@ class CareerController extends Controller
 
         return view('level', compact('levels'));
     }
-    //----- END CRUD LEVEL ------
+
+    public function lvlStore(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|unique:levels,name,',
+            ]);
+            $level = new Level();
+            $level->name = $validatedData['name'];
+
+
+            $level->save();
+
+            return redirect()->back()->with('success', 'Level uploaded successfully!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to upload Level. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function lvlUpdate(Request $request, $id)
+    {
+        $level = Level::findorfail($id);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|unique:levels,name,' . $id . ',id',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable',
+            ]);
+
+            if (!$level) {
+                return redirect()->back()->with('error', 'level not found.');
+            }
+            $level->name = $validatedData['name'];
+
+
+            $level->save();
+
+            return redirect()->back()->with('success', 'Level updated successfully!');
+        } catch (\Exception $e) {
+
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to update Level. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function lvlDelete($id)
+    {
+
+        try {
+            $level = Level::findOrFail($id);
+            $level->delete();
+
+            return redirect()->back()->with('success', 'Level deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete Level: ' . $e->getMessage());
+        }
+    }
+
+
+    public function lvlBulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->level_ids;
+
+            $levels = Level::whereIn('id', $ids)->get();
+
+            foreach ($levels as $level) {
+
+                $level->delete();
+            }
+
+            return redirect()->back()->with('success', 'Levels Deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete Levels: ' . $e->getMessage());
+        }
+    }
+//----- END CRUD LEVEL ------
 
 
 
