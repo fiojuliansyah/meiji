@@ -349,7 +349,7 @@ class CareerController extends Controller
     {
 
         try {
-            $location = location::findOrFail($id);
+            $location = Location::findOrFail($id);
             $location->delete();
 
             return redirect()->back()->with('success', 'Location deleted successfully.');
@@ -486,14 +486,95 @@ class CareerController extends Controller
 
 
 
-    //----- CRUD TYPE ------
+//----- CRUD TYPE ------
     public function type()
     {
         $types = Type::all();
 
         return view('type', compact('types'));
     }
-    //----- END CRUD TYPE ------
+
+    public function typeStore(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|unique:types,name,',
+            ]);
+            $type = new Type();
+            $type->name = $validatedData['name'];
+
+
+            $type->save();
+
+            return redirect()->back()->with('success', 'Type uploaded successfully!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to upload Type. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function typeUpdate(Request $request, $id)
+    {
+        $type = Type::findorfail($id);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|unique:types,name,' . $id . ',id',
+            ]);
+
+            if (!$type) {
+                return redirect()->back()->with('error', 'Type not found.');
+            }
+            $type->name = $validatedData['name'];
+
+
+            $type->save();
+
+            return redirect()->back()->with('success', 'Type updated successfully!');
+        } catch (\Exception $e) {
+
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to update Type. Error: ' . $e->getMessage());
+        }
+    }
+
+    public function typeDelete($id)
+    {
+
+        try {
+            $type = Type::findOrFail($id);
+            $type->delete();
+
+            return redirect()->back()->with('success', 'type deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete type: ' . $e->getMessage());
+        }
+    }
+
+
+    public function typeBulkDelete(Request $request)
+    {
+        try {
+            $ids = $request->type_ids;
+
+            $types = Type::whereIn('id', $ids)->get();
+
+            foreach ($types as $type) {
+
+                $type->delete();
+            }
+
+            return redirect()->back()->with('success', 'types Deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete types: ' . $e->getMessage());
+        }
+    }
+//----- END CRUD TYPE ------
 
 
 

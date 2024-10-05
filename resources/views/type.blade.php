@@ -12,7 +12,7 @@
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
-                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">location</h1>
+                    <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">type</h1>
                     <!--end::Title-->
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -27,13 +27,13 @@
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">locations</li>
+                        <li class="breadcrumb-item text-muted">Career Management</li>
                         <!--end::Item-->
                         <!--begin::Item-->
                         <li class="breadcrumb-item">
                             <span class="bullet bg-gray-500 w-5px h-2px"></span>
                         </li>
-                        <li class="breadcrumb-item text-muted">location</li>
+                        <li class="breadcrumb-item text-muted">Type</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -59,7 +59,7 @@
                                     <span class="path1"></span>
                                     <span class="path2"></span>
                                 </i>
-                                <input type="text" data-kt-location-table-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Departrement" />
+                                <input type="text" data-kt-type-table-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Type" />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -67,23 +67,23 @@
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
                             <!--begin::Toolbar-->
-                            <div class="d-flex justify-content-end" data-kt-location-table-toolbar="base">
+                            <div class="d-flex justify-content-end" data-kt-type-table-toolbar="base">
 
                                 <!--end::Filter-->
-                                <!--begin::Add location-->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_location">Add Location</button>
-                                <!--end::Add location-->
+                                <!--begin::Add type-->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_type">Add type</button>
+                                <!--end::Add type-->
                             </div>
                             <!--end::Toolbar-->
                             <!--begin::Group actions-->
-                            <div class="d-flex justify-content-end align-items-center d-none" data-kt-location-table-toolbar="selected">
+                            <div class="d-flex justify-content-end align-items-center d-none" data-kt-type-table-toolbar="selected">
                                 <div class="fw-bold me-5">
-                                    <span class="me-2" data-kt-location-table-select="selected_count"></span>Selected
+                                    <span class="me-2" data-kt-type-table-select="selected_count"></span>Selected
                                 </div>
-                                <button type="button" class="btn btn-danger" data-kt-location-table-select="delete_selected">Delete Selected</button>
+                                <button type="button" class="btn btn-danger" data-kt-type-table-select="delete_selected">Delete Selected</button>
 
                                 <!-- Bulk Delete Form (place it before or after the table) -->
-                                <form id="bulk-delete-form" action="{{ route('locations.bulk-delete') }}" method="POST">
+                                <form id="bulk-delete-form" action="{{ route('types.bulk-delete') }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 </form>
@@ -96,35 +96,31 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-0">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_locations_table">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_types_table">
                             <thead>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                    <th class="w-10px pe-2">
+                                    <th class="w-10px pe-2 text-center">
                                         <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_locations_table .form-check-input" value="1" />
+                                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_types_table .form-check-input" value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">Location</th>
-                                    <th class="min-w-125px">LatLong</th>
-                                    <th class="text-end min-w-125px">Actions</th>
+                                    <th class="text-center">type</th>
+                                    <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="fw-semibold text-gray-600">
-                                @foreach ($locations as $location)
+                                @foreach ($types as $type)
                                 <tr>
-                                    <td>
+                                    <td class="text-center">
                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="{{$location->id}}" name="location_ids[]" />
+                                            <input class="form-check-input" type="checkbox" value="{{$type->id}}" name="type_ids[]" />
                                         </div>
                                     </td>
-                                    <td>
-                                        {{$location->name}}
-                                    </td>
-                                    <td class="">
-                                        {{ $location->latlong }}
+                                    <td class="text-center">
+                                        {{$type->name}}
                                     </td>
 
-                                    <td class="text-end">
+                                    <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                             <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                         <!--begin::Menu-->
@@ -132,16 +128,16 @@
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#kt_modal_update_location-{{ $location->id }}"
+                                                    data-bs-target="#kt_modal_update_type-{{ $type->id }}"
                                                     class="menu-link px-3"> Edit</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <a class="menu-link px-3"
-                                                    onclick="ConfirmationDelete({{ $location->id }},'{{ $location->name }}')">Delete</a>
-                                                <form action="{{ route('location.delete', $location->id) }}"
-                                                    id="delete-{{ $location->name }}-{{ $location->id }}"
+                                                    onclick="ConfirmationDelete({{ $type->id }},'{{ $type->name }}')">Delete</a>
+                                                <form action="{{ route('type.delete', $type->id) }}"
+                                                    id="delete-{{ $type->name }}-{{ $type->id }}"
                                                     method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
@@ -153,7 +149,7 @@
                                     </td>
                                 </tr>
 
-                                @include('layouts.components.career_management.update_modal_location')
+                                @include('layouts.components.career_management.type.update_modal_type')
 
                                 @endforeach
                             </tbody>
@@ -164,8 +160,7 @@
                 </div>
                 <!--end::Card-->
                 <!--begin::Modals-->
-                @include('layouts.components.career_management.add_modal_location')
-
+                @include('layouts.components.career_management.type.add_modal_type')
                 <!--end::Modals-->
             </div>
             <!--end::Content container-->
@@ -205,34 +200,7 @@
 @endsection
 
 @section('scripts')
-<script src="assets/js/custom/apps/careers/loctList/list.js"></script>
-<script src="assets/plugins/custom/tinymce/tinymce.bundle.js"></script>
-<script>
-    var options = {
-        selector: "#kt_docs_tinymce_basic",
-        height: "200"
-    };
-
-    if (KTThemeMode.getMode() === "dark") {
-        options["skin"] = "oxide-dark";
-        options["content_css"] = "dark";
-    }
-
-    tinymce.init(options);
-</script>
-<script>
-    var options = {
-        selector: "#tiny_update",
-        height: "200"
-    };
-
-    if (KTThemeMode.getMode() === "dark") {
-        options["skin"] = "oxide-dark";
-        options["content_css"] = "dark";
-    }
-
-    tinymce.init(options);
-</script>
+<script src="assets/js/custom/apps/careers/type/list.js"></script>
 
 
 <script>

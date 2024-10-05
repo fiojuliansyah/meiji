@@ -62,6 +62,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/level/bulk-delete', [CareerController::class, 'lvlBulkDelete'])->name('levels.bulk-delete');
 
     Route::get('/type', [CareerController::class, 'type'])->name('type');
+    Route::post('/type-store', [CareerController::class, 'typeStore'])->name('type.store');
+    Route::put('/type-update/{id}', [CareerController::class, 'typeUpdate'])->name('type.update');
+    Route::delete('/type-delete/{id}', [CareerController::class, 'typeDelete'])->name('type.delete');
+    Route::delete('/type/bulk-delete', [CareerController::class, 'typeBulkDelete'])->name('types.bulk-delete');
    
     
     
