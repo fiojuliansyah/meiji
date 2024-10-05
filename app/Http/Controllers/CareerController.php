@@ -403,6 +403,7 @@ class CareerController extends Controller
             ]);
             $level = new Level();
             $level->name = $validatedData['name'];
+            $level->slug = $validatedData['name'];
 
 
             $level->save();
@@ -429,6 +430,7 @@ class CareerController extends Controller
                 return redirect()->back()->with('error', 'level not found.');
             }
             $level->name = $validatedData['name'];
+            $level->slug = $validatedData['name'];
 
 
             $level->save();
@@ -502,6 +504,7 @@ class CareerController extends Controller
             ]);
             $type = new Type();
             $type->name = $validatedData['name'];
+            $type->slug = $validatedData['name'];
 
 
             $type->save();
@@ -526,6 +529,7 @@ class CareerController extends Controller
                 return redirect()->back()->with('error', 'Type not found.');
             }
             $type->name = $validatedData['name'];
+            $type->slug = $validatedData['name'];
 
 
             $type->save();
