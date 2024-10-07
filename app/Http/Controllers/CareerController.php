@@ -29,7 +29,7 @@ class CareerController extends Controller
         try {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                'career_id' => 'required',
+                'user_id' => 'required',
                 'departement' => 'required', // Mengambil ID dari tabel departments
                 'location' => 'required',       // Mengambil ID dari tabel locations
                 'type' => 'required',               // Mengambil ID dari tabel types

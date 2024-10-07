@@ -153,7 +153,7 @@
                                     </td>
                                 </tr>
 
-                                @include('layouts.components.career_management.update_modal_location')
+                                @include('layouts.components.career_management.location.update_modal_location')
 
                                 @endforeach
                             </tbody>
@@ -164,7 +164,7 @@
                 </div>
                 <!--end::Card-->
                 <!--begin::Modals-->
-                @include('layouts.components.career_management.add_modal_location')
+                @include('layouts.components.career_management.location.add_modal_location')
 
                 <!--end::Modals-->
             </div>

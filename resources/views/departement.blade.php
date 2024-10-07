@@ -162,7 +162,7 @@
                                     </td>
                                 </tr>
 
-                                @include('layouts.components.career_management.update_modal_departement')
+                                @include('layouts.components.career_management.departement.update_modal_departement')
 
                                 @endforeach
                             </tbody>
@@ -174,7 +174,7 @@
                 <!--end::Card-->
                 <!--begin::Modals-->
 
-                @include('layouts.components.career_management.add_modal_departement')
+                @include('layouts.components.career_management.departement.add_modal_departement')
                 <!--end::Modals-->
             </div>
             <!--end::Content container-->

@@ -120,7 +120,12 @@
                                                <!--begin::Label-->
                                                <label class="fs-6 fw-semibold mb-2">Placement</label>
                                                <!--end::Label-->
-                                               <input type="text" name="placement" class="form-control" placeholder="OnSite" value="{{$career->placement ??''}}">
+                                               <select class="form-select form-select-solid fw-bold" name="placement" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_add_career">
+                                                   <option></option>
+                                                   <option value="On-Site" {{ $career->placement == 'On-Site' ? 'selected' : '' }}>On-Site</option>
+                                                   <option value="Remote" {{ $career->placement == 'Remote' ? 'selected' : '' }}>Remote</option>
+                                                   <option value="Hybrid" {{ $career->placement == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
+                                               </select>
                                            </div>
                                            <!--end::Col-->
                                        </div>
