@@ -54,6 +54,9 @@
     if ($(".select-active").length) {
         $(".select-active").select2();
     }
+
+
+    
     /*---- CounterUp ----*/
     if ($(".count").length) {
         $(".count").counterUp({

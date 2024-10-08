@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/type-update/{id}', [CareerController::class, 'typeUpdate'])->name('type.update');
     Route::delete('/type-delete/{id}', [CareerController::class, 'typeDelete'])->name('type.delete');
     Route::delete('/type/bulk-delete', [CareerController::class, 'typeBulkDelete'])->name('types.bulk-delete');
+
    
     
     
