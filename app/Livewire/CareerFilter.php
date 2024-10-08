@@ -24,6 +24,7 @@ class CareerFilter extends Component
     public $maxSalary;
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
+    public $perPage = 10;
 
     public function mount()
     {
@@ -36,6 +37,11 @@ class CareerFilter extends Component
     {
         // Reset pagination when any filter changes
         $this->resetPage();
+    }
+
+    public function resetFilters()
+    {
+        $this->reset('search', 'filterLocation', 'filterDepartement', 'filterLevel', 'filterPlacement', 'filterType');
     }
 
     public function render()
@@ -60,7 +66,7 @@ class CareerFilter extends Component
             })
             ->whereBetween('salary', [$this->minSalary, $this->maxSalary])
             ->orderBy($this->sortField, $this->sortDirection)
-            ->paginate(10);
+            ->paginate($this->perPage); 
 
         // Load filter data
         $departements = Departement::withCount('careers')->get();
@@ -83,5 +89,21 @@ class CareerFilter extends Component
             'minSalary' => $this->minSalary,
             'maxSalary' => $this->maxSalary,
         ]);
+    }
+
+    public function sortNewest()
+    {
+        $this->sortField = 'created_at';
+        $this->sortDirection = 'desc';
+    }
+
+    public function sortOldest()
+    {
+        $this->sortField = 'created_at';
+        $this->sortDirection = 'asc';
+    }
+    public function setPerPage($item)
+    {
+        $this->perPage = $item;
     }
 }
