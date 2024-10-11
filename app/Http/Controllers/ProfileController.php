@@ -17,8 +17,7 @@ class ProfileController extends Controller
         try {
             $user = Profile::findOrFail($id);
 
-            $validatedData = $request->validate([
-                'nik' => 'required|string|max:16',
+            $validatedData = $request->validate(['nik' => 'required|max:16',
                 'birth_place' => 'required|string|max:50',
                 'birth_date' => 'required|date',
                 'gender' => 'required|in:laki-laki,perempuan',
@@ -26,6 +25,7 @@ class ProfileController extends Controller
                 'avatar' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
             ]);
 
+            $user->nik = $validatedData['nik'];
             $user->birth_place = $validatedData['birth_place'];
             $user->birth_date = $validatedData['birth_date'];
             $user->gender = $validatedData['gender'];

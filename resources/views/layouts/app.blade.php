@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<!--
-Author: Keenthemes
-Product Name: MetronicProduct Version: 8.2.5
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
 <html lang="en">
 <!--begin::Head-->
 
@@ -38,11 +27,13 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    @livewireStyles
     <!--end::Global Stylesheets Bundle-->
+    @cloudinaryJS
     <script>
         // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
     </script>
-    @cloudinaryJS
+
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -107,6 +98,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="/assets/js/custom/utilities/modals/new-target.js"></script>
     <script src="/assets/js/custom/utilities/modals/users-search.js"></script>
     @yield('scripts')
+    @livewireScripts
 
 </body>
 

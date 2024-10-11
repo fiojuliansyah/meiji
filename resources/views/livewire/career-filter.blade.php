@@ -21,9 +21,12 @@
                                                           class="fi-rr-angle-small-down"></i></button>
                                                   <ul class="dropdown-menu dropdown-menu-light"
                                                       aria-labelledby="dropdownSort">
-                                                      <li><a class="dropdown-item {{ $this->perPage == '10' ? 'active' : '' }}" href="" wire:click="setPerPage(10)">10</a></li>
-                                                      <li><a class="dropdown-item {{ $this->perPage == '20' ? 'active' : '' }}" href="" wire:click="setPerPage(20)">20</a></li>
-                                                      <li><a class="dropdown-item {{ $this->perPage == '50' ? 'active' : '' }}" href="" wire:click="setPerPage(50)">50</a></li>
+                                                      <li><a class="dropdown-item {{ $this->perPage == '10' ? 'active' : '' }}"
+                                                              href="" wire:click="setPerPage(10)">10</a></li>
+                                                      <li><a class="dropdown-item {{ $this->perPage == '20' ? 'active' : '' }}"
+                                                              href="" wire:click="setPerPage(20)">20</a></li>
+                                                      <li><a class="dropdown-item {{ $this->perPage == '50' ? 'active' : '' }}"
+                                                              href="" wire:click="setPerPage(50)">50</a></li>
                                                   </ul>
                                               </div>
                                           </div>
@@ -31,13 +34,16 @@
                                               <div class="dropdown dropdown-sort">
                                                   <button class="btn dropdown-toggle" id="dropdownSort2" type="button"
                                                       data-bs-toggle="dropdown" aria-expanded="false"
-                                                      data-bs-display="static"><span>{{$this->sortDirection == 'desc' ? 'Newest Post' : 'Oldest Post'}}</span><i
+                                                      data-bs-display="static"><span>{{ $this->sortDirection == 'desc' ? 'Newest Post' : 'Oldest Post' }}</span><i
                                                           class="fi-rr-angle-small-down"></i></button>
                                                   <ul class="dropdown-menu dropdown-menu-light"
                                                       aria-labelledby="dropdownSort2">
-                                                      <li><a class="dropdown-item {{  $this->sortDirection == 'desc' ? 'active' : '' }}" href="" wire:click="sortNewest()">Newest Post</a>
+                                                      <li><a class="dropdown-item {{ $this->sortDirection == 'desc' ? 'active' : '' }}"
+                                                              href="" wire:click="sortNewest()">Newest Post</a>
                                                       </li>
-                                                      <li><a class="dropdown-item {{  $this->sortDirection == 'asc' ? 'active' : '' }}" href="" wire:click="sortOldest()">Oldest Post</a></li>
+                                                      <li><a class="dropdown-item {{ $this->sortDirection == 'asc' ? 'active' : '' }}"
+                                                              href="" wire:click="sortOldest()">Oldest Post</a>
+                                                      </li>
                                                   </ul>
                                               </div>
                                           </div>
@@ -73,7 +79,7 @@
                                                           class="card-text-price fs-6">Rp.{{ number_format($career->salary, 0, ',', '.') }}</span>
                                                   </div>
                                                   <div class="col-lg-5 col-5 text-end">
-                                                      <div class="btn btn-apply-now" data-bs-toggle="modal"
+                                                      <div class="btn btn-apply-now  me-6" data-bs-toggle="modal"
                                                           data-bs-target="#ModalApplyJobForm">Apply now</div>
                                                   </div>
                                               </div>
@@ -90,27 +96,30 @@
                               @if ($careers)
                               <li class="pager-prev">
                                   @if ($careers->onFirstPage())
-                                  <a href="{{ $careers->previousPageUrl() }}" class="pager-prev disabled"></a>
+                                  <a href="{{ $careers->previousPageUrl() }}" class="pager-prev btn disabled"
+                                      aria-disabled="true"></a>
                                   @else
-                                  <a href="{{ $careers->previousPageUrl() }}" class="pager-prev disabled"></a>
+                                  <a href="{{ $careers->previousPageUrl() }}" class="pager-prev "></a>
                                   @endif
                               </li>
 
                               @foreach ($careers->getUrlRange(1, $careers->lastPage()) as $page => $url)
                               <li>
                                   @if ($page == $careers->currentPage())
-                                  <a href="{{ $url }}" class="pager-number disabled" aria-disabled="">{{ $page }}</a>
+                                  <a href="{{ $url }}" class="pager-number btn disabled"
+                                      aria-disabled="">{{ $page }}</a>
                                   @else
-                                  <a href="{{ $url }}" class="pager-number">{{ $page }}</a>
+                                  <a href="{{ $url }}"
+                                      class="pager-number">{{ $page }}</a>
                                   @endif
                               </li>
                               @endforeach
 
                               <li class="pager-next">
                                   @if ($careers->hasMorePages())
-                                  <a href="{{ $careers->nextPageUrl() }}" class="pager-next disabled"></a>
+                                  <a href="{{ $careers->nextPageUrl() }}" class="pager-next "></a>
                                   @else
-                                  <a href="{{ $careers->nextPageUrl() }}" class="pager-next"></a>
+                                  <a href="{{ $careers->nextPageUrl() }}" class="pager-next btn disabled"></a>
                                   @endif
                               </li>
                               @endif
@@ -122,7 +131,8 @@
                       <div class="sidebar-shadow none-shadow mb-30">
                           <div class="sidebar-filters">
                               <div class="filter-block head-border mb-30">
-                                  <h5>Advance Filter <a class="link-reset" wire:click="resetFilters" href="">Reset</a></h5>
+                                  <h5>Advance Filter <a class="link-reset" wire:click="resetFilters"
+                                          href="">Reset</a></h5>
                               </div>
                               <div class="filter-block mb-30">
                                   <div class="form-group select-style select-style-icon">
@@ -251,16 +261,17 @@
           </div>
       </section>
 
-  </div>
 
-  @script()
-  <script>
-      $(document).ready(function() {
-          $('#select2').select2();
-          $('#select2').on('change', function(e) {
-              var data = $('#select2').select2("val");
-              @this.set('filterLocation', data);
+
+      @script()
+      <script>
+          $(document).ready(function() {
+              $('#select2').select2();
+              $('#select2').on('change', function(e) {
+                  var data = $('#select2').select2("val");
+                  @this.set('filterLocation', data);
+              });
           });
-      });
-  </script>
-  @endscript
+      </script>
+      @endscript
+  </div>

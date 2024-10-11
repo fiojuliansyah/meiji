@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
             <div class="modal-header" id="kt_modal_update_user_header">
-                <h2 class="fw-bold">Update User</h2>
+                <h2 class="fw-bold">{{$user->name}} </h2>
                 <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
                     <i class="ki-duotone ki-cross fs-1">
                         <span class="path1"></span>
@@ -11,104 +11,180 @@
                     </i>
                 </div>
             </div>
-            <div class="modal-body px-5 my-7">
-                <form id="kt_modal_update_user_form{{ $user->id }}" class="form"
-                    action="" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_update_user_scroll"
-                        data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto"
-                        data-kt-scroll-dependencies="#kt_modal_update_user_header"
-                        data-kt-scroll-wrappers="#kt_modal_update_user_scroll" data-kt-scroll-offset="300px">
-                        <div class="fv-row mb-7">
-                            <label class="d-block fw-semibold fs-6 mb-5">
-                                Avatar
-                            </label>
-                            <style>
-                                .image-input-placeholder {
-                                    background-image: url('assets/media/svg/files/blank-image.svg');
-                                }
+            <div class="modal-body px-5 my-4">
+                <div class="d-flex flex-column scroll-y px-5 px-lg-10" id="kt_modal_update_user_scroll"
+                    data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-max-height="auto"
+                    data-kt-scroll-dependencies="#kt_modal_update_user_header"
+                    data-kt-scroll-wrappers="#kt_modal_update_user_scroll" data-kt-scroll-offset="300px">
 
-                                [data-bs-theme="dark"] .image-input-placeholder {
-                                    background-image: url('assets/media/svg/files/blank-image-dark.svg');
-                                }
-                            </style>
-                            <div class="image-input image-input-outline image-input-placeholder"
-                                data-kt-image-input="true">
-                                <div class="image-input-wrapper w-125px h-125px"
-                                    style="background-image: url('{{ $user->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&font-size=0.3' }}');">
+                    <div class="row mb-7">
+                        <div class="card shadow-sm">
+                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#kt_docs_card_collapsible1">
+                                <h3 class="card-title">Account</h3>
+                                <div class="card-toolbar rotate-180">
+                                    <i class="ki-duotone ki-down fs-1"></i>
                                 </div>
-                                <label
-                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                    <i class="ki-duotone ki-pencil fs-7">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                    <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="avatar_remove" value="{{ $user->profile->avatar }}" />
-                                </label>
-                                <span
-                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                                    <i class="ki-duotone ki-cross fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </span>
-                                <span
-                                    class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                    data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                                    <i class="ki-duotone ki-cross fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </span>
                             </div>
-                            <div class="form-text">
-                                Allowed file types: png, jpg, jpeg.
+                            <div id="kt_docs_card_collapsible1" class="collapse show">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="col-4 text-center">
+                                                <style>
+                                                    .image-input-placeholder {
+                                                        background-image: url('assets/media/svg/files/blank-image.svg');
+                                                    }
+
+                                                    [data-bs-theme="dark"] .image-input-placeholder {
+                                                        background-image: url('assets/media/svg/files/blank-image-dark.svg');
+                                                    }
+                                                </style>
+                                                <div class="image-input image-input-outline image-input-placeholder">
+                                                    <div class="image-input-wrapper w-125px h-125px"
+                                                        style="background-image: url('{{ $user->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . urlencode($user->name) . '&font-size=0.3' }}');">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-8">
+                                            <div class="d-flex justify-content-between">
+                                                <p class="fw-bolder fs-5">Name <span>:</span></p>
+                                                <span class="fs-5">{{$user->name}}</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p class="fw-bolder fs-5">Email <span>:</span></p>
+                                                <span class="fs-5">{{$user->email}}</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p class="fw-bolder fs-5">Phone <span>:</span></p>
+                                                <span class="fs-5">{{$user->phone}}</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p class="fw-bolder fs-5">Role <span>:</span></p>
+                                                <span class="fs-5">{{ $user->getRoleNames()->implode(', ') ?? '' }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="fv-row mb-7">
-                            <label class="required fw-semibold fs-6 mb-2">
-                                Full Name
-                            </label>
-                            <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0"
-                                placeholder="Full name" value="{{ $user->name }}" />
-                        </div>
-                        <div class="fv-row mb-7">
-                            <label class="required fw-semibold fs-6 mb-2">Email</label>
-                            <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0"
-                                placeholder="example@domain.com" value="{{ $user->email }}" />
-                        </div>
-                        <div class="mb-5">
-                            <label class="required fw-semibold fs-6 mb-2">Role</label>
-                            <select class="form-select" data-control="select2" data-placeholder="Select an option"
-                                data-dropdown-parent="#kt_modal_update_user-{{ $user->id }}" name="role">
-                                <option></option>
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->name }}"
-                                    {{ $user->roles->contains($role->id) ? 'selected' : '' }}>
-                                    {{ $role->name }}
-                                </option>
-                                @endforeach
-                            </select>
                         </div>
                     </div>
-                    <div class="text-center pt-10">
-                        <button type="reset" class="btn btn-light me-3"
-                            data-kt-users-modal-action="cancel">Discard</button>
-                        <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
-                            <span class="indicator-label">Submit</span>
-                            <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                            </span>
-                        </button>
+                    <div class="row mb-7">
+                        <div class="card shadow-sm">
+                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#kt_docs_card_collapsible2">
+                                <h3 class="card-title">Profile</h3>
+                                <div class="card-toolbar rotate-180">
+                                    <i class="ki-duotone ki-down fs-1"></i>
+                                </div>
+                            </div>
+                            <div id="kt_docs_card_collapsible2" class="collapse show">
+                                <div class="card-body">
+                                    <div class="fv-row mb-2">
+                                        <label class="fw-semibold fs-6 mb-2">NIK</label>
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$user->profile->nik}}" disabled />
+                                    </div>
+                                    <div class="fv-row mb-2">
+                                        <label class="fw-semibold fs-6 mb-2">Birth Place</label>
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
+                                            value="{{$user->profile->birth_place}}" disabled />
+                                    </div>
+                                    <div class="fv-row mb-2">
+                                        <label class="fw-semibold fs-6 mb-2">Birth Date</label>
+                                        <input type="date" class="form-control form-control-solid mb-3 mb-lg-0"
+                                            value="{{$user->profile->birth_date}}" disabled />
+                                    </div>
+                                    <div class="fv-row mb-2">
+                                        <label class="fw-semibold fs-6 mb-2">Gender</label>
+                                        <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$user->profile->gender}}" disabled />
+                                    </div>
+                                    <div class="fv-row mb-2">
+                                        <label class="fw-semibold fs-6 mb-2">
+                                            <Address></Address>
+                                        </label>
+                                        <textarea class="form-control form-control-solid mb-3 mb-lg-0" disabled> {{$user->profile->address}}</textarea>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                </form>
+                    <div class="row mb-7">
+                        <div class="card shadow-sm">
+                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#kt_docs_card_collapsible3">
+                                <h3 class="card-title">Document</h3>
+                                <div class="card-toolbar rotate-180">
+                                    <i class="ki-duotone ki-down fs-1"></i>
+                                </div>
+                            </div>
+                            <div id="kt_docs_card_collapsible3" class="collapse show">
+                                <div class="card-body">
+                                    <div class="row">
+                                        @foreach ($user->documents as $document )
+                                        <div class=" col-lg-4 col-6 mb-5 mb-xl-2">
+                                            <div class="border border-gray-500 border-1 border-dashed rounded p-5 ">
+                                                <!--begin::Number-->
+                                                <div class=" text-center mb-4">
+                                                    <span class="badge badge-outline badge-success fs-4">{{$document->type??''}}</span>
+                                                </div>
+                                                @if (pathinfo($document->document_url, PATHINFO_EXTENSION) == 'pdf')
+                                                <a class="d-block overlay"
+                                                    href="{{$document->document_url}}" target="_blank">
+                                                    <!--begin::Image-->
+                                                    <div
+                                                        class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
+                                                        <img src="assets/media/logos/adobe.png" class="mx-auto rounded"
+                                                            alt="PDF" height="100" width="120">
+                                                    </div>
+                                                    <!--end::Image-->
+                                                    <!--begin::Action-->
+                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                                        <i class="fas fa-eye fs-2x text-white">
+                                                        </i>
+                                                    </div>
+                                                    <!--end::Action-->
+                                                </a>
+                                                @else
+                                                <a class="d-block overlay" href="{{$document->document_url}}" target="_blank">
+                                                    <!--begin::Image-->
+
+                                                    <div
+                                                        class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
+                                                        <img src="{{$document->document_url}}" class="mx-auto rounded"
+                                                            alt="" height="100" width="100">
+                                                    </div>
+                                                    <!--end::Image-->
+                                                    <!--begin::Action-->
+                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                                        <i class="fas fa-eye fs-2x text-white">
+                                                        </i>
+                                                    </div>
+                                                    <!--end::Action-->
+                                                </a>
+                                                @endif
+                                                <div class="fs-4 fw-bold  text-center"> {{$document->name??'-'}}</div>
+
+                                                <!--end::Number-->
+                                                <!--begin::Label-->
+                                                <div class="fw-semibold fs-6 text-gray-500 text-center mb-7">Expires
+                                                    at : {{$document->validate_date??'-'}}</div>
+                                                <!--end::Label-->
+                                            </div>
+                                        </div>
+                                        @endforeach
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!--end::Modal - Update task-->
+    <!--end::Modal - Update task-->

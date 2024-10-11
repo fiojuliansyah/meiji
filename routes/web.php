@@ -32,7 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('reset-password');
 
     Route::put('/profile-update/{user}', [ProfileController::class, 'update'])->name('profile.update');
-    Route::put('/profile-update/{user}', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/document-store', [ProfileController::class, 'storeDocument'])->name('document.store');
     Route::delete('/document-delete/{id}', [ProfileController::class, 'destroyDocument'])->name('document.delete');
 

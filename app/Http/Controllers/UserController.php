@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class UserController extends Controller
 
         // $roles = Role::where('name', '!=', 'Super Admin')->get();
         $roles = Role::all();
+        $documents = Document::all();
 
-        return view('user', compact('users', 'roles'));
+        return view('user', compact('users', 'roles', 'documents'));
     }
 
     public function store(Request $request)

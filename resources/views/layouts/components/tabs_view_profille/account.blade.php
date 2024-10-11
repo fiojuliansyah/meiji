@@ -17,7 +17,7 @@
                     @csrf
                     @method('PUT')
                     <!--begin::Card body-->
-                    <div class="card-body p-9">
+                    <div class="card-body px-9 py-4">
 
                         <!--begin::Input group-->
                         <div class="row mb-6">
@@ -79,7 +79,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                @if($user->is_admin == true)
+                                @if(Auth::user()->is_admin == true)
                                 <select class="form-select form-select-solid" data-control="select2"
                                     data-placeholder="Select a Role" name="role">
                                     <option></option>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-
+      
         $permissions = Permission::all()->groupBy('category');
 
         return view('role', compact('roles', 'permissions'));
