@@ -86,8 +86,7 @@ class CareerFilter extends Component
             'types' => $types,
             'placements' => $placements,
             'totalCareers' => Career::count(),
-            'minSalary' => $this->minSalary,
-            'maxSalary' => $this->maxSalary,
+           
         ]);
     }
 

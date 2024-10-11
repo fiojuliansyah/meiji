@@ -175,27 +175,28 @@
                                   </div>
                               </div>
                               <div class="filter-block mb-20">
-                                  <h5 class="medium-heading mb-25">Salary Range</h5>
+                                  <h5 class="medium-heading mb-10">Salary Range</h5>
                                   <div class="list-checkbox pb-20">
-                                      <div class="row position-relative mt-10 mb-20">
-                                          <div class="col-sm-12 box-slider-range">
-                                              <div id="slider-range"></div>
-                                          </div>
-                                          <div class="box-input-money">
-                                              <input class="input-disabled form-control min-value-money"
-                                                  type="text" name="min-value-money" disabled="disabled"
-                                                  value="{{ $minSalary }}">
-                                              <input class="form-control min-value" type="hidden" name="min-value"
-                                                  value="{{ $minSalary }}">
-                                          </div>
-                                      </div>
-                                      <div class="box-number-money">
-                                          <div class="row mt-30">
-                                              <div class="col-sm-6 col-6"><span class="font-sm color-brand-1">
-                                                      {{ number_format($minSalary, 0, ',', '.') }} </span></div>
-                                              <div class="col-sm-6 col-6 text-end"><span
+
+                                      <div class="">
+                                          <div class="row">
+                                              <div class="col-sm-6 col-6 text-center">
+                                                  <span>
+                                                      <input type="text" wire:model.live="minSalary" class="form-control">
+                                                  </span>
+                                                  <span class="font-sm color-brand-1">
+                                                      MIN
+                                                  </span>
+
+                                              </div>
+                                              <div class="col-sm-6 col-6 text-center">
+                                                  <span>
+                                                      <input type="text" wire:model.live="maxSalary" class="form-control">
+                                                  </span>
+                                                  <span
                                                       class="font-sm color-brand-1">
-                                                      {{ number_format($maxSalary, 0, ',', '.') }}</span></div>
+                                                      MAX</span>
+                                              </div>
                                           </div>
                                       </div>
                                   </div>
