@@ -8,6 +8,7 @@ use App\Models\Level;
 use App\Models\Location;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class GuestController extends Controller
 {
@@ -28,4 +29,43 @@ class GuestController extends Controller
             ->get();
         return view('jobList', compact('careers', 'departements', 'locations', 'levels', 'types', 'totalCareers', 'minSalary', 'maxSalary', 'placements'));
     }
+
+    public function jobDetail($id)
+    {
+        $career = Career::find($id);
+        if (!$career) {
+            return redirect()->back();
+        }
+
+        $otherCareers = Career::where('id', '<>', $id)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $latlong = $career->location->latlong;
+        $latlongArray = explode(',', $latlong);
+        $latitude = $latlongArray[0];
+        $longitude = $latlongArray[1];
+
+        $address = $this->getAddressFromLatLong($latitude, $longitude);
+        return view('jobDetail', compact('career', 'latitude', 'longitude', 'address', 'otherCareers'));
+    }
+
+
+    public function getAddressFromLatLong($latitude, $longitude)
+    {
+        $url = "https://nominatim.openstreetmap.org/reverse?format=json&lat={$latitude}&lon={$longitude}&addressdetails=1";
+
+        $response = Http::get($url);
+        $data = $response->json();
+
+        if (isset($data['address'])) {
+            return $data['display_name'];
+        }
+
+        return "Address not found";
+    }
+
+
+    
 }

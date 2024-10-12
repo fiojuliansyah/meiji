@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [GuestController::class, 'jobList']);
+Route::get('/career-detail/{id}', [GuestController::class, 'jobDetail'])->name('career-detail');
 
 Auth::routes();
 

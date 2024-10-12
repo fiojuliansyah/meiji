@@ -61,11 +61,11 @@
                                                   src="{{ $career->departement->img_url ?? 'assets/media/logos/logo-meiji-1.png' }}"
                                                   alt="jobBox"></div>
                                           <div class="right-info"><a class="name-job"
-                                                  href="company-details.html">{{ $career->name }}</a><span
+                                                  href="{{route('career-detail',$career->id)}}">{{ $career->name }}</a><span
                                                   class="location-small">{{ $career->location->name }}</span></div>
                                       </div>
                                       <div class="card-block-info">
-                                          <h6><a href="job-details.html">{{ $career->departement->name }}</a></h6>
+                                          <h6>{{ $career->departement->name }}</h6>
                                           <div class="mt-5"><span
                                                   class="card-briefcase">{{ $career->type->name }}</span><span
                                                   class="card-time">{{ $career->created_at->diffForHumans() }}</span>
@@ -76,7 +76,7 @@
                                           <div class="card-2-bottom mt-30">
                                               <div class="row">
                                                   <div class="col-lg-7 col-7"><span
-                                                          class="card-text-price fs-6">Rp.{{ number_format($career->salary, 0, ',', '.') }}</span>
+                                                          class="card-text-price fs-6">Rp. {{ number_format($career->salary, 0, ',', '.') }}</span>
                                                   </div>
                                                   <div class="col-lg-5 col-5 text-end">
                                                       <div class="btn btn-apply-now  me-6" data-bs-toggle="modal"
