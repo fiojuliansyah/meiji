@@ -13,7 +13,7 @@
                                 <div class="mt-0 mb-15 mt-15"><span class="card-briefcase">{{$career->type->name}}</span><span class="card-time">{{ $career->created_at->diffForHumans() }}</span></div>
                             </div>
                             <div class="col-lg-4 col-md-12 text-lg-end">
-                                <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm-{{$career->id}}">Apply now</div>
                             </div>
                         </div>
                         <div class="border-bottom pt-10 pb-10"></div>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="single-apply-jobs">
                             <div class="row align-items-center">
-                                <div class="col-md-5"><a class="btn btn-default mr-15" href="#">Apply now</a><a class="btn btn-border" href="#">Save job</a></div>
+                                <div class="col-md-5"><a class="btn btn-default mr-15" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm-{{$career->id}}" href="">Apply now</a><a class="btn btn-border" href="#">Save job</a></div>
                                 <div class="col-md-7 text-lg-end social-share">
                                     <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-fb.svg"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-tw.svg"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-red.svg"></a><a class="d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-whatsapp.svg"></a>
                                 </div>
@@ -154,7 +154,8 @@
                                             <div class="row">
                                                 <div class="col-lg-7 col-7"><span class="card-text-price">$800</span><span class="text-muted">/Hour</span></div>
                                                 <div class="col-lg-5 col-5 text-end">
-                                                    <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                                    <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm-{{$career->id}}">Apply now</div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -177,7 +178,7 @@
                                             <div class="row">
                                                 <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span class="text-muted">/Hour</span></div>
                                                 <div class="col-lg-5 col-5 text-end">
-                                                    <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                                    <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm ">Apply now</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -259,6 +260,9 @@
         </div>
     </section>
 </main>
+
+<livewire:applicant-form :careerId="$career->id" />
+
 
 @endsection
 

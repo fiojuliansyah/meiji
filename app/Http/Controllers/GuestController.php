@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Http;
 
 class GuestController extends Controller
 {
+
+    public function index()
+    {
+        return view('welcome');
+    }
+
+
     public function jobList()
     {
         $careers = Career::all();
@@ -66,6 +73,14 @@ class GuestController extends Controller
         return "Address not found";
     }
 
+
+    public function applyCareer(Request $request){
+        try {
+            
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
 
     
 }

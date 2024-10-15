@@ -9,7 +9,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', [GuestController::class, 'jobList']);
+Route::get('/', [GuestController::class, 'index'])->name('index');
+Route::get('/apply', [GuestController::class, 'applyCareer'])->name('apply-career');
+Route::get('/career-list', [GuestController::class, 'jobList'])->name('career-list');
 Route::get('/career-detail/{id}', [GuestController::class, 'jobDetail'])->name('career-detail');
 
 Auth::routes();

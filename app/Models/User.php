@@ -43,6 +43,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Document::class);
     }
+    /**
+     * Relasi One-to-Many ke Documents
+     */
+    public function applicant(): HasMany
+    {
+        return $this->hasMany(Applicant::class);
+    }
 
     /**
      * Get the attributes that should be cast.

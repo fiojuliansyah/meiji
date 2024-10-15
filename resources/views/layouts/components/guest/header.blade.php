@@ -7,62 +7,21 @@
              <div class="header-nav">
                  <nav class="nav-main-menu">
                      <ul class="main-menu">
-                         <li class="has-children"><a class="active" href="index.html">Home</a>
-                             <ul class="sub-menu">
-                                 <li><a href="index.html">Home 1</a></li>
-                                 <li><a href="index-2.html">Home 2</a></li>
-                                 <li><a href="index-3.html">Home 3</a></li>
-                                 <li><a href="index-4.html">Home 4</a></li>
-                                 <li><a href="index-5.html">Home 5</a></li>
-                                 <li><a href="index-6.html">Home 6</a></li>
-                             </ul>
+                         <li>
+                             <a href="{{route('index')}}" class="{{ request()->routeIs('index') ? 'active' : '' }}">Home</a>
+
                          </li>
-                         <li class="has-children"><a href="jobs-grid.html">Find a Job</a>
-                             <ul class="sub-menu">
-                                 <li><a href="jobs-grid.html">Jobs Grid</a></li>
-                                 <li><a href="jobs-list.html">Jobs List</a></li>
-                                 <li><a href="job-details.html">Jobs Details </a></li>
-                                 <li><a href="job-details-2.html">Jobs Details 2 </a></li>
-                             </ul>
+                         <li>
+                             <a href="{{route('career-list')}} " class="{{ request()->routeIs('job-list') ? 'active' : '' }}">Career List</a>
+
                          </li>
-                         <li class="has-children"><a href="companies-grid.html">Recruiters</a>
-                             <ul class="sub-menu">
-                                 <li><a href="companies-grid.html">Recruiters</a></li>
-                                 <li><a href="company-details.html">Company Details</a></li>
-                             </ul>
-                         </li>
-                         <li class="has-children"><a href="candidates-grid.html">Candidates</a>
-                             <ul class="sub-menu">
-                                 <li><a href="candidates-grid.html">Candidates Grid</a></li>
-                                 <li><a href="candidate-details.html">Candidate Details</a></li>
-                                 <li><a href="candidate-profile.html">Candidate Profile</a></li>
-                             </ul>
-                         </li>
-                         <li class="has-children"><a href="blog-grid.html">Pages</a>
-                             <ul class="sub-menu">
-                                 <li><a href="page-about.html">About Us</a></li>
-                                 <li><a href="page-pricing.html">Pricing Plan</a></li>
-                                 <li><a href="page-contact.html">Contact Us</a></li>
-                                 <li><a href="{{route('register')}}">Register</a></li>
-                                 <li><a href="{{route('login')}}">Signin</a></li>
-                                 <li><a href="page-reset-password.html">Reset Password</a></li>
-                                 <li><a href="page-content-protected.html">Content Protected</a></li>
-                             </ul>
-                         </li>
-                         <li class="has-children"><a href="blog-grid.html">Blog</a>
-                             <ul class="sub-menu">
-                                 <li><a href="blog-grid.html">Blog Grid</a></li>
-                                 <li><a href="blog-grid-2.html">Blog Grid 2</a></li>
-                                 <li><a href="blog-details.html">Blog Single</a></li>
-                             </ul>
-                         </li>
-                         <li class="dashboard"><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard" target="_blank">Dashboard</a></li>
                      </ul>
                  </nav>
                  <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
              </div>
              <div class="header-right">
-                 <div class="block-signin"><a class="text-link-bd-btom hover-up" href="{{route('register')}}">Register</a><a class="btn btn-default btn-shadow ml-40 hover-up" href="{{route('login')}}">Sign in</a></div>
+                 <div class="block-signin"><a class="text-link-bd-btom hover-up" href="{{route('register')}}">Register</a><a class="btn btn-default btn-shadow ml-40 hover-up" href="{{route('login')}}">Sign in</a>
+                 </div>
              </div>
          </div>
      </div>

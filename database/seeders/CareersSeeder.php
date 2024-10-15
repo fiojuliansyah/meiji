@@ -36,7 +36,7 @@ class CareersSeeder extends Seeder
                 'departement_id' => 1,
                 'level_id' => 1,
                 'location_id' => 1,
-                'type_id' => 2,
+                'type_id' => 1,
                 'name' => 'Data Analyst',
                 'salary' => '8000000',
                 'placement' => 'Remote',

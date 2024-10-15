@@ -80,14 +80,16 @@
                                                   </div>
                                                   <div class="col-lg-5 col-5 text-end">
                                                       <div class="btn btn-apply-now  me-6" data-bs-toggle="modal"
-                                                          data-bs-target="#ModalApplyJobForm">Apply now</div>
+                                                          data-bs-target="#ModalApplyJobForm-{{$career->id}}">Apply now</div>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                   </div>
+                                  <livewire:applicant-form :careerId="$career->id" />
                               </div>
                               @endforeach
+
                           </div>
                       </div>
                       <div class="paginations">
