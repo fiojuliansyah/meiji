@@ -50,7 +50,7 @@
                                         <div class="col-8">
                                             <div class="d-flex justify-content-between">
                                                 <p class="fw-bolder fs-5">Name <span>:</span></p>
-                                                <span class="fs-5">{{$user->name}}</span>
+                                                <span class="fs-5">{{$user->name }}</span>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <p class="fw-bolder fs-5">Email <span>:</span></p>
@@ -83,27 +83,27 @@
                                 <div class="card-body">
                                     <div class="fv-row mb-2">
                                         <label class="fw-semibold fs-6 mb-2">NIK</label>
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$user->profile->nik}}" disabled />
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$user->profile->nik??''}}" disabled />
                                     </div>
                                     <div class="fv-row mb-2">
                                         <label class="fw-semibold fs-6 mb-2">Birth Place</label>
                                         <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                                            value="{{$user->profile->birth_place}}" disabled />
+                                            value="{{$user->profile->birth_place??''}}" disabled />
                                     </div>
                                     <div class="fv-row mb-2">
                                         <label class="fw-semibold fs-6 mb-2">Birth Date</label>
                                         <input type="date" class="form-control form-control-solid mb-3 mb-lg-0"
-                                            value="{{$user->profile->birth_date}}" disabled />
+                                            value="{{$user->profile->birth_date??''}}" disabled />
                                     </div>
                                     <div class="fv-row mb-2">
                                         <label class="fw-semibold fs-6 mb-2">Gender</label>
-                                        <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$user->profile->gender}}" disabled />
+                                        <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$user->profile->gender??''}}" disabled />
                                     </div>
                                     <div class="fv-row mb-2">
                                         <label class="fw-semibold fs-6 mb-2">
                                             <Address></Address>
                                         </label>
-                                        <textarea class="form-control form-control-solid mb-3 mb-lg-0" disabled> {{$user->profile->address}}</textarea>
+                                        <textarea class="form-control form-control-solid mb-3 mb-lg-0" disabled> {{$user->profile->address??''}}</textarea>
 
                                     </div>
                                 </div>

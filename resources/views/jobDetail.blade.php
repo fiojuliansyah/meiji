@@ -261,7 +261,7 @@
     </section>
 </main>
 
-<livewire:applicant-form :careerId="$career->id" />
+@include('layouts.components.guest.modal')
 
 
 @endsection

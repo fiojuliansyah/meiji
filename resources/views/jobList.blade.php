@@ -149,6 +149,57 @@
 @endsection
 
 @section('scripts')
+
+<!-- Toast Container -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 11">
+    <!-- Success Toast -->
+    @if (session('success'))
+    <div id="successToast" class="toast bg-opacity-50  align-items-center text-dark bg-success border-0" style="opacity: 95%;" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body me-3 fw-bold text-justify">
+                {{ session('success') }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+
+    <!-- Error Toast -->
+    @if (session('error'))
+    <div id="errorToast" class="toast align-items-center text-dark bg-danger border-0 error-toast" style="opacity: 95%;" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body me-3 fw-bold text-justify">
+                {{ session('error') }}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    @endif
+</div>
+
+<!-- Include Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Toast Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var successToastEl = document.getElementById('successToast');
+        if (successToastEl) {
+            var successToast = new bootstrap.Toast(successToastEl, {
+                delay: 5000
+            });
+            successToast.show();
+        }
+
+        var errorToastEl = document.getElementById('errorToast');
+        if (errorToastEl) {
+            var errorToast = new bootstrap.Toast(errorToastEl, {
+                delay: 5000
+            });
+            errorToast.show();
+        }
+    });
+</script>
 <script>
     var minSalary = <?php echo $minSalary; ?>; // Tanpa json_encode
     var maxSalary = <?php echo $maxSalary; ?>; // Tanpa json_encode

@@ -13,6 +13,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/x-icon" href="/fe_assets/imgs/template/favicon.svg">
     <link href="/fe_assets/css/style.css?version=4.1" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
     @livewireStyles
     <title>Meiji</title>
 </head>

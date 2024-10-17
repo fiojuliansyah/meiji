@@ -86,7 +86,7 @@
                                           </div>
                                       </div>
                                   </div>
-                                  <livewire:applicant-form :careerId="$career->id" />
+                                  @include('layouts.components.guest.modal')
                               </div>
                               @endforeach
 
