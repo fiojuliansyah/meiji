@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Applicant;
 use App\Http\Requests\StoreApplicantRequest;
 use App\Http\Requests\UpdateApplicantRequest;
+use App\Models\Departement;
 
 class ApplicantController extends Controller
 {
@@ -13,7 +14,9 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        //
+        $applicants = Applicant::all();
+        $departements = Departement::all();
+        return view('applicants', compact('applicants', 'departements'));
     }
 
     /**

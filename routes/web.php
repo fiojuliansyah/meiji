@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Applicant;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [GuestController::class, 'index'])->name('index');
@@ -68,6 +70,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/type-delete/{id}', [CareerController::class, 'typeDelete'])->name('type.delete');
     Route::delete('/type/bulk-delete', [CareerController::class, 'typeBulkDelete'])->name('types.bulk-delete');
 
+    Route::get('/applicant', [ApplicantController::class, 'index'])->name('applicants');
+    // Route::put('/type-update/{id}', [CareerController::class, 'typeUpdate'])->name('type.update');
+    // Route::delete('/type-delete/{id}', [CareerController::class, 'typeDelete'])->name('type.delete');
+    // Route::delete('/type/bulk-delete', [CareerController::class, 'typeBulkDelete'])->name('types.bulk-delete');
+
+    
    
     
     
