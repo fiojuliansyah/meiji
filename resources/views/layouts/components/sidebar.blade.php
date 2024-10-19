@@ -64,13 +64,6 @@
                                         </span>
                                         <span class="menu-title">Departement</span>
                                     </a>
-                                    <a class="menu-link {{ request()->routeIs('departement') ? 'active' : '' }}"
-                                        href="{{ route('departement') }}">
-                                        <span class=" menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Departement</span>
-                                    </a>
                                     <a class="menu-link {{ request()->routeIs('location') ? 'active' : '' }}"
                                         href="{{ route('location') }}">
                                         <span class=" menu-bullet">
