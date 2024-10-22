@@ -115,7 +115,7 @@
                         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
                             <!--begin::Nav item-->
                             <li class="nav-item mt-2">
-                                <a class="nav-link text-active-primary ms-0 me-10 py-5 active" data-bs-toggle="tab"
+                                <a class="nav-link text-active-primary ms-0 me-10 py-5 " data-bs-toggle="tab"
                                     href="#account">Account</a>
                             </li>
                             <!--end::Nav item-->
@@ -239,5 +239,46 @@
         });
     }
 </script>
+<script>
+    const tabs = document.querySelectorAll('.nav-link');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            const target = this.getAttribute('href');
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('show', 'active'));
+            document.querySelector(target).classList.add('show', 'active');
+            sessionStorage.setItem('activeTab', target);
+        });
+    });
 
+    document.addEventListener('DOMContentLoaded', function() {
+        const activeTab = sessionStorage.getItem('activeTab');
+        if (activeTab) {
+            const tabToActivate = document.querySelector(`[href="${activeTab}"]`);
+            if (tabToActivate) {
+                tabToActivate.click();
+            }
+        } else {
+            // Set default to Account tab if no active tab is saved
+            const defaultTab = document.querySelector('[href="#account"]');
+            defaultTab.click();
+        }
+    });
+
+    // Check if there's a success or error message after form submission
+    @if(Session::has('success') || Session::has('error'))
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeTab = sessionStorage.getItem('activeTab');
+            if (activeTab) {
+                const tabToActivate = document.querySelector(`[href="${activeTab}"]`);
+                if (tabToActivate) {
+                    tabToActivate.click();
+                }
+            }
+        });
+    @endif
+</script>
 @endsection

@@ -1,81 +1,50 @@
 <div class="tab-pane fade" id="document" role="tabpanel">
-    <div class="d-flex align-items-center mb-5">
-        <div class="d-flex align-items-center position-relative my-1 ms-4">
-            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
-                <span class="path1"></span>
-                <span class="path2"></span>
-            </i>
-            <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13"
-                placeholder="Search user" />
-        </div>
-    </div>
     <div class="card mb-5 mb-xl-10">
-        <!--begin::Card header-->
         <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
             data-bs-target="#kt_docs_card_document">
-            <h3 class="card-title">Documents
-
-            </h3>
-
+            <h3 class="card-title">Documents</h3>
             <div class="card-toolbar rotate-180">
-
                 <i class="ki-duotone ki-down fs-1"></i>
             </div>
         </div>
-        <!--begin::Card header-->
-        <!--begin::Card body-->
         <div id="kt_docs_card_document" class="collapse show ">
             <div class="card-body p-9">
                 <div class="row">
                     @foreach ($documents as $document )
                     <div class=" col-lg-4 col-6 mb-5 mb-xl-2">
                         <div class="border border-gray-500 border-1 border-dashed rounded p-5 ">
-                            <!--begin::Number-->
                             <div class=" text-center mb-4">
                                 <span class="badge badge-outline badge-success fs-4">{{$document->type??''}}</span>
                             </div>
                             @if (pathinfo($document->document_url, PATHINFO_EXTENSION) == 'pdf')
                             <a class="d-block overlay"
                                 href="{{$document->document_url}}" target="_blank">
-                                <!--begin::Image-->
-                                <div
-                                    class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
+                                <div class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
                                     <img src="assets/media/logos/adobe.png" class="mx-auto rounded"
                                         alt="PDF" height="100" width="120">
                                 </div>
-                                <!--end::Image-->
-                                <!--begin::Action-->
                                 <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                                     <i class="fas fa-eye fs-2x text-white">
                                     </i>
                                 </div>
-                                <!--end::Action-->
                             </a>
                             @else
                             <a class="d-block overlay" data-fslightbox="document"
                                 href="{{$document->document_url}}">
-                                <!--begin::Image-->
                                 <div
                                     class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
                                     <img src="{{$document->document_url}}" class="mx-auto rounded"
                                         alt="" height="100" width="100">
                                 </div>
-                                <!--end::Image-->
-                                <!--begin::Action-->
                                 <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                                     <i class="fas fa-eye fs-2x text-white">
                                     </i>
                                 </div>
-                                <!--end::Action-->
                             </a>
                             @endif
                             <div class="fs-4 fw-bold  text-center"> {{$document->name??'-'}}</div>
-
-                            <!--end::Number-->
-                            <!--begin::Label-->
                             <div class="fw-semibold fs-6 text-gray-500 text-center mb-7">Expires
                                 at : {{$document->validate_date??'-'}}</div>
-                            <!--end::Label-->
                             <div class="text-center">
                                 <button class="btn btn-sm btn-secondary me-2"
                                     style="width: 70px; height: 40px;">Edit</button>
@@ -100,13 +69,10 @@
                             <p class="text-gray-500 "> Add New Your Document!</p>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_document">+ New</button>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
-        <!--end::Card body-->
     </div>
 </div>
 
@@ -115,12 +81,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add New Document</h5>
-
-                <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                     <i class="ki-duotone ki-cross fs-2x"><span class="path1"></span><span class="path2"></span></i>
                 </div>
-                <!--end::Close-->
             </div>
 
             <div class="modal-body">
@@ -168,7 +131,6 @@
                         </button>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
