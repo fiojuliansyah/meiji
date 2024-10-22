@@ -221,11 +221,11 @@ a {
 }
 
 a:hover {
-    color: #3C65F5;
+    color: #ff3333;
 }
 
 a *:hover {
-    color: #3C65F5;
+    color: #ff3333;
 }
 
 li.hr span {
@@ -1014,7 +1014,7 @@ h6,
 }
 
 .btn-apply-big {
-    background-color: #3C65F5;
+    background-color: #ff3333;
     color: #ffffff;
     padding: 18px 35px;
     border-radius: 4px;
@@ -1027,7 +1027,7 @@ h6,
 
 .btn-apply-big:hover {
     color: #fff;
-    background-color: #05264E;
+    background-color: #4d0000;
 }
 
 .btn-call-icon {
@@ -2201,7 +2201,7 @@ label {
 }
 
 .card-grid-2 .card-grid-2-image-left .right-info .name-job:hover {
-    color: #3C65F5;
+    color: #ff3333;
 }
 
 .card-grid-2 .card-grid-2-image-left .right-info .location-small {

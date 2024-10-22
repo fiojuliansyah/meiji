@@ -4,7 +4,7 @@
             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body pl-30 pr-30 pt-50">
                 <div class="text-center">
-                    <p class="font-sm text-brand-2 badge badge-primary ">Job Application </p>
+                    <p class="font-sm  badge badge-outline bg-danger te ">Job Application </p>
 
                 </div>
 
@@ -39,7 +39,7 @@
                         </label><a class="text-muted" href="page-contact.html">Lean more</a>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-default hover-up w-100" type="submit">Apply Job</button>
+                        <button class="btn btn-danger hover-up w-100" type="submit">Apply Job</button>
                     </div>
                     <div class="text-muted text-center">Do you need support? <a href="page-contact.html">Contact
                             Us</a></div>
