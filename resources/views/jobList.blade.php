@@ -136,7 +136,7 @@
                         <form class="form-newsletter">
                             <input class="input-newsletter" type="text" value=""
                                 placeholder="Enter your email here">
-                            <button class="btn btn-default font-heading icon-send-letter">Subscribe</button>
+                            <button class="btn btn-danger text-light font-heading icon-send-letter">Subscribe</button>
                         </form>
                     </div>
                 </div>

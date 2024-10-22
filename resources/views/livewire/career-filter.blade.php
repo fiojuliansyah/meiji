@@ -76,7 +76,7 @@
                                           <div class="card-2-bottom mt-30">
                                               <div class="row">
                                                   <div class="col-lg-7 col-7"><span
-                                                          class="card-text-price fs-6">Rp. {{ number_format($career->salary, 0, ',', '.') }}</span>
+                                                          class="card-text-price fs-6 text-danger">Rp. {{ number_format($career->salary, 0, ',', '.') }}</span>
                                                   </div>
                                                   <div class="col-lg-5 col-5 text-end">
                                                       <div class="btn btn-apply-now  me-6" data-bs-toggle="modal"

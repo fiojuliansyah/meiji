@@ -11,18 +11,18 @@
     <meta name="description" content="Index page">
     <meta name="keywords" content="index, page">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="/fe_assets/imgs/template/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('storage/logo/favicon.ico')}}">
     <link href="/fe_assets/css/style.css?version=4.1" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
     @livewireStyles
-    <title>Meiji</title>
+    <title>PT.Meiji Career</title>
 </head>
 
 <body>
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
-                <div class="text-center"><img src="/fe_assets/imgs/template/loading.gif" alt="jobBox"></div>
+                <div class="text-center"><img src="/fe_assets/imgs/template/loading2.gif" widthalt="JobBox"></div>
             </div>
         </div>
     </div>

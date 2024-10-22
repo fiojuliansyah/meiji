@@ -33,7 +33,7 @@
                             <div class="row mt-25">
                                 <div class="col-md-6 d-flex mt-sm-15">
                                     <div class="sidebar-icon-item"><img src="/fe_assets/imgs/page/job-single/salary.svg" alt="jobBox"></div>
-                                    <div class="sidebar-text-info ml-10"><span class="text-description salary-icon mb-10">Salary</span><strong class="small-heading">Rp. {{ number_format($career->salary, 0, ',', '.')??'-' }}</strong></div>
+                                    <div class="sidebar-text-info ml-10"><span class="text-description salary-icon mb-10 ">Salary</span><strong class="small-heading">Rp. {{ number_format($career->salary, 0, ',', '.')??'-' }}</strong></div>
                                 </div>
                                 <div class="col-md-6 d-flex">
                                     <div class="sidebar-icon-item"><img src="/fe_assets/imgs/page/job-single/experience.svg" alt="jobBox"></div>

@@ -2,25 +2,51 @@
      <div class="container">
          <div class="main-header">
              <div class="header-left">
-                 <div class="header-logo"><a class="d-flex" href="index.html"><img alt="jobBox" src="/fe_assets/imgs/template/jobhub-logo.svg"></a></div>
-             </div>
+                 <div class="header-logo"><a class="d-flex" href="{{ route('index') }}"><img alt="jobBox"
+                             src="{{ asset('storage/logo/logo-meiji-1.png') }}" height="50"></a>
+                 </div>
+                </div>
+                <sub class="fs-7">PT. Meiji Indonesia</sub>
              <div class="header-nav">
                  <nav class="nav-main-menu">
                      <ul class="main-menu">
                          <li>
-                             <a href="{{route('index')}}" class="{{ request()->routeIs('index') ? 'active' : '' }}">Home</a>
-
+                             <a href="{{ route('index') }}"
+                                 class="{{ request()->routeIs('index') ? 'active' : '' }}">Home</a>
                          </li>
                          <li>
-                             <a href="{{route('career-list')}} " class="{{ request()->routeIs('job-list') ? 'active' : '' }}">Career List</a>
-
+                             <a href="{{ route('career-list') }} "
+                                 class="{{ request()->routeIs('career-list') ? 'active' : '' }}">Career List</a>
                          </li>
                      </ul>
                  </nav>
-                 <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+                 <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span
+                         class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
              </div>
              <div class="header-right">
-                 <div class="block-signin"><a class="text-link-bd-btom hover-up" href="{{route('register')}}">Register</a><a class="btn btn-default btn-shadow ml-40 hover-up" href="{{route('login')}}">Sign in</a>
+                 <div class="block-signin">
+                     @auth
+                         <div class="dropdown">
+                             <a class="btn btn-default btn-shadow dropdown-toggle" href="#" role="button"
+                                 id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                 {{ Auth::user()->name }}
+                             </a>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                 <li><a class="dropdown-item" href="">Profile</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                         Logout
+                                     </a></li>
+                             </ul>
+                         </div>
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                             @csrf
+                         </form>
+                     @else
+                         <!-- <a class="text-link-bd-btom hover-up" href="{{ route('register') }}">Register</a> -->
+                         <a class="btn btn-danger btn-shadow ml-40 hover-up" href="{{ route('login') }}">Sign in</a>
+                     @endauth
                  </div>
              </div>
          </div>
@@ -87,7 +113,8 @@
                                      <li><a href="blog-details.html">Blog Single</a></li>
                                  </ul>
                              </li>
-                             <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard" target="_blank">Dashboard</a></li>
+                             <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard"
+                                     target="_blank">Dashboard</a></li>
                          </ul>
                      </nav>
                  </div>
@@ -167,7 +194,8 @@
                                      <li><a href="blog-details.html">Blog Single</a></li>
                                  </ul>
                              </li>
-                             <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard" target="_blank">Dashboard</a></li>
+                             <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard"
+                                     target="_blank">Dashboard</a></li>
                          </ul>
                      </nav>
                  </div>

@@ -130,7 +130,7 @@
                                     class="badge badge-outline 
                                         {{ $applicant->status === 'screening' ? 'badge-dark' : '' }}
                                         {{ $applicant->status === 'interview' ? 'badge-primary' : '' }}
-                                        {{ $applicant->status === 'skill_test' ? 'badge-info' : '' }}
+                                        {{ $applicant->status === 'skill    test' ? 'badge-info' : '' }}
                                         {{ $applicant->status === 'accepted' ? 'badge-success' : '' }}
                                         {{ $applicant->status === 'rejected' ? 'badge-danger' : '' }}">
                                     {{ ucfirst($applicant->status) }}
