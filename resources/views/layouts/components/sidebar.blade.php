@@ -102,6 +102,18 @@
                             </span>
                             <span class="menu-title">Roles</span>
                         </a>
+                        <a class="menu-link {{ request()->routeIs('status.index') ? 'active' : '' }}"
+                            href="{{ route('status.index') }}">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-category">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                                <span class="path4"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Status</span>
+                        </a>
                     </div>
                 </div>
             </div>

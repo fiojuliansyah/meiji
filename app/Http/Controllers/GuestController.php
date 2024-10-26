@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applicant;
 use App\Models\Career;
+use App\Models\Profile;
 use App\Models\Departement;
 use App\Models\Document;
 use App\Models\Level;
@@ -112,7 +113,9 @@ class GuestController extends Controller
                 // Upload file to Cloudinary
                 $file = $request->file('document');
                 $uploadedFile = $file->storeOnCloudinary('documents/' . $user->name);
-
+                Profile::create([
+                    'user_id' => $user->id,
+                ]);
                 // Save document information
                 Document::create([
                     'type' => "CV",

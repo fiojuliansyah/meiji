@@ -15,7 +15,7 @@
     <link href="/fe_assets/css/style.css?version=4.1" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
     @livewireStyles
-    <title>PT.Meiji Career</title>
+    <title>Meiji Career</title>
 </head>
 
 <body>

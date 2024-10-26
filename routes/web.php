@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StatusController;
 use App\Models\Applicant;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,6 +70,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/type-update/{id}', [CareerController::class, 'typeUpdate'])->name('type.update');
     Route::delete('/type-delete/{id}', [CareerController::class, 'typeDelete'])->name('type.delete');
     Route::delete('/type/bulk-delete', [CareerController::class, 'typeBulkDelete'])->name('types.bulk-delete');
+    
+    Route::get('/status', [StatusController::class, 'index'])->name('status.index');
+    Route::post('/status-store', [StatusController::class, 'store'])->name('status.store');
+    Route::put('/status-update/{id}', [StatusController::class, 'update'])->name('status.update');
+    Route::delete('/status-delete/{id}', [StatusController::class, 'destroy'])->name('status.delete');
+    Route::delete('/status/bulk-delete', [StatusController::class, 'statusBulkDelete'])->name('statuses.bulk-delete');
 
     Route::get('/applicant', [ApplicantController::class, 'index'])->name('applicants');
     // Route::put('/type-update/{id}', [CareerController::class, 'typeUpdate'])->name('type.update');

@@ -2,23 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Applicant;
-use App\Models\User;
-use App\Http\Requests\StoreApplicantRequest;
-use App\Http\Requests\UpdateApplicantRequest;
-use App\Models\Departement;
+use App\Models\Schedule;
+use App\Http\Requests\StoreScheduleRequest;
+use App\Http\Requests\UpdateScheduleRequest;
 
-class ApplicantController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $applicants = Applicant::with('user')->get();
-        $users=User::all();
-        $departements = Departement::all();
-        return view('applicants', compact('applicants', 'departements','users'));
+        //
     }
 
     /**
@@ -32,7 +27,7 @@ class ApplicantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreApplicantRequest $request)
+    public function store(StoreScheduleRequest $request)
     {
         //
     }
@@ -40,7 +35,7 @@ class ApplicantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Applicant $applicant)
+    public function show(Schedule $schedule)
     {
         //
     }
@@ -48,7 +43,7 @@ class ApplicantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Applicant $applicant)
+    public function edit(Schedule $schedule)
     {
         //
     }
@@ -56,7 +51,7 @@ class ApplicantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateApplicantRequest $request, Applicant $applicant)
+    public function update(UpdateScheduleRequest $request, Schedule $schedule)
     {
         //
     }
@@ -64,7 +59,7 @@ class ApplicantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Applicant $applicant)
+    public function destroy(Schedule $schedule)
     {
         //
     }

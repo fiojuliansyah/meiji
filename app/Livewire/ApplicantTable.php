@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Models\Applicant;
 use App\Models\Departement;
+use App\Models\User;
+use App\Models\Status;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -71,9 +73,13 @@ class ApplicantTable extends Component
 
 
         $departements = Departement::all();
+        $users =User::all();
+        $statuses =Status::all();
         return view('livewire.applicant-table', [
             'applicants' => $applicants,
             'departements' => $departements,
+            'users' => $users,
+            'statuses' => $statuses,
         ]);
     }
 }

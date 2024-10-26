@@ -5,13 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Applicant extends Model
+class Schedule extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['user_id', 'career_id', 'status'];
-
-    public function user()
+      protected $fillable = [
+        'applicant_id',
+        'career_id',
+        'date',
+        'time',
+        'description',
+        'image_public_id',
+    ];
+    
+   public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -21,8 +27,4 @@ class Applicant extends Model
         return $this->belongsTo(Career::class);
     }
 
-    public function status()
-    {
-        return $this->belongsTo(Status::class);
-    }
 }

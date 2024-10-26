@@ -50,6 +50,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Applicant::class);
     }
+        public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 
     /**
      * Get the attributes that should be cast.

@@ -40,4 +40,8 @@ class Career extends Model
     {
         return $this->belongsTo(Applicant::class);
     }
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 }

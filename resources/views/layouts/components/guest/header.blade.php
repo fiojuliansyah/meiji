@@ -26,16 +26,32 @@
              <div class="header-right">
                  <div class="block-signin">
                      @auth
+
                          <div class="dropdown">
-                             <a class="btn btn-default btn-shadow dropdown-toggle" href="#" role="button"
+                             <a class="d-inline-flex align-items-center header-item dropdown-toggle" href="#" role="button"
                                  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                 {{ Auth::user()->name }}
+                                 <img alt="Logo" src="{{Auth::user()->profile->avatar_url?? 'https://ui-avatars.com/api/?name='. Auth::user()->name.'&font-size=0.4'}}" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover;" />
+                                 <span class="text-left fw-medium" title="Hi, {{ Auth::user()->name }}">Hi, {{ Str::limit(Auth::user()->name, 10, '...') }}</span>
+                                 <i class="icon-down ms-2"></i>
                              </a>
                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                 <li><a class="dropdown-item" href="">Profile</a></li>
+                                 <li class="dropdown-item ">
+                                     <span class="d-flex align-items-center ms-0 ps-0" >
+                                         <img src="{{ Auth::user()->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&font-size=0.4' }}" alt="Profile" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                                         <div>
+                                             <h6 class="mb-0 small">{{ Auth::user()->name }}</h6>
+                                             <p class="text-muted text-xs small">{{ Auth::user()->email }}</p>
+                                         </div>
+                                     </span>
+                                 </li>
+                                 <li><hr class="dropdown-divider"></li>
+                                 <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                 <li><a class="dropdown-item" href="#">Applied Jobs</a></li>
+                                 <li><a class="dropdown-item" href= "#">Saved Jobs</a></li>
+                                 <li><hr class="dropdown-divider"></li>
                                  <li><a class="dropdown-item" href="{{ route('logout') }}"
                                          onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                         document.getElementById('logout-form').submit();">
                                          Logout
                                      </a></li>
                              </ul>
