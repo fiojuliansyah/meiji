@@ -1927,7 +1927,7 @@ label {
     overflow: hidden;
     margin-bottom: 24px;
     position: relative;
-    background:  #fdfafa;
+    background: #fdfafa;
 }
 
 .card-grid-2 i {
@@ -7397,6 +7397,7 @@ ul li:last-child .card-list-4 {
 .box-view-type a {
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .dropdown-sort {
@@ -9220,3 +9221,35 @@ ul li:last-child .card-list-4 {
 }
 
 /*# sourceMappingURL=style.css.map */
+.ps-custom-scrollbar {
+    max-height: 250px;
+    overflow: auto;
+    padding-right: 10px;
+}
+
+.ps-custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ps-custom-scrollbar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #ffe6e6;
+    border-radius: 6px;
+}
+
+.ps-custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #ff9999;
+    border-radius: 6px;
+}
+
+.btn-advanced-filter {
+    border: 1px solid #E0E6F7;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 1px 0px 3px 15px;
+    vertical-align: sub;
+}
+
+.offcanvas-body {
+    overflow-y: auto;
+    max-height: 100vh;
+}

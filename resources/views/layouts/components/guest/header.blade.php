@@ -5,8 +5,8 @@
                  <div class="header-logo"><a class="d-flex" href="{{ route('index') }}"><img alt="jobBox"
                              src="{{ asset('storage/logo/logo-meiji-1.png') }}" height="50"></a>
                  </div>
-                </div>
-                <sub class="fs-7">PT. Meiji Indonesia</sub>
+             </div>
+             <sub class="fs-7">PT. Meiji Indonesia</sub>
              <div class="header-nav">
                  <nav class="nav-main-menu">
                      <ul class="main-menu">
@@ -28,27 +28,36 @@
                      @auth
 
                          <div class="dropdown">
-                             <a class="d-inline-flex align-items-center header-item dropdown-toggle" href="#" role="button"
-                                 id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                 <img alt="Logo" src="{{Auth::user()->profile->avatar_url?? 'https://ui-avatars.com/api/?name='. Auth::user()->name.'&font-size=0.4'}}" class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover;" />
-                                 <span class="text-left fw-medium" title="Hi, {{ Auth::user()->name }}">Hi, {{ Str::limit(Auth::user()->name, 10, '...') }}</span>
+                             <a class="d-inline-flex align-items-center header-item dropdown-toggle" href="#"
+                                 role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <img alt="Logo"
+                                     src="{{ Auth::user()->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&font-size=0.4' }}"
+                                     class="rounded-circle me-2" style="width: 35px; height: 35px; object-fit: cover;" />
+                                 <span class="text-left fw-medium" title="Hi, {{ Auth::user()->name }}">Hi,
+                                     {{ Str::limit(Auth::user()->name, 10, '...') }}</span>
                                  <i class="icon-down ms-2"></i>
                              </a>
                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                  <li class="dropdown-item ">
-                                     <span class="d-flex align-items-center ms-0 ps-0" >
-                                         <img src="{{ Auth::user()->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&font-size=0.4' }}" alt="Profile" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                                     <span class="d-flex align-items-center ms-0 ps-0">
+                                         <img src="{{ Auth::user()->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&font-size=0.4' }}"
+                                             alt="Profile" class="rounded-circle me-2"
+                                             style="width: 40px; height: 40px; object-fit: cover;">
                                          <div>
                                              <h6 class="mb-0 small">{{ Auth::user()->name }}</h6>
                                              <p class="text-muted text-xs small">{{ Auth::user()->email }}</p>
                                          </div>
                                      </span>
                                  </li>
-                                 <li><hr class="dropdown-divider"></li>
+                                 <li>
+                                     <hr class="dropdown-divider">
+                                 </li>
                                  <li><a class="dropdown-item" href="#">My Profile</a></li>
                                  <li><a class="dropdown-item" href="#">Applied Jobs</a></li>
                                  <li><a class="dropdown-item" href= "#">Saved Jobs</a></li>
-                                 <li><hr class="dropdown-divider"></li>
+                                 <li>
+                                     <hr class="dropdown-divider">
+                                 </li>
                                  <li><a class="dropdown-item" href="{{ route('logout') }}"
                                          onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
@@ -72,161 +81,46 @@
      <div class="mobile-header-wrapper-inner">
          <div class="mobile-header-content-area">
              <div class="perfect-scroll">
-                 <div class="mobile-search mobile-header-border mb-30">
-                     <form action="#">
-                         <input type="text" placeholder="Search…"><i class="fi-rr-search"></i>
-                     </form>
-                 </div>
-                 <div class="mobile-menu-wrap mobile-header-border">
-                     <!-- mobile menu start-->
-                     <nav>
+                
+                     <div class="mobile-menu-wrap mobile-header-border">
+                         <!-- mobile menu start-->
+                         <nav>
+                             <ul class="mobile-menu font-heading">
+
+                                 <li><a href="{{ route('career-list') }}">Careers</a></li>
+                             </ul>
+                         </nav>
+                     </div>
+                      @auth
+                     <div class="mobile-account">
+                         <span class="d-flex align-items-center ms-0 ps-0">
+                             <img src="{{ Auth::user()->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&font-size=0.4' }}"
+                                 alt="Profile" class="rounded-circle me-2"
+                                 style="width: 40px; height: 40px; object-fit: cover;">
+                             <div>
+                                 <h6 class="mb-0 small">{{ Auth::user()->name }}</h6>
+                                 <p class="text-muted text-xs small">{{ Auth::user()->email }}</p>
+                             </div>
+                         </span>
                          <ul class="mobile-menu font-heading">
-                             <li class="has-children"><a class="active" href="index.html">Home</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="index.html">Home 1</a></li>
-                                     <li><a href="index-2.html">Home 2</a></li>
-                                     <li><a href="index-3.html">Home 3</a></li>
-                                     <li><a href="index-4.html">Home 4</a></li>
-                                     <li><a href="index-5.html">Home 5</a></li>
-                                     <li><a href="index-6.html">Home 6</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="jobs-grid.html">Find a Job</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="jobs-grid.html">Jobs Grid</a></li>
-                                     <li><a href="jobs-list.html">Jobs List</a></li>
-                                     <li><a href="job-details.html">Jobs Details </a></li>
-                                     <li><a href="job-details-2.html">Jobs Details 2 </a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="companies-grid.html">Recruiters</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="companies-grid.html">Recruiters</a></li>
-                                     <li><a href="company-details.html">Company Details</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="candidates-grid.html">Candidates</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="candidates-grid.html">Candidates Grid</a></li>
-                                     <li><a href="candidate-details.html">Candidate Details</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="blog-grid.html">Pages</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="page-about.html">About Us</a></li>
-                                     <li><a href="page-pricing.html">Pricing Plan</a></li>
-                                     <li><a href="page-contact.html">Contact Us</a></li>
-                                     <li><a href="page-register.html">Register</a></li>
-                                     <li><a href="page-signin.html">Signin</a></li>
-                                     <li><a href="page-reset-password.html">Reset Password</a></li>
-                                     <li><a href="page-content-protected.html">Content Protected</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="blog-grid.html">Blog</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="blog-grid.html">Blog Grid</a></li>
-                                     <li><a href="blog-grid-2.html">Blog Grid 2</a></li>
-                                     <li><a href="blog-details.html">Blog Single</a></li>
-                                 </ul>
-                             </li>
-                             <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard"
-                                     target="_blank">Dashboard</a></li>
+                             <li><a href="#">My Profile</a></li>
+                             <li><a href="#">Applied Job</a></li>
+                             <li><a href="#">Saved Jobs</a></li>
+                             <li><a href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                     Logout
+                                 </a></li>
                          </ul>
-                     </nav>
-                 </div>
-                 <div class="mobile-account">
-                     <h6 class="mb-10">Your Account</h6>
-                     <ul class="mobile-menu font-heading">
-                         <li><a href="#">Profile</a></li>
-                         <li><a href="#">Work Preferences</a></li>
-                         <li><a href="#">Account Settings</a></li>
-                         <li><a href="#">Go Pro</a></li>
-                         <li><a href="page-signin.html">Sign Out</a></li>
-                     </ul>
-                 </div>
-                 <div class="site-copyright">Copyright 2022 &copy; JobBox. <br>Designed by AliThemes.</div>
+                     </div>
+                 @else
+                     <div class="mobile-account">
+                         <a class="btn btn-danger btn-shadow ml-40 hover-up" href="{{ route('login') }}">Sign in</a>
+                     </div>
+                 @endauth
+                 <div class="site-copyright">Copyright 2024 &copy; PT Meiji Indonesia. </div>
              </div>
          </div>
      </div>
  </div>
- <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
-     <div class="mobile-header-wrapper-inner">
-         <div class="mobile-header-content-area">
-             <div class="perfect-scroll">
-                 <div class="mobile-search mobile-header-border mb-30">
-                     <form action="#">
-                         <input type="text" placeholder="Search…"><i class="fi-rr-search"></i>
-                     </form>
-                 </div>
-                 <div class="mobile-menu-wrap mobile-header-border">
-                     <!-- mobile menu start-->
-                     <nav>
-                         <ul class="mobile-menu font-heading">
-                             <li class="has-children"><a class="active" href="index.html">Home</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="index.html">Home 1</a></li>
-                                     <li><a href="index-2.html">Home 2</a></li>
-                                     <li><a href="index-3.html">Home 3</a></li>
-                                     <li><a href="index-4.html">Home 4</a></li>
-                                     <li><a href="index-5.html">Home 5</a></li>
-                                     <li><a href="index-6.html">Home 6</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="jobs-grid.html">Find a Job</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="jobs-grid.html">Jobs Grid</a></li>
-                                     <li><a href="jobs-list.html">Jobs List</a></li>
-                                     <li><a href="job-details.html">Jobs Details </a></li>
-                                     <li><a href="job-details-2.html">Jobs Details 2 </a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="companies-grid.html">Recruiters</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="companies-grid.html">Recruiters</a></li>
-                                     <li><a href="company-details.html">Company Details</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="candidates-grid.html">Candidates</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="candidates-grid.html">Candidates Grid</a></li>
-                                     <li><a href="candidate-details.html">Candidate Details</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="blog-grid.html">Pages</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="page-about.html">About Us</a></li>
-                                     <li><a href="page-pricing.html">Pricing Plan</a></li>
-                                     <li><a href="page-contact.html">Contact Us</a></li>
-                                     <li><a href="page-register.html">Register</a></li>
-                                     <li><a href="page-signin.html">Signin</a></li>
-                                     <li><a href="page-reset-password.html">Reset Password</a></li>
-                                     <li><a href="page-content-protected.html">Content Protected</a></li>
-                                 </ul>
-                             </li>
-                             <li class="has-children"><a href="blog-grid.html">Blog</a>
-                                 <ul class="sub-menu">
-                                     <li><a href="blog-grid.html">Blog Grid</a></li>
-                                     <li><a href="blog-grid-2.html">Blog Grid 2</a></li>
-                                     <li><a href="blog-details.html">Blog Single</a></li>
-                                 </ul>
-                             </li>
-                             <li><a href="http://wp.alithemes.com/html/jobbox/demos/dashboard"
-                                     target="_blank">Dashboard</a></li>
-                         </ul>
-                     </nav>
-                 </div>
-                 <div class="mobile-account">
-                     <h6 class="mb-10">Your Account</h6>
-                     <ul class="mobile-menu font-heading">
-                         <li><a href="#">Profile</a></li>
-                         <li><a href="#">Work Preferences</a></li>
-                         <li><a href="#">Account Settings</a></li>
-                         <li><a href="#">Go Pro</a></li>
-                         <li><a href="page-signin.html">Sign Out</a></li>
-                     </ul>
-                 </div>
-                 <div class="site-copyright">Copyright 2022 &copy; JobBox. <br>Designed by AliThemes.</div>
-             </div>
-         </div>
-     </div>
- </div>
+

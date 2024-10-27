@@ -1,7 +1,7 @@
 @extends('layouts.guest.app')
 
 @section('content')
-@livewire('career-filter')
+<livewire:career-filter lazy="on-load" />
 <section class="section-box mt-50 mb-50">
     <div class="container">
         <div class="text-start">
@@ -10,7 +10,7 @@
                 updates and tips</p>
         </div>
     </div>
-    <div class="container">
+    <div class="container"> 
         <div class="mt-50">
             <div class="box-swiper style-nav-top">
                 <div class="swiper-container swiper-group-3 swiper">
@@ -146,6 +146,7 @@
         </div>
     </div>
 </section>
+
 @endsection
 
 @section('scripts')
