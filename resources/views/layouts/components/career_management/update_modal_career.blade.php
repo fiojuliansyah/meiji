@@ -45,10 +45,10 @@
                                                <label class="required fs-6 fw-semibold mb-2">Departement</label>
                                                <!--end::Label-->
                                                <!--begin::Input-->
-                                               <select class="form-select form-select-solid fw-bold" name="departement_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_add_customer">
+                                               <select class="form-select form-select-solid fw-bold" name="departement_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_update_career-{{$career->id}}">
                                                    <option></option>
                                                    @foreach ($departements as $departement )
-                                                   <option value="{{$departement->id}}" {{ $career->departement_id ? 'selected' : '' }}>{{$departement->slug}}</option>
+                                                   <option value="{{$departement->id}}" {{ $career->departement_id== $departement->id ? 'selected' : '' }}>{{$departement->slug}}</option>
                                                    @endforeach
                                                </select>
                                                <!--end::Input-->
@@ -60,10 +60,10 @@
                                                <label class="required fs-6 fw-semibold mb-2">Location</label>
                                                <!--end::Label-->
                                                <!--begin::Input-->
-                                               <select class="form-select form-select-solid fw-bold" name="location_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_add_customer">
+                                               <select class="form-select form-select-solid fw-bold" name="location_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_update_career-{{$career->id}}">
                                                    <option></option>
                                                    @foreach ($locations as $location )
-                                                   <option value="{{$location->id}}" {{ $career->location_id ? 'selected' : '' }}>{{$location->slug}}</option>
+                                                   <option value="{{$location->id}}" {{ $career->location_id == $location->id ? 'selected' : '' }}>{{$location->slug}}</option>
                                                    @endforeach
                                                </select>
                                                <!--end::Input-->
@@ -79,10 +79,10 @@
                                                <label class="required fs-6 fw-semibold mb-2">Type</label>
                                                <!--end::Label-->
                                                <!--begin::Input-->
-                                               <select class="form-select form-select-solid fw-bold" name="type_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_add_customer">
+                                               <select class="form-select form-select-solid fw-bold" name="type_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_update_career-{{$career->id}}">
                                                    <option></option>
                                                    @foreach ($types as $type )
-                                                   <option value="{{$type->id}}" {{ $career->type_id ? 'selected' : '' }}>{{$type->slug}}</option>
+                                                   <option value="{{$type->id}}" {{ $career->type_id == $type->id ? 'selected' : '' }}>{{$type->slug}}</option>
                                                    @endforeach
                                                </select>
                                                <!--end::Input-->
@@ -94,10 +94,10 @@
                                                <label class="required fs-6 fw-semibold mb-2">Level</label>
                                                <!--end::Label-->
                                                <!--begin::Input-->
-                                               <select class="form-select form-select-solid fw-bold" name="level_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_add_customer">
+                                               <select class="form-select form-select-solid fw-bold" name="level_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_update_career-{{$career->id}}">
                                                    <option></option>
                                                    @foreach ($levels as $level )
-                                                   <option value="{{$level->id}}" {{ $career->level_id ? 'selected' : '' }}>{{$level->slug}}</option>
+                                                   <option value="{{$level->id}}" {{ $career->level_id == $level->id ? 'selected' : '' }}>{{$level->slug}}</option>
                                                    @endforeach
                                                </select>
                                                <!--end::Input-->
@@ -120,12 +120,13 @@
                                                <!--begin::Label-->
                                                <label class="fs-6 fw-semibold mb-2">Placement</label>
                                                <!--end::Label-->
-                                               <select class="form-select form-select-solid fw-bold" name="placement" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_add_career">
+                                               <select class="form-select form-select-solid fw-bold" name="placement" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="false" data-dropdown-parent="#kt_modal_update_career-{{$career->id}}">
                                                    <option></option>
                                                    <option value="On-Site" {{ $career->placement == 'On-Site' ? 'selected' : '' }}>On-Site</option>
                                                    <option value="Remote" {{ $career->placement == 'Remote' ? 'selected' : '' }}>Remote</option>
                                                    <option value="Hybrid" {{ $career->placement == 'Hybrid' ? 'selected' : '' }}>Hybrid</option>
                                                </select>
+                                               <!--end::Input-->
                                            </div>
                                            <!--end::Col-->
                                        </div>
@@ -184,3 +185,12 @@
                    </div>
                </div>
                <!--end::Modal - Customers - Add-->
+               <script>
+                   $(document).ready(function() {
+                       $('#departement').select2();
+                       $('#location_id').select2();
+                       $('#type_id').select2();
+                       $('#level_id').select2();
+                       $('#placement').select2();
+                   });
+               </script>
