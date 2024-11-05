@@ -28,8 +28,8 @@
                     <div class="me-4 fw-bolder text-sm">
                         Sort By :
                         <select class="form-select" data-placeholder="Select" wire:model.live="sortBy">
-                            <option value="1">Newest </option>
-                            <option value="2">Oldest</option>
+                            <option value="desc" {{ $this->sortBy == 'desc' ?'checked':'' }}>Newest </option>
+                            <option value="asc" {{ $this->sortBy == 'asc' ?'checked':'' }}>Oldest</option>
                         </select>
                     </div>
                 </div>
@@ -50,21 +50,20 @@
 
                 <div class=" mt-4 text-center justify-content-center fw-bolder d-flex flex-wrap border-bottom pb-4">
                     <div class="form-check me-4">
-                        <input class="form-check-input" type="checkbox" value="" id="statusAll"
-                            wire:change="resetFilters()">
+                        <input class="form-check-input" type="checkbox" value="" id="statusAll" wire:change="resetFilters"   {{ empty($status) ? 'checked' : '' }}>
                         <label class="form-check-label" for="statusAll">All</label>
                     </div>
-                    @foreach ($statuses as $status)
+                    @foreach ($statuses as $statuss)
                         <div class="form-check me-4">
-                            <input class="form-check-input" type="checkbox" value="{{ $status->id }}"
-                                id="statusScreening" wire:model.live="status_id">
-                            <label class="form-check-label" for="statusScreening"><span
-                                    class="badge badge-outline badge-{{ $status->color }}">{{ $status->status }}</span></label>
+                            <input class="form-check-input" type="checkbox" value="{{ $statuss->id }}"
+                             wire:model.live="status">
+                            <label class="form-check-label"><span
+                                    class="badge badge-outline badge-{{ $statuss->color }}">{{ $statuss->status }}</span></label>
                         </div>
                     @endforeach
 
                 </div>
-                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_careers_table">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" >
                     <thead>
                         <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2">
@@ -112,7 +111,7 @@
                                             <a type="button" href="" data-bs-toggle="modal"
                                                 data-bs-target="#modal_view_applicant-{{ $applicant->user->id }}"
                                                 class="menu-link px-3"> View Profile</a>
-                                        </div>
+                                        </div> 
                                         <div class="menu-item px-3">
                                             <a class="menu-link px-3">Update</a>
 

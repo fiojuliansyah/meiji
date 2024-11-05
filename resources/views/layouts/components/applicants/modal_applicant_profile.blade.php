@@ -1,9 +1,9 @@
 <!--begin::Modal - Update task-->
-<div class="modal modal-lg fade" id="modal_view_applicant-{{$applicant->user->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal modal-lg fade" id="modal_view_applicant-{{ $applicant->user->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
             <div class="modal-header" id="kt_modal_update_user_header">
-                <h2 class="fw-bold">{{$applicant->user->name}} </h2>
+                <h2 class="fw-bold">{{ $applicant->user->name }} </h2>
                 <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
                     <i class="ki-duotone ki-cross fs-1">
                         <span class="path1"></span>
@@ -19,7 +19,8 @@
 
                     <div class="row mb-7">
                         <div class="card shadow-sm">
-                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#kt_docs_card_collapsible1">
+                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
+                                data-bs-target="#kt_docs_card_collapsible1">
                                 <h3 class="card-title">Account</h3>
                                 <div class="card-toolbar rotate-180">
                                     <i class="ki-duotone ki-down fs-1"></i>
@@ -50,19 +51,20 @@
                                         <div class="col-8">
                                             <div class="d-flex justify-content-between">
                                                 <p class="fw-bolder fs-5">Name <span>:</span></p>
-                                                <span class="fs-5">{{$applicant->user->name }}</span>
+                                                <span class="fs-5">{{ $applicant->user->name }}</span>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <p class="fw-bolder fs-5">Email <span>:</span></p>
-                                                <span class="fs-5">{{$applicant->user->email}}</span>
+                                                <span class="fs-5">{{ $applicant->user->email }}</span>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <p class="fw-bolder fs-5">Phone <span>:</span></p>
-                                                <span class="fs-5">{{$applicant->user->phone}}</span>
+                                                <span class="fs-5">{{ $applicant->user->phone }}</span>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <p class="fw-bolder fs-5">Role <span>:</span></p>
-                                                <span class="fs-5">{{ $applicant->user->getRoleNames()->implode(', ') ?? '' }}</span>
+                                                <span
+                                                    class="fs-5">{{ $applicant->user->getRoleNames()->implode(', ') ?? '' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -71,51 +73,56 @@
                             </div>
                         </div>
                     </div>
-                    @if(!$applicant->user->profile->nik === "")
-                    <div class="row mb-7">
-                        <div class="card shadow-sm">
-                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#kt_docs_card_collapsible2">
-                                <h3 class="card-title">Profile</h3>
-                                <div class="card-toolbar rotate-180">
-                                    <i class="ki-duotone ki-down fs-1"></i>
-                                </div>
-                            </div>
-                            <div id="kt_docs_card_collapsible2" class="collapse show">
-                                <div class="card-body">
-                                    <div class="fv-row mb-2">
-                                        <label class="fw-semibold fs-6 mb-2">NIK</label>
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$applicant->user->profile->nik??''}}" disabled />
-                                    </div>
-                                    <div class="fv-row mb-2">
-                                        <label class="fw-semibold fs-6 mb-2">Birth Place</label>
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
-                                            value="{{$applicant->user->profile->birth_place??''}}" disabled />
-                                    </div>
-                                    <div class="fv-row mb-2">
-                                        <label class="fw-semibold fs-6 mb-2">Birth Date</label>
-                                        <input type="date" class="form-control form-control-solid mb-3 mb-lg-0"
-                                            value="{{$applicant->user->profile->birth_date??''}}" disabled />
-                                    </div>
-                                    <div class="fv-row mb-2">
-                                        <label class="fw-semibold fs-6 mb-2">Gender</label>
-                                        <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" value="{{$applicant->user->profile->gender??''}}" disabled />
-                                    </div>
-                                    <div class="fv-row mb-2">
-                                        <label class="fw-semibold fs-6 mb-2">
-                                            Address
-                                        </label>
-                                        <textarea class="form-control form-control-solid mb-3 mb-lg-0" disabled> {{$applicant->user->profile->address??''}}</textarea>
-
+                    @if (!$applicant->user->profile->nik === '')
+                        <div class="row mb-7">
+                            <div class="card shadow-sm">
+                                <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
+                                    data-bs-target="#kt_docs_card_collapsible2">
+                                    <h3 class="card-title">Profile</h3>
+                                    <div class="card-toolbar rotate-180">
+                                        <i class="ki-duotone ki-down fs-1"></i>
                                     </div>
                                 </div>
+                                <div id="kt_docs_card_collapsible2" class="collapse show">
+                                    <div class="card-body">
+                                        <div class="fv-row mb-2">
+                                            <label class="fw-semibold fs-6 mb-2">NIK</label>
+                                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
+                                                value="{{ $applicant->user->profile->nik ?? '' }}" disabled />
+                                        </div>
+                                        <div class="fv-row mb-2">
+                                            <label class="fw-semibold fs-6 mb-2">Birth Place</label>
+                                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0"
+                                                value="{{ $applicant->user->profile->birth_place ?? '' }}" disabled />
+                                        </div>
+                                        <div class="fv-row mb-2">
+                                            <label class="fw-semibold fs-6 mb-2">Birth Date</label>
+                                            <input type="date" class="form-control form-control-solid mb-3 mb-lg-0"
+                                                value="{{ $applicant->user->profile->birth_date ?? '' }}" disabled />
+                                        </div>
+                                        <div class="fv-row mb-2">
+                                            <label class="fw-semibold fs-6 mb-2">Gender</label>
+                                            <input type="text" name="name"
+                                                class="form-control form-control-solid mb-3 mb-lg-0"
+                                                value="{{ $applicant->user->profile->gender ?? '' }}" disabled />
+                                        </div>
+                                        <div class="fv-row mb-2">
+                                            <label class="fw-semibold fs-6 mb-2">
+                                                Address
+                                            </label>
+                                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" disabled> {{ $applicant->user->profile->address ?? '' }}</textarea>
 
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
                     <div class="row mb-7">
                         <div class="card shadow-sm">
-                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse" data-bs-target="#kt_docs_card_collapsible3">
+                            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
+                                data-bs-target="#kt_docs_card_collapsible3">
                                 <h3 class="card-title">Document</h3>
                                 <div class="card-toolbar rotate-180">
                                     <i class="ki-duotone ki-down fs-1"></i>
@@ -124,59 +131,71 @@
                             <div id="kt_docs_card_collapsible3" class="collapse show">
                                 <div class="card-body">
                                     <div class="row">
-                                        @foreach ($applicant->user->documents as $document )
-                                        <div class=" col-lg-4 col-6 mb-5 mb-xl-2">
-                                            <div class="border border-gray-500 border-1 border-dashed rounded p-5 ">
-                                                <!--begin::Number-->
-                                                <div class=" text-center mb-4">
-                                                    <span class="badge badge-outline badge-success fs-4">{{$document->type??''}}</span>
+                                        @if (!$applicant->user->documents->isEmpty())
+
+
+                                            @foreach ($applicant->user->documents as $document)
+                                                <div class=" col-lg-4 col-6 mb-5 mb-xl-2">
+                                                    <div
+                                                        class="border border-gray-500 border-1 border-dashed rounded p-5 ">
+                                                        <!--begin::Number-->
+                                                        <div class=" text-center mb-4">
+                                                            <span
+                                                                class="badge badge-outline badge-success fs-4">{{ $document->type ?? '' }}</span>
+                                                        </div>
+                                                        @if (pathinfo($document->document_url, PATHINFO_EXTENSION) == 'pdf')
+                                                            <a class="d-block overlay"
+                                                                href="{{ $document->document_url }}" target="_blank">
+                                                                <!--begin::Image-->
+                                                                <div
+                                                                    class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
+                                                                    <img src="assets/media/logos/adobe.png"
+                                                                        class="mx-auto rounded" alt="PDF"
+                                                                        height="100" width="120">
+                                                                </div>
+                                                                <!--end::Image-->
+                                                                <!--begin::Action-->
+                                                                <div
+                                                                    class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                                                    <i class="fas fa-eye fs-2x text-white">
+                                                                    </i>
+                                                                </div>
+                                                                <!--end::Action-->
+                                                            </a>
+                                                        @else
+                                                            <a class="d-block overlay"
+                                                                href="{{ $document->document_url }}" target="_blank">
+                                                                <!--begin::Image-->
+
+                                                                <div
+                                                                    class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
+                                                                    <img src="{{ $document->document_url }}"
+                                                                        class="mx-auto rounded" alt=""
+                                                                        height="100" width="100">
+                                                                </div>
+                                                                <!--end::Image-->
+                                                                <!--begin::Action-->
+                                                                <div
+                                                                    class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                                                    <i class="fas fa-eye fs-2x text-white">
+                                                                    </i>
+                                                                </div>
+                                                                <!--end::Action-->
+                                                            </a>
+                                                        @endif
+                                                        <div class="fs-4 fw-bold  text-center">
+                                                            {{ $document->name ?? '-' }}</div>
+
+                                                        <!--end::Number-->
+                                                        <!--begin::Label-->
+                                                        <div class="fw-semibold fs-6 text-gray-500 text-center mb-7">
+                                                            Expires
+                                                            at : {{ $document->validate_date ?? '-' }}</div>
+                                                        <!--end::Label-->
+                                                    </div>
                                                 </div>
-                                                @if (pathinfo($document->document_url, PATHINFO_EXTENSION) == 'pdf')
-                                                <a class="d-block overlay"
-                                                    href="{{$document->document_url}}" target="_blank">
-                                                    <!--begin::Image-->
-                                                    <div
-                                                        class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
-                                                        <img src="assets/media/logos/adobe.png" class="mx-auto rounded"
-                                                            alt="PDF" height="100" width="120">
-                                                    </div>
-                                                    <!--end::Image-->
-                                                    <!--begin::Action-->
-                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                                        <i class="fas fa-eye fs-2x text-white">
-                                                        </i>
-                                                    </div>
-                                                    <!--end::Action-->
-                                                </a>
-                                                @else
-                                                <a class="d-block overlay" href="{{$document->document_url}}" target="_blank">
-                                                    <!--begin::Image-->
-
-                                                    <div
-                                                        class="overlay-wrapper bgi-no-repeat bgi-position-center text-center bgi-size-cover card-rounded min-w-100px min-h-100px mb-4">
-                                                        <img src="{{$document->document_url}}" class="mx-auto rounded"
-                                                            alt="" height="100" width="100">
-                                                    </div>
-                                                    <!--end::Image-->
-                                                    <!--begin::Action-->
-                                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
-                                                        <i class="fas fa-eye fs-2x text-white">
-                                                        </i>
-                                                    </div>
-                                                    <!--end::Action-->
-                                                </a>
-                                                @endif
-                                                <div class="fs-4 fw-bold  text-center"> {{$document->name??'-'}}</div>
-
-                                                <!--end::Number-->
-                                                <!--begin::Label-->
-                                                <div class="fw-semibold fs-6 text-gray-500 text-center mb-7">Expires
-                                                    at : {{$document->validate_date??'-'}}</div>
-                                                <!--end::Label-->
-                                            </div>
-                                        </div>
-                                        @endforeach
-
+                                            @endforeach
+                                        @endif
 
                                     </div>
                                 </div>

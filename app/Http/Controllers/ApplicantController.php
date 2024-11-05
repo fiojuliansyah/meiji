@@ -15,7 +15,7 @@ class ApplicantController extends Controller
      */
     public function index()
     {
-        $applicants = Applicant::with('user')->get();
+        $applicants = Applicant::all();
         $users=User::all();
         $departements = Departement::all();
         return view('applicants', compact('applicants', 'departements','users'));
