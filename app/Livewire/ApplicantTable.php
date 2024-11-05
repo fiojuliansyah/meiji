@@ -17,7 +17,7 @@ class ApplicantTable extends Component
     public $status = []; // Filter by Status
     public $selectedApplicantId;
     public $sortBy = 'desc'; // Sort By (default to newest)
-    public $perPage = 5;
+    public $perPage = 10;
     public $search; // Number of items per page
 
     protected $paginationTheme = 'bootstrap'; // Use Bootstrap for pagination
@@ -39,7 +39,7 @@ class ApplicantTable extends Component
     public function updateStatus($id, $selectedStatus)
     {
         $applicant = Applicant::find($id);
-        $applicant->status = $selectedStatus;
+        $applicant->status_id = $selectedStatus;
         $applicant->save();
     }
 

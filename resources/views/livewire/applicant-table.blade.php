@@ -50,7 +50,7 @@
 
                 <div class=" mt-4 text-center justify-content-center fw-bolder d-flex flex-wrap border-bottom pb-4">
                     <div class="form-check me-4">
-                        <input class="form-check-input" type="checkbox" value="" id="statusAll" wire:change="resetFilters"   {{ empty($status) ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" value="" id="statusAll" wire:model.live="resetFilters" {{ !empty($this->status) ? '' : 'checked' }}>
                         <label class="form-check-label" for="statusAll">All</label>
                     </div>
                     @foreach ($statuses as $statuss)
@@ -113,13 +113,18 @@
                                                 class="menu-link px-3"> View Profile</a>
                                         </div> 
                                         <div class="menu-item px-3">
-                                            <a class="menu-link px-3">Update</a>
+                                            <a class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#modal_applicant_update-{{$applicant->id}}">Update</a>
 
                                         </div>
                                     </div>
                                 </td>
                             </tr>
+                            <div>
                             @include('layouts.components.applicants.modal_applicant_profile')
+                            </div>
+                            <div>
+                                @include('layouts.components.applicants.modal_applicant_update')
+                            </div>
                         @endforeach
                         @if ($applicants->isEmpty())
                             <tr>
@@ -136,9 +141,9 @@
                 <div class="d-flex justify-content-between align-items-center mt-4">
                     <div class="me-8">
                         <select wire:model.live="perPage" class="form-select">
-                            <option value="5">5</option>
                             <option value="10">10</option>
-                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
                         </select>
                     </div>
                     <div class="text-muted">

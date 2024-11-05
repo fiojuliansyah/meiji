@@ -156,7 +156,7 @@
                                            <!--end::Label-->
                                            <!--begin::Input-->
 
-                                           <textarea name="description" id="tiny_update" class="tox-target">{{$career->description}}</textarea>
+                                           <textarea name="description" id="tiny_update_career{{$career->id}}" class="tox-target">{{$career->description}}</textarea>
                                            <!--end::Input-->
                                        </div>
                                        <!--end::Input group-->
@@ -185,12 +185,4 @@
                    </div>
                </div>
                <!--end::Modal - Customers - Add-->
-               <script>
-                   $(document).ready(function() {
-                       $('#departement').select2();
-                       $('#location_id').select2();
-                       $('#type_id').select2();
-                       $('#level_id').select2();
-                       $('#placement').select2();
-                   });
-               </script>
+              

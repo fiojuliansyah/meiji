@@ -240,6 +240,7 @@
                                 </tr>
 
                                 @include('layouts.components.career_management.update_modal_career')
+                                
                                 @endforeach
                             </tbody>
                         </table>
@@ -306,19 +307,20 @@
     tinymce.init(options);
 </script>
 <script>
-    var options = {
-        selector: "#tiny_update",
+    @foreach ($careers as $career)
+    var options{{ $career->id }} = {
+        selector: "#tiny_update_career{{ $career->id }}",
         height: "200"
     };
 
     if (KTThemeMode.getMode() === "dark") {
-        options["skin"] = "oxide-dark";
-        options["content_css"] = "dark";
+        options{{ $career->id }}["skin"] = "oxide-dark";
+        options{{ $career->id }}["content_css"] = "dark";
     }
 
-    tinymce.init(options);
+    tinymce.init(options{{ $career->id }});
+    @endforeach
 </script>
-
 
 <script>
     toastr.options = {
