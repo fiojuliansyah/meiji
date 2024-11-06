@@ -9,7 +9,7 @@
                     </i>
                     <input type="text" data-kt-career-table-filter="search"
                         class="form-control form-control-solid w-250px ps-12" placeholder="Search Applicant"
-                        wire:model.live="search" />
+                        wire:model.lazy="search" />
                 </div>
             </div>
             <div class="card-toolbar">
@@ -28,8 +28,8 @@
                     <div class="me-4 fw-bolder text-sm">
                         Sort By :
                         <select class="form-select" data-placeholder="Select" wire:model.live="sortBy">
-                            <option value="desc" {{ $this->sortBy == 'desc' ?'checked':'' }}>Newest </option>
-                            <option value="asc" {{ $this->sortBy == 'asc' ?'checked':'' }}>Oldest</option>
+                            <option value="desc" {{ $this->sortBy == 'desc' ? 'checked' : '' }}>Newest </option>
+                            <option value="asc" {{ $this->sortBy == 'asc' ? 'checked' : '' }}>Oldest</option>
                         </select>
                     </div>
                 </div>
@@ -50,20 +50,21 @@
 
                 <div class=" mt-4 text-center justify-content-center fw-bolder d-flex flex-wrap border-bottom pb-4">
                     <div class="form-check me-4">
-                        <input class="form-check-input" type="checkbox" value="" id="statusAll" wire:model.live="resetFilters" {{ !empty($this->status) ? '' : 'checked' }}>
+                        <input class="form-check-input" type="checkbox" value="" id="statusAll"
+                            wire:click="resetFilters" {{ !empty($this->status) ? '' : 'checked' }}>
                         <label class="form-check-label" for="statusAll">All</label>
                     </div>
                     @foreach ($statuses as $statuss)
                         <div class="form-check me-4">
                             <input class="form-check-input" type="checkbox" value="{{ $statuss->id }}"
-                             wire:model.live="status">
+                                wire:model.live="status">
                             <label class="form-check-label"><span
                                     class="badge badge-outline badge-{{ $statuss->color }}">{{ $statuss->status }}</span></label>
                         </div>
                     @endforeach
 
                 </div>
-                <table class="table align-middle table-row-dashed fs-6 gy-5" >
+                <table class="table align-middle table-row-dashed fs-6 gy-5">
                     <thead>
                         <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
                             <th class="w-10px pe-2">
@@ -101,26 +102,22 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="#"
-                                        class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                        <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                        data-kt-menu="true">
-                                        <div class="menu-item px-3">
-                                            <a type="button" href="" data-bs-toggle="modal"
-                                                data-bs-target="#modal_view_applicant-{{ $applicant->user->id }}"
-                                                class="menu-link px-3"> View Profile</a>
-                                        </div> 
-                                        <div class="menu-item px-3">
-                                            <a class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#modal_applicant_update-{{$applicant->id}}">Update</a>
-
+                                    <div wire:ignore.self>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Actions
+                                                <i class="ki-duotone ki-down fs-5 ms-1"></i>
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li><a type="button" href="" data-bs-toggle="modal" data-bs-target="#modal_view_applicant-{{ $applicant->user->id }}" class="dropdown-item">View Profile</a></li>
+                                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_applicant_update-{{ $applicant->id }}">Update</a></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <div>
-                            @include('layouts.components.applicants.modal_applicant_profile')
+                                @include('layouts.components.applicants.modal_applicant_profile')
                             </div>
                             <div>
                                 @include('layouts.components.applicants.modal_applicant_update')

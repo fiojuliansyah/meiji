@@ -25,4 +25,9 @@ class Applicant extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
 }

@@ -26,5 +26,9 @@ class Schedule extends Model
     {
         return $this->belongsTo(Career::class);
     }
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 
 }

@@ -41,6 +41,7 @@ class ApplicantTable extends Component
         $applicant = Applicant::find($id);
         $applicant->status_id = $selectedStatus;
         $applicant->save();
+        return redirect()->back()->with('success', 'success!');
     }
 
     public function render()
@@ -55,7 +56,17 @@ class ApplicantTable extends Component
             ->when($this->status, function ($query) {
                 return $query->whereIn('status_id', $this->status);
             })
-            
+            ->when($this->search, function ($query) {
+                return $query->whereHas('user', function ($q) {
+                        $q->where('name', 'like', '%'.$this->search.'%');
+                    })
+                    ->orWhereHas('career', function ($q) {
+                        $q->where('name', 'like', '%'.$this->search.'%');
+                    })
+                    ->orWhereHas('career.departement', function ($q) {
+                        $q->where('name', 'like', '%'.$this->search.'%');
+                    });
+            })
             ->orderBy('created_at', $this->sortBy)
             ->paginate($this->perPage);
 
