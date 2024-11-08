@@ -9,7 +9,7 @@
                     </i>
                     <input type="text" data-kt-career-table-filter="search"
                         class="form-control form-control-solid w-250px ps-12" placeholder="Search Applicant"
-                        wire:model.lazy="search" />
+                        wire:model.live="search" />
                 </div>
             </div>
             <div class="card-toolbar">
@@ -50,8 +50,8 @@
 
                 <div class=" mt-4 text-center justify-content-center fw-bolder d-flex flex-wrap border-bottom pb-4">
                     <div class="form-check me-4">
-                        <input class="form-check-input" type="checkbox" value="" id="statusAll"
-                            wire:click="resetFilters" {{ !empty($this->status) ? '' : 'checked' }}>
+                        <input class="form-check-input" type="checkbox" id="statusAll" wire:change.live="resetFilters"
+                            {{ empty($this->status) ? 'checked' : '' }}>
                         <label class="form-check-label" for="statusAll">All</label>
                     </div>
                     @foreach ($statuses as $statuss)
@@ -102,18 +102,26 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <div wire:ignore.self>
-                                        <div class="dropdown">
-                                            <button class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Actions
-                                                <i class="ki-duotone ki-down fs-5 ms-1"></i>
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <li><a type="button" href="" data-bs-toggle="modal" data-bs-target="#modal_view_applicant-{{ $applicant->user->id }}" class="dropdown-item">View Profile</a></li>
-                                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal_applicant_update-{{ $applicant->id }}">Update</a></li>
-                                            </ul>
-                                        </div>
+
+                                    <div class="dropdown">
+                                        <button
+                                            class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                            type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            Actions
+                                            <i class="ki-duotone ki-down fs-5 ms-1"></i>
+                                        </button>
+                                        <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                            <li><a type="button" href="" data-bs-toggle="modal"
+                                                    data-bs-target="#modal_view_applicant-{{ $applicant->user->id }}"
+                                                    class="dropdown-item">View Profile</a></li>
+                                            <li><a type="button" href="" class="dropdown-item"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#modal_applicant_update-{{ $applicant->id }}">Update</a>
+                                            </li>
+                                        </ul>
                                     </div>
+
                                 </td>
                             </tr>
                             <div>
