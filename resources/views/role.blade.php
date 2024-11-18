@@ -1,21 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<!--begin::Main-->
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     @livewire('role-cards')
-    <!--begin::Footer-->
     <div id="kt_app_footer" class="app-footer">
-        <!--begin::Footer container-->
         <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
-            <!--begin::Copyright-->
             <div class="text-gray-900 order-2 order-md-1">
                 <span class="text-muted fw-semibold me-1">2024&copy;</span>
                 <a href="https://keenthemes.com" target="_blank"
-                    class="text-gray-800 text-hover-primary">Keenthemes</a>
+                    class="text-gray-800 text-hover-primary"> PT. Meiji Indonesian Pharmaceutical Industries</a>
             </div>
-            <!--end::Copyright-->
-            <!--begin::Menu-->
             <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
                 <li class="menu-item">
                     <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
@@ -27,13 +21,9 @@
                     <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
                 </li>
             </ul>
-            <!--end::Menu-->
         </div>
-        <!--end::Footer container-->
     </div>
-    <!--end::Footer-->
 </div>
-<!--end:::Main-->
 @endsection
 
 @section('scripts')
@@ -65,16 +55,31 @@
     toastr.error("{{ Session::get('error') }}");
     @endif
 </script>
+<script>
+    function ConfirmationDelete(id, name) {
 
+        Swal.fire({
+            title: 'Confirmation',
+            text: "Are you sure you want to delete " + name + " ?",
+            icon: 'warning',
+            showCancelButton: true,
+            buttonsStyling: false,
+            confirmButtonText: 'Yes, delete!',
+            cancelButtonText: 'No, Cancel',
+            customClass: {
+                confirmButton: "btn fw-bold btn-danger",
+                cancelButton: "btn fw-bold btn-active-light-primary",
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-' + name + '-' + id).submit();
+            }
+        });
+    }
+</script>
 
-<!--end::Global Javascript Bundle-->
-<!--begin::Vendors Javascript(used for this page only)-->
 <script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-<!--end::Vendors Javascript-->
 
-
-
-<!--end::Custom Javascript-->
 
 
 @include('layouts.components.user_management.add_modal_user')

@@ -63,7 +63,9 @@
                             </div>
                         </div>
                         <div class="content-single">
-                            {!! $career->description !!}
+                            <div class="description-box">
+                                {!! $career->description !!}
+                            </div>
                         </div>
                         <div class="single-apply-jobs">
                             <div class="row align-items-center">

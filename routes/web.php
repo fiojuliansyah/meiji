@@ -22,11 +22,12 @@ Route::post('/apply', [GuestController::class, 'applyCareer'])->name('apply-care
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware(['role:Super Admin']);
 
-    Route::get('/roles', [RoleController::class, 'index'])->name('roles');
+    Route::get('/roles', [RoleController::class, 'index' ])->name('roles')->middleware(['permission:role-list']);
     Route::post('/roles-store', [RoleController::class, 'store'])->name('roles.store');
     Route::put('/roles-update/{id}', [RoleController::class, 'update'])->name('roles.update');
+    Route::delete('/roles-delete/{id}', [RoleController::class, 'destroy'])->name('roles.delete');
 
 
     Route::get('/user', [UserController::class, 'index'])->name('users');

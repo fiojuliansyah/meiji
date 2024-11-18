@@ -1,6 +1,5 @@
  <!--begin::Modal - Update role-->
- <div class="modal fade" id="kt_modal_update_role-{{ $role->id }}" tabindex="-1"
-     aria-hidden="true">
+ <div class="modal fade" id="kt_modal_update_role-{{ $role->id }}" tabindex="-1" aria-hidden="true">
      <!--begin::Modal dialog-->
      <div class="modal-dialog modal-dialog-centered mw-750px">
          <!--begin::Modal content-->
@@ -11,8 +10,7 @@
                  <h2 class="fw-bold">Update Role</h2>
                  <!--end::Modal title-->
                  <!--begin::Close-->
-                 <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                     data-bs-dismiss="modal">
+                 <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
                      <i class="ki-duotone ki-cross fs-1">
                          <span class="path1"></span>
                          <span class="path2"></span>
@@ -24,18 +22,15 @@
              <!--begin::Modal body-->
              <div class="modal-body scroll-y mx-5 my-7">
                  <!--begin::Form-->
-                 <form id="kt_modal_update_role_form" class="form"
-                     action="{{ route('roles.update', $role->id) }}" method="POST">
+                 <form id="kt_modal_update_role_form" class="form" action="{{ route('roles.update', $role->id) }}"
+                     method="POST">
                      @csrf
                      @method('PUT')
                      <!--begin::Scroll-->
-                     <div class="d-flex flex-column scroll-y me-n7 pe-7"
-                         id="kt_modal_update_role_scroll" data-kt-scroll="true"
-                         data-kt-scroll-activate="{default: false, lg: true}"
-                         data-kt-scroll-max-height="auto"
-                         data-kt-scroll-dependencies="#kt_modal_update_role_header"
-                         data-kt-scroll-wrappers="#kt_modal_update_role_scroll"
-                         data-kt-scroll-offset="300px">
+                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll"
+                         data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                         data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header"
+                         data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px">
                          <!--begin::Input group-->
                          <div class="fv-row mb-10">
                              <!--begin::Label-->
@@ -44,9 +39,8 @@
                              </label>
                              <!--end::Label-->
                              <!--begin::Input-->
-                             <input class="form-control form-control-solid"
-                                 placeholder="Enter a role name" name="name"
-                                 value="{{ $role->name }}" />
+                             <input class="form-control form-control-solid" placeholder="Enter a role name"
+                                 name="name" value="{{ $role->name }}"  @can('role-update') @else readonly @endcan/>
                              <!--end::Input-->
                          </div>
                          <!--end::Input group-->
@@ -64,36 +58,36 @@
                                      <tbody class="text-gray-600 fw-semibold">
                                          <!--begin::Table row-->
                                          @foreach ($permissions as $category => $categories)
-                                         <tr>
-                                             <!--begin::Label-->
-                                             <td class="text-gray-800">
-                                                 {{ ucfirst($category) }}
-                                             </td>
-                                             <!--end::Label-->
-                                             <!--begin::Options-->
-                                             <td>
-                                                 <!--begin::Wrapper-->
-                                                 <div class="d-flex">
+                                             <tr>
+                                                 <!--begin::Label-->
+                                                 <td class="text-gray-800">
+                                                     {{ ucfirst($category) }}
+                                                 </td>
+                                                 <!--end::Label-->
+                                                 <!--begin::Options-->
+                                                 <td>
+                                                     <!--begin::Wrapper-->
+                                                     <div class="d-flex">
 
-                                                     @foreach ($categories as $permission)
-                                                     <!--begin::Checkbox-->
-                                                     <label
-                                                         class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
-                                                         <input class="form-check-input"
-                                                             type="checkbox"
-                                                             value="{{ $permission->name }}"
-                                                             name="permissions[]"
-                                                             {{ $role->permissions->contains($permission->id) ? 'checked' : '' }} />
-                                                         <span
-                                                             class="form-check-label">{{ $permission->mock }}</span>
-                                                     </label>
-                                                     <!--end::Checkbox-->
-                                                     @endforeach
-                                                 </div>
-                                                 <!--end::Wrapper-->
-                                             </td>
-                                             <!--end::Options-->
-                                         </tr>
+                                                         @foreach ($categories as $permission)
+                                                             <!--begin::Checkbox-->
+                                                             <label
+                                                                 class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20">
+                                                                 <input class="form-check-input" type="checkbox"
+                                                                     value="{{ $permission->name }}"
+                                                                     name="permissions[]"
+                                                                     @can('role-update') @else disabled @endcan
+                                                                     {{ $role->permissions->contains($permission->id) ? 'checked' : '' }}  />
+                                                                 <span
+                                                                     class="form-check-label">{{ $permission->mock }}</span>
+                                                             </label>
+                                                             <!--end::Checkbox-->
+                                                         @endforeach
+                                                     </div>
+                                                     <!--end::Wrapper-->
+                                                 </td>
+                                                 <!--end::Options-->
+                                             </tr>
                                          @endforeach
                                          <!--end::Table row-->
                                      </tbody>
@@ -107,18 +101,18 @@
                      </div>
                      <!--end::Scroll-->
                      <!--begin::Actions-->
-                     <div class="text-center pt-15">
-                         <button type="reset" class="btn btn-light me-3"
-                             data-kt-roles-modal-action="cancel">Discard</button>
-                         <button type="submit" class="btn btn-primary"
-                             data-kt-roles-modal-action="submit">
-                             <span class="indicator-label">Submit</span>
-                             <span class="indicator-progress">Please wait...
-                                 <span
-                                     class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                         </button>
-                     </div>
-                     <!--end::Actions-->
+                     @can('role-update')
+                         <div class="text-center pt-15">
+                             <button type="reset" class="btn btn-light me-3"
+                                 data-kt-roles-modal-action="cancel">Discard</button>
+                             <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit">
+                                 <span class="indicator-label">Submit</span>
+                                 <span class="indicator-progress">Please wait...
+                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                             </button>
+                         </div>
+                         <!--end::Actions-->
+                     @endcan
                  </form>
                  <!--end::Form-->
              </div>

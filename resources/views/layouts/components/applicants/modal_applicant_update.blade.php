@@ -54,7 +54,7 @@
 
                         <div class="col-md-12 mt-8" wire:ignore >
                             <label for="time" class=" fw-bolder mb-2">Description : </label>
-                            <textarea name="description" id="tiny_update_applicant-{{ $applicant->id }}" class="tox-target">{{$applicant->schedule->description ?? ''}} </textarea>
+                            <textarea name="description" id="tiny_update_applicant-{{ $applicant->id }}" class="form-control">{{$applicant->schedule->description ?? ''}} </textarea>
                         </div>
                     </div>
                 </div>

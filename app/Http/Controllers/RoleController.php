@@ -12,7 +12,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all();
-      
+
         $permissions = Permission::all()->groupBy('category');
 
         return view('role', compact('roles', 'permissions'));
@@ -30,10 +30,10 @@ class RoleController extends Controller
             $role->syncPermissions($validatedData['permissions']);
 
             return redirect()->back()->with('success', 'Role and permissions added successfully!');
-
         } catch (\Exception $e) {
-
-            return redirect()->back()->with('error', 'Failed to add role: ' . $e->getMessage());
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to add role: ' . $e->getMessage());
         }
     }
 
@@ -51,9 +51,25 @@ class RoleController extends Controller
             $role->syncPermissions($validatedData['permissions']);
 
             return redirect()->back()->with('success', 'Role and permissions updated successfully!');
-
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to update role: ' . $e->getMessage());
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to update role: ' . $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $role = Role::findOrFail($id);
+            $role->syncPermissions([]);
+            $role->delete();
+
+            return redirect()->back()->with('success', 'Role and its permissions deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'Failed to delete role: ' . $e->getMessage());
         }
     }
 }
