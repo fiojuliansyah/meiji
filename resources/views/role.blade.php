@@ -82,6 +82,6 @@
 
 
 
-@include('layouts.components.user_management.add_modal_user')
+@include('layouts.components.role_management.add_modal_role')
 
 @endsection

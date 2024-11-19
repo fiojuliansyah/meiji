@@ -15,8 +15,8 @@
                                         <div class="display-flex2">
 
                                             <div class="btn-advanced-filter px-2 py-1 mr-10 d-lg-none">
-                                                <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                                                    aria-controls="offcanvasExample">
+                                                <a data-bs-toggle="offcanvas" href="#offcanvasWithBothOptions"
+                                                    role="button" aria-controls="offcanvasWithBothOptions">
                                                     <i class="fi-rr-filter text-center"></i>
 
                                                 </a>
@@ -57,11 +57,11 @@
                                                 </div>
                                             </div>
                                             <div class="box-view-type">
-                                                <a class="view-type layout-job"  wire:click="list" data-layout="list">
+                                                <a class="view-type layout-job" wire:click="list" data-layout="list">
                                                     <img src="https://jobbox.archielite.com/themes/jobbox/imgs/template/icons/icon-list.svg"
                                                         alt="List layout">
                                                 </a>
-                                                <a class="view-type layout-job}}"  wire:click="grid" data-layout="grid">
+                                                <a class="view-type layout-job}}" wire:click="grid" data-layout="grid">
                                                     <img src="https://jobbox.archielite.com/themes/jobbox/imgs/template/icons/icon-grid.svg"
                                                         alt="Grid layout">
                                                 </a>
@@ -75,11 +75,10 @@
                                     <div class="col-12 text-center">
                                         <p class="mt-4">No careers found.</p>
                                     </div>
-                                    
                                 @endif
                                 @foreach ($careers as $career)
-                                    
-                                    <div class="{{$layout == 'grid' ?'col-xl-4 col-lg-4 col-md-6}':''}} col-sm-12 col-12">
+                                    <div
+                                        class="{{ $layout == 'grid' ? 'col-xl-4 col-lg-4 col-md-6}' : '' }} col-sm-12 col-12">
                                         <div class="card-grid-2 hover-up">
                                             <div class="card-grid-2-image-left"><span class="flash"></span>
                                                 <div class="image-box"><img
@@ -148,7 +147,6 @@
                                     <li class="pager-next">
                                         @if ($careers->hasMorePages())
                                             <a href="{{ $careers->nextPageUrl() }}" class="pager-next "></a>
-
                                         @elseif(!$careers->isEmpty())
                                             <a href="{{ $careers->nextPageUrl() }}"
                                                 class="pager-next btn disabled"></a>
@@ -167,13 +165,14 @@
                     </div>
                 </div>
             </div>
-            <div class="offcanvas offcanvas-start w-75" tabindex="-1" id="offcanvasExample"
-                aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas offcanvas-start w-75" data-bs-scroll="true" tabindex="-1"
+                id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
-                <div class="offcanvas-body ">
+                <div class="offcanvas-body">
                     @include('layouts.components.guest.sidebar-filter')
                 </div>
             </div>
+
 
 
         </section>
