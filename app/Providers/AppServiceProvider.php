@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Livewire::component('career-filter', CareerFilter::class);
-        Paginator::useBootstrap();
+        
     }
 }

@@ -119,43 +119,8 @@
 
                             </div>
                         </div>
-                        <div class="paginations">
-                            <ul class="pager">
-                                {{-- Menampilkan link pagination Livewire --}}
-                                @if (!$careers->isEmpty())
-                                    <li class="pager-prev">
-                                        @if ($careers->onFirstPage())
-                                            <a href="{{ $careers->previousPageUrl() }}" class="pager-prev btn disabled"
-                                                aria-disabled="true"></a>
-                                        @else
-                                            <a href="{{ $careers->previousPageUrl() }}" class="pager-prev "></a>
-                                        @endif
-                                    </li>
-
-                                    @foreach ($careers->getUrlRange(1, $careers->lastPage()) as $page => $url)
-                                        <li>
-                                            @if ($page == $careers->currentPage())
-                                                <a href="{{ $url }}" class="pager-number btn disabled"
-                                                    aria-disabled="">{{ $page }}</a>
-                                            @else
-                                                <a href="{{ $url }}"
-                                                    class="pager-number">{{ $page }}</a>
-                                            @endif
-                                        </li>
-                                    @endforeach
-
-                                    <li class="pager-next">
-                                        @if ($careers->hasMorePages())
-                                            <a href="{{ $careers->nextPageUrl() }}" class="pager-next "></a>
-                                        @elseif(!$careers->isEmpty())
-                                            <a href="{{ $careers->nextPageUrl() }}"
-                                                class="pager-next btn disabled"></a>
-                                        @endif
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-
+                     
+                        {{ $careers->links('livewire::simple-tailwind') }}
                     </div>
                     <div class="col-lg-3 col-md-12 col-sm-12 col-12 d-none d-lg-block">
                         <div class="sidebar-shadow none-shadow mb-30">

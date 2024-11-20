@@ -13,7 +13,7 @@ use App\Models\Applicant;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return redirect()->route('career-list');
+    return view('welome');
 })->name('index');
 Route::get('/career-list', [GuestController::class, 'jobList'])->name('career-list');
 Route::get('/career-detail/{id}', [GuestController::class, 'jobDetail'])->name('career-detail');

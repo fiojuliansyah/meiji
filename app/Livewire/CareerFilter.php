@@ -9,10 +9,11 @@ use App\Models\Location;
 use App\Models\Type;
 use App\Models\Level;
 use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 
 class CareerFilter extends Component
 {
-    use WithPagination;
+    use WithPagination; 
 
     public $search = '';
     public $filterLocation = '';
@@ -24,20 +25,21 @@ class CareerFilter extends Component
     public $maxSalary;
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
-    public $perPage = 10;
-    public $layout='grid';
+    public $perPage = 1;
+    public $layout = "grid";
+
+    public function grid (){
+        $this->layout="grid";
+    }
+    public function list (){
+        $this->layout="list";
+    }
 
     public function mount()
     {
         // Initial salary range
         $this->minSalary = Career::min('salary');
         $this->maxSalary = Career::max('salary');
-    }
-    public function grid(){
-        $this->layout="grid";
-    }
-    public function list(){
-        $this->layout="list";
     }
 
     public function updating($field)
