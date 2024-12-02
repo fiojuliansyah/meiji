@@ -12,9 +12,14 @@
                                 <h3>{{$career->name}}</h3>
                                 <div class="mt-0 mb-15 mt-15"><span class="card-briefcase">{{$career->type->name}}</span><span class="card-time">{{ $career->created_at->diffForHumans() }}</span></div>
                             </div>
-                            <div class="col-lg-4 col-md-12 text-lg-end">
-                                <div class="btn btn-apply-icon btn-danger text-white
-                                 hover-up" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm-{{$career->id}}">Apply now</div>
+                            <div class="col-lg-4 col-md-12 text-lg-end">     
+                                @if($hasApplied == false) 
+                                <div class="btn btn-apply-icon btn-danger text-white hover-up" data-bs-target="#ModalApplyJobForm-{{$career->id}}" >Apply now</div>
+                                @else
+                                <div class="alert alert-success text-center " role="alert">
+                                    You have already applied for this job.
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="border-bottom pt-10 pb-10"></div>
@@ -31,7 +36,7 @@
                                     <div class="sidebar-text-info ml-10"><span class="text-description joblevel-icon mb-10">Job level</span><strong class="small-heading">{{$career->level->name}}</strong></div>
                                 </div>
                             </div>
-                            <div class="row mt-25">
+                            <div class="row mt-lg-25 mt-lg-25">
                                 <div class="col-md-6 d-flex mt-sm-15">
                                     <div class="sidebar-icon-item"><img src="/fe_assets/imgs/page/job-single/salary.svg" alt="jobBox"></div>
                                     <div class="sidebar-text-info ml-10"><span class="text-description salary-icon mb-10 ">Salary</span><strong class="small-heading">Rp. {{ number_format($career->salary, 0, ',', '.')??'-' }}</strong></div>
@@ -41,7 +46,7 @@
                                     <div class="sidebar-text-info ml-10"><span class="text-description experience-icon mb-10">Experience</span><strong class="small-heading">{{$career->experience}}</strong></div>
                                 </div>
                             </div>
-                            <div class="row mt-25">
+                            <div class="row mt-lg-25 mt-lg-25">
                                 <div class="col-md-6 d-flex mt-sm-15">
                                     <div class="sidebar-icon-item"><img src="/fe_assets/imgs/page/job-single/job-type.svg" alt="jobBox"></div>
                                     <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Job type</span><strong class="small-heading">{{$career->type->name}}</strong></div>
@@ -51,7 +56,7 @@
                                     <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Deadline</span><strong class="small-heading">{{ \Carbon\Carbon::parse($career->deadline_date)->format('d/m/y') }}</strong></div>
                                 </div>
                             </div>
-                            <div class="row mt-25">
+                            <div class="row mt-lg-25 mt-lg-25">
                                 <div class="col-md-6 d-flex mt-sm-15">
                                     <div class="sidebar-icon-item"><img src="/fe_assets/imgs/page/job-single/updated.svg" alt="jobBox"></div>
                                     <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Updated</span><strong class="small-heading">{{ \Carbon\Carbon::parse($career->update_at??$career->created_at)->format('d/m/y') }}</strong></div>
@@ -69,7 +74,12 @@
                         </div>
                         <div class="single-apply-jobs">
                             <div class="row align-items-center">
-                                <div class="col-md-5"><a class="btn btn-danger mr-15" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm-{{$career->id}}" href="">Apply now</a><a class="btn btn-border" href="#">Save job</a></div>
+                                <div class="col-md-5">
+                                    @if($hasApplied == false) disabled 
+                                    <a class="btn btn-danger mr-15 {{ $hasApplied == false ? disabled : '' }}" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm-{{ $career->id }}" href="#">Apply now</a>
+                                    <a class="btn btn-border"  >Save job</a>
+                                    @endif
+                            </div>
                                 <div class="col-md-7 text-lg-end social-share">
                                     <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-fb.svg"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-tw.svg"></a><a class="mr-5 d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-red.svg"></a><a class="d-inline-block d-middle" href="#"><img alt="jobBox" src="/fe_assets/imgs/template/icons/share-whatsapp.svg"></a>
                                 </div>
@@ -81,7 +91,7 @@
                     <div class="sidebar-border">
                         <div class="sidebar-heading">
                             <div class="avatar-sidebar">
-                                <figure class="w-25"><img alt="jobBox" src="/fe_assets/imgs/page/job-single/avatar.png" class="border border-rounded p-3" width="64" height=""></figure>
+                                <figure class=""><img alt="jobBox" src="/fe_assets/imgs/page/job-single/avatar.png" class="border border-rounded p-3" width="36px" height="36px"></figure>
                                 <div class="sidebar-info"><span class="sidebar-company">Location</span><span class="card-location">{{$career->location->name}}</span></div>
                             </div>
                         </div>
@@ -131,7 +141,7 @@
         </div>
     </section>
 
-    <section class="section-box mt-50 mb-50">
+    <!-- <section class="section-box mt-50 mb-50">
         <div class="container">
             <div class="text-left">
                 <h2 class="section-title mb-10 wow animate__animated animate__fadeInUp">Featured Jobs</h2>
@@ -157,7 +167,9 @@
                                             <div class="row">
                                                 <div class="col-lg-7 col-7"><span class="card-text-price">$800</span><span class="text-muted">/Hour</span></div>
                                                 <div class="col-lg-5 col-5 text-end">
+                                                    
                                                     <div class="btn btn-apply-now" data-bs-toggle="modal" data-bs-target="#ModalApplyJobForm-{{$career->id}}">Apply now</div>
+                                                    
 
                                                 </div>
                                             </div>
@@ -242,7 +254,7 @@
                 <div class="text-center"><a class="btn btn-grey" href="#">Load more posts</a></div>
             </div>
         </div>
-    </section>
+    </section> -->
     <section class="section-box mt-50 mb-20">
         <div class="container">
             <div class="box-newsletter">

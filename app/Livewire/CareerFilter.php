@@ -25,7 +25,7 @@ class CareerFilter extends Component
     public $maxSalary;
     public $sortField = 'created_at';
     public $sortDirection = 'desc';
-    public $perPage = 1;
+    public $perPage = 10;
     public $layout = "grid";
 
     public function grid (){

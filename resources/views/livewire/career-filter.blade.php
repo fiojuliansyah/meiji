@@ -91,9 +91,9 @@
                                             </div>
                                             <div class="card-block-info">
                                                 <h6>{{ $career->departement->name }}</h6>
-                                                <div class="mt-5"><span
-                                                        class="card-briefcase">{{ $career->type->name }}</span><span
-                                                        class="card-time">{{ $career->created_at->diffForHumans() }}</span>
+                                                <div class="mt-5">
+                                                    <span class="card-briefcase">{{ $career->type->name }}</span>
+                                                    <span class="card-time">{{ $career->created_at->diffForHumans() }}</span>
                                                 </div>
                                                 <div class="font-sm color-text-paragraph mt-15"
                                                     style="text-align:justify;display: -webkit-box;-webkit-line-clamp: 5;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">

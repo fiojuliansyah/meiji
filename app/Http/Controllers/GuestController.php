@@ -51,6 +51,11 @@ class GuestController extends Controller
             return redirect()->back();
         }
 
+        $user = auth()->user();
+        $hasApplied = Applicant::where('user_id', $user->id)
+            ->where('career_id', $id)
+            ->exists();
+
         $otherCareers = Career::where('id', '<>', $id)
             ->orderBy('created_at', 'desc')
             ->take(5)
@@ -62,7 +67,7 @@ class GuestController extends Controller
         $longitude = $latlongArray[1];
 
         $address = $this->getAddressFromLatLong($latitude, $longitude);
-        return view('jobDetail', compact('career', 'latitude', 'longitude', 'address', 'otherCareers'));
+        return view('jobDetail', compact('career', 'latitude', 'longitude', 'address', 'otherCareers', 'hasApplied'));
     }
 
 

@@ -1916,7 +1916,7 @@ label {
     font-size: 12px;
     color: #A0ABB8;
     display: inline-block;
-    padding: 0px 0px 0px 20px;
+    padding: 0px 15px 0px 15px;
     background: url(../imgs/template/icons/location.svg) no-repeat 0px 6px;
     line-height: 24px;
 }
@@ -2205,6 +2205,13 @@ label {
 }
 
 .card-grid-2 .card-grid-2-image-left .right-info .location-small {
+    background: url(../imgs/template/icons/location.svg) no-repeat 0px 5px;
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    font-size: 12px;
+    color: #A0ABB8;
+}
+.right-info .location-small {
     background: url(../imgs/template/icons/location.svg) no-repeat 0px 5px;
     display: inline-block;
     padding: 0px 0px 0px 20px;
@@ -5250,6 +5257,11 @@ ul li:last-child .card-list-4 {
     margin-top: 25px !important;
 }
 
+@media (min-width: 992px) {
+    .mt-lg-25 {
+        margin-top: 25px !important;
+    }
+}
 .mt-30 {
     margin-top: 30px !important;
 }
@@ -7036,6 +7048,7 @@ ul li:last-child .card-list-4 {
     min-width: 20px;
 }
 
+
 .job-overview .sidebar-text-info {
     display: flex;
 }
@@ -7048,12 +7061,24 @@ ul li:last-child .card-list-4 {
     font-weight: 500;
 }
 
+
+@media (max-width: 480px) {
+    .job-overview .sidebar-text-info .small-heading {
+         width: 100%;
+    display: inline-block;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
 .job-overview .text-description {
     font-size: 16px;
     color: #66789C;
     line-height: 24px;
     font-weight: 400;
 }
+
+
 
 .job-meta {
     font-size: 10px;
@@ -9249,7 +9274,4 @@ ul li:last-child .card-list-4 {
     vertical-align: sub;
 }
 
-.offcanvas-body {
-    overflow-y: auto;
-    max-height: 100vh;
-}
+

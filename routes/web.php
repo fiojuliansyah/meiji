@@ -9,11 +9,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\MyprofileController;
 use App\Models\Applicant;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welome');
+    return redirect()->route('career-list');
 })->name('index');
 Route::get('/career-list', [GuestController::class, 'jobList'])->name('career-list');
 Route::get('/career-detail/{id}', [GuestController::class, 'jobDetail'])->name('career-detail');
@@ -22,6 +23,11 @@ Route::post('/apply', [GuestController::class, 'applyCareer'])->name('apply-care
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/career-applied', [MyprofileController::class, 'appliedCareer'])->name('applied.career');
+        
+
+
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard')->middleware(['role:Super Admin']);
 
     Route::get('/roles', [RoleController::class, 'index' ])->name('roles')->middleware(['permission:role-list']);
@@ -36,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/user/bulk-delete', [UserController::class, 'bulkDelete'])->name('user.bulk-delete');
 
     Route::get('/edit-profile/{id}', [UserController::class, 'viewProfile'])->name('edit.profile');
-    Route::get('/myprofile', [UserController::class, 'myProfile'])->name('my.profile');
+    Route::get('/profile', [UserController::class, 'myProfile'])->name('my.profile');
     Route::put('/account-update/{id}', [UserController::class, 'update'])->name('account.update');
     Route::put('/reset-password/{id}', [UserController::class, 'resetPassword'])->name('reset-password');
 

@@ -26,9 +26,8 @@
              <div class="header-right">
                  <div class="block-signin">
                      @auth
-
-                         <div class="dropdown">
-                             <a class="d-inline-flex align-items-center header-item dropdown-toggle" href="#"
+                         <div class="dropdown w-auto">
+                             <a class="d-inline-flex align-items-center header-item dropdown-toggle " href= ""
                                  role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                  <img alt="Logo"
                                      src="{{ Auth::user()->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&font-size=0.4' }}"
@@ -37,24 +36,24 @@
                                      {{ Str::limit(Auth::user()->name, 10, '...') }}</span>
                                  <i class="icon-down ms-2"></i>
                              </a>
-                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                 <li class="dropdown-item ">
-                                     <span class="d-flex align-items-center ms-0 ps-0">
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="min-width: auto;">
+                                 <li class="dropdown-item ps-2 ">
+                                     <span class="d-flex ms-0 ps-0">
                                          <img src="{{ Auth::user()->profile->avatar_url ?? 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&font-size=0.4' }}"
                                              alt="Profile" class="rounded-circle me-2"
                                              style="width: 40px; height: 40px; object-fit: cover;">
                                          <div>
                                              <h6 class="mb-0 small">{{ Auth::user()->name }}</h6>
-                                             <p class="text-muted text-xs small">{{ Auth::user()->email }}</p>
+                                             <div class="text-muted text-xs small">{{ Auth::user()->email }}</div>
                                          </div>
                                      </span>
                                  </li>
                                  <li>
                                      <hr class="dropdown-divider">
                                  </li>
-                                 <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                 <li><a class="dropdown-item" href="#">Applied Jobs</a></li>
-                                 <li><a class="dropdown-item" href= "#">Saved Jobs</a></li>
+                                <a class="dropdown-item" href="/career-applied">My Profile</a>
+                                 <a class="dropdown-item" href="/career-applied">Applied Jobs</a>
+                                 <li><a class="dropdown-item" href="#">Saved Jobs</a></li>
                                  <li>
                                      <hr class="dropdown-divider">
                                  </li>
@@ -103,8 +102,8 @@
                              </div>
                          </span>
                          <ul class="mobile-menu font-heading">
-                             <li><a href="#">My Profile</a></li>
-                             <li><a href="#">Applied Job</a></li>
+                             <li><a href="/career-applied">My Profile</a></li>
+                             <li><a href="/career-applied">Applied Job</a></li>
                              <li><a href="#">Saved Jobs</a></li>
                              <li><a href="{{ route('logout') }}"
                                      onclick="event.preventDefault();
