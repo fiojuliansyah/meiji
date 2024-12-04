@@ -10,6 +10,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\MyprofileController;
+use App\Http\Controllers\ApplicationFormController;
 use App\Models\Applicant;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,6 +26,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/career-applied', [MyprofileController::class, 'appliedCareer'])->name('applied.career');
+    Route::get('/job-application-form', [ApplicationFormController::class, 'index'])->name('jobapplication.form');
         
 
 
