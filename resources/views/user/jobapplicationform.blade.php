@@ -235,7 +235,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                        <button type="button" class="btn btn-primary" onclick="addRow()">+ row</button>
+                                    <button type="button" class="btn btn-primary" onclick="addRow()">+ row</button>
                                 </div>
                             </div>
                             <div class="row mt-25">
@@ -268,7 +268,8 @@
                                         </tbody>
                                     </table>
                                     <div class="text-end">
-                                        <button type="button" class="btn btn-primary mt-3 " onclick="addChildRow()">+ Add Row</button>
+                                        <button type="button" class="btn btn-primary mt-3 " onclick="addChildRow()">+
+                                            Add Row</button>
                                     </div>
                                 </div>
                             </div>
@@ -326,30 +327,312 @@
                             <input type="button" name="next" class="next action-button" value="Next" />
 
                         </fieldset>
-
                         <!-- Step 2 -->
                         <fieldset>
-                            <h2 class="fs-title">Diabetes Type</h2>
-                            <h3 class="fs-subtitle">What type of diabetes do you have?</h3>
-                            <select name="diabetes_type" required>
-                                <option value="a">Diabetes Type A</option>
-                                <option value="b">Diabetes Type B</option>
-                            </select>
+                            <h2 class="fs-title">Formal and Non Formal Education</h2>
+                            <h3 class="fs-subtitle">Please provide your educational background</h3>
+
+                            <!-- Formal Education -->
+                            <h5 class="fs-title">Formal Education</h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="fw-bold">
+                                        <tr>
+                                            <th>School Name</th>
+                                            <th>Majoring</th>
+                                            <th>Year (From - To)</th>
+                                            <th>Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="elementary_school" class="form-control"
+                                                    placeholder="Elementary School"></td>
+                                            <td><input type="text" name="elementary_major" class="form-control"
+                                                    placeholder="Majoring"></td>
+                                            <td><input type="text" name="elementary_year" class="form-control"
+                                                    placeholder="From - To"></td>
+                                            <td><input type="text" name="elementary_remarks" class="form-control"
+                                                    placeholder="Remarks"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="junior_high_school" class="form-control"
+                                                    placeholder="Jr. High School"></td>
+                                            <td><input type="text" name="junior_high_major" class="form-control"
+                                                    placeholder="Majoring"></td>
+                                            <td><input type="text" name="junior_high_year" class="form-control"
+                                                    placeholder="From - To"></td>
+                                            <td><input type="text" name="junior_high_remarks" class="form-control"
+                                                    placeholder="Remarks"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="senior_high_school" class="form-control"
+                                                    placeholder="Sr. High School"></td>
+                                            <td><input type="text" name="senior_high_major" class="form-control"
+                                                    placeholder="Majoring"></td>
+                                            <td><input type="text" name="senior_high_year" class="form-control"
+                                                    placeholder="From - To"></td>
+                                            <td><input type="text" name="senior_high_remarks" class="form-control"
+                                                    placeholder="Remarks"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="diploma" class="form-control"
+                                                    placeholder="Academic (D3)"></td>
+                                            <td><input type="text" name="diploma_major" class="form-control"
+                                                    placeholder="Majoring"></td>
+                                            <td><input type="text" name="diploma_year" class="form-control"
+                                                    placeholder="From - To"></td>
+                                            <td><input type="text" name="diploma_remarks" class="form-control"
+                                                    placeholder="Remarks"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="bachelor" class="form-control"
+                                                    placeholder="Bachelor (S1)"></td>
+                                            <td><input type="text" name="bachelor_major" class="form-control"
+                                                    placeholder="Majoring"></td>
+                                            <td><input type="text" name="bachelor_year" class="form-control"
+                                                    placeholder="From - To"></td>
+                                            <td><input type="text" name="bachelor_remarks" class="form-control"
+                                                    placeholder="Remarks"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="master" class="form-control"
+                                                    placeholder="Master (S2)"></td>
+                                            <td><input type="text" name="master_major" class="form-control"
+                                                    placeholder="Majoring"></td>
+                                            <td><input type="text" name="master_year" class="form-control"
+                                                    placeholder="From - To"></td>
+                                            <td><input type="text" name="master_remarks" class="form-control"
+                                                    placeholder="Remarks"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="doctor" class="form-control"
+                                                    placeholder="Doctor (S3)"></td>
+                                            <td><input type="text" name="doctor_major" class="form-control"
+                                                    placeholder="Majoring"></td>
+                                            <td><input type="text" name="doctor_year" class="form-control"
+                                                    placeholder="From - To"></td>
+                                            <td><input type="text" name="doctor_remarks" class="form-control"
+                                                    placeholder="Remarks"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Certificate / Training Program / Specialty -->
+                            <h5 class="fs-title mt-4">Certificate / Training Program / Specialty</h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="fw-bold">
+                                        <tr>
+                                            <th>Kind</th>
+                                            <th>Year</th>
+                                            <th>Institution</th>
+                                            <th>Certified</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="certificate_kind_1" class="form-control"
+                                                    placeholder="Certificate Type"></td>
+                                            <td><input type="text" name="certificate_year_1" class="form-control"
+                                                    placeholder="Year"></td>
+                                            <td><input type="text" name="certificate_institution_1"
+                                                    class="form-control" placeholder="Institution"></td>
+                                            <td><select name="certificate_certified_1" class="form-select">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="certificate_kind_2" class="form-control"
+                                                    placeholder="Certificate Type"></td>
+                                            <td><input type="text" name="certificate_year_2" class="form-control"
+                                                    placeholder="Year"></td>
+                                            <td><input type="text" name="certificate_institution_2"
+                                                    class="form-control" placeholder="Institution"></td>
+                                            <td><select name="certificate_certified_2" class="form-select">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="certificate_kind_3" class="form-control"
+                                                    placeholder="Certificate Type"></td>
+                                            <td><input type="text" name="certificate_year_3" class="form-control"
+                                                    placeholder="Year"></td>
+                                            <td><input type="text" name="certificate_institution_3"
+                                                    class="form-control" placeholder="Institution"></td>
+                                            <td><select name="certificate_certified_3" class="form-select">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" name="certificate_kind_4" class="form-control"
+                                                    placeholder="Certificate Type"></td>
+                                            <td><input type="text" name="certificate_year_4" class="form-control"
+                                                    placeholder="Year"></td>
+                                            <td><input type="text" name="certificate_institution_4"
+                                                    class="form-control" placeholder="Institution"></td>
+                                            <td><select name="certificate_certified_4" class="form-select">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                </select></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Language and Computer Abilities -->
+                            <h5 class="fs-title mt-4">Language and Computer Abilities</h5>
+                            <p>Proficiency Scale for Languages</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Language 1</label>
+                                    <input type="text" name="language_1" class="form-control"
+                                        placeholder="Language Name">
+                                </div>
+                                <div class="col-6">
+                                    <label>Language 2</label>
+                                    <input type="text" name="language_2" class="form-control"
+                                        placeholder="Language Name">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                    <label>Computer Programs</label>
+                                    <textarea name="computer_programs" class="form-control" placeholder="List of computer programs"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Organizational Experiences Section -->
+                            <h5 class="fs-title mt-4">Organizational Experiences</h5>
+                            <div class="table-responsive">
+                                <table class="table" id="organization-table">
+                                    <thead class="fw-bold">
+                                        <tr>
+                                            <th>Organization Name</th>
+                                            <th>Position</th>
+                                            <th>Period</th>
+                                            <th><button type="button" class="btn btn-success"
+                                                    id="add-org-row">Add</button></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" name="organization_name_1" class="form-control"
+                                                    placeholder="Organization Name"></td>
+                                            <td><input type="text" name="organization_position_1" class="form-control"
+                                                    placeholder="Position"></td>
+                                            <td><input type="text" name="organization_period_1" class="form-control"
+                                                    placeholder="Period"></td>
+                                            <td><button type="button"
+                                                    class="btn btn-danger remove-org-row">Remove</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
                             <input type="button" name="previous" class="previous action-button" value="Previous" />
                             <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
 
                         <!-- Step 3 -->
-                        <fieldset>
-                            <h2 class="fs-title">Treatment Type</h2>
-                            <h3 class="fs-subtitle">Select your treatment type</h3>
-                            <select name="treatment_type" required>
-                                <option value="insulin">Insulin</option>
-                                <option value="oral">Oral Treatment</option>
-                            </select>
-                            <input type="button" name="previous" class="previous action-button" value="Previous" />
-                            <input type="button" name="next" class="next action-button" value="Next" />
-                        </fieldset>
+                      <fieldset>
+    <h2 class="fs-title">Personal Information and Last Remuneration</h2>
+    <h3 class="fs-subtitle">Please provide your personal details and remuneration information</h3>
+
+    <!-- Personal Information Section -->
+    <h5 class="fs-title">Personal Information</h5>
+    <div class="row">
+        <div class="col-6">
+            <label for="name">Name</label>
+            <input type="text" name="personal_info[name]" class="form-control" placeholder="Enter your name" required>
+        </div>
+        <div class="col-6">
+            <label for="occupation">Occupation</label>
+            <input type="text" name="personal_info[occupation]" class="form-control" placeholder="Enter your occupation" required>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-6">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" name="personal_info[phone_number]" class="form-control" placeholder="Enter your phone number (excluding relatives)" required>
+        </div>
+    </div>
+
+    <!-- Last Remuneration Section -->
+    <h5 class="fs-title mt-4">Last Remuneration</h5>
+    <div class="row">
+        <div class="col-6">
+            <label for="basic_salary">Basic Salary</label>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" name="last_remuneration[basic_salary]" class="form-control" placeholder="Enter amount" required>
+            </div>
+            <label class="mt-1">Salary Type</label>
+            <select name="last_remuneration[basic_salary_type]" class="form-select" required>
+                <option value="nett">Nett</option>
+                <option value="gross">Gross</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label for="allowances">Allowances</label>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" name="last_remuneration[allowances]" class="form-control" placeholder="Enter amount" required>
+            </div>
+            <label class="mt-1">Allowances Type</label>
+            <select name="last_remuneration[allowances_type]" class="form-select" required>
+                <option value="nett">Nett</option>
+                <option value="gross">Gross</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-6">
+            <label for="other_benefits">Other Benefits</label>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" name="last_remuneration[other_benefits]" class="form-control" placeholder="Enter amount" required>
+            </div>
+            <label class="mt-1">Benefits Type</label>
+            <select name="last_remuneration[other_benefits_type]" class="form-select" required>
+                <option value="nett">Nett</option>
+                <option value="gross">Gross</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label for="take_home_pay">Take Home Pay</label>
+            <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" name="last_remuneration[take_home_pay]" class="form-control" placeholder="Enter amount" required>
+            </div>
+            <label class="mt-1">Take Home Pay Type</label>
+            <select name="last_remuneration[take_home_pay_type]" class="form-select" required>
+                <option value="nett">Nett</option>
+                <option value="gross">Gross</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <label for="other_facilities">Other Facilities</label>
+            <textarea name="last_remuneration[other_facilities]" class="form-control" placeholder="Other benefits or facilities you received" required></textarea>
+        </div>
+    </div>
+
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+</fieldset>
+
+
+
 
                         <!-- Step 4 -->
                         <fieldset>
@@ -573,5 +856,41 @@
                 table.rows[i].cells[0].innerText = i + 1;
             }
         }
+    </script>
+
+
+
+    <!-- Script for dynamic row addition/removal -->
+    <script>
+        document.getElementById('add-org-row').addEventListener('click', function() {
+            const table = document.getElementById('organization-table').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow(table.rows.length);
+
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+
+            cell1.innerHTML =
+                `<input type="text" name="organization_name_" class="form-control" placeholder="Organization Name">`;
+            cell2.innerHTML =
+                `<input type="text" name="organization_position_" class="form-control" placeholder="Position">`;
+            cell3.innerHTML =
+                `<input type="text" name="organization_period_" class="form-control" placeholder="Period">`;
+            cell4.innerHTML = `<button type="button" class="btn btn-danger remove-org-row">Remove</button>`;
+
+            // Add event listener for remove button
+            cell4.querySelector('.remove-org-row').addEventListener('click', function() {
+                table.deleteRow(newRow.rowIndex);
+            });
+        });
+
+        // Event delegation to handle removing rows for dynamically added ones
+        document.getElementById('organization-table').addEventListener('click', function(event) {
+            if (event.target && event.target.classList.contains('remove-org-row')) {
+                const row = event.target.closest('tr');
+                row.parentNode.removeChild(row);
+            }
+        });
     </script>
 @endsection
