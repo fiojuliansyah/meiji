@@ -14,7 +14,7 @@ class Schedule extends Model
         'date',
         'time',
         'description',
-        'image_public_id',
+       
     ];
     
    public function user()
@@ -28,7 +28,7 @@ class Schedule extends Model
     }
     public function applicant()
     {
-        return $this->belongsTo(Applicant::class);
+       return $this->belongsTo(Applicant::class, 'applicant_id');
     }
 
 }

@@ -235,9 +235,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div class="text-end">
                                         <button type="button" class="btn btn-primary" onclick="addRow()">+ row</button>
-                                    </div>
                                 </div>
                             </div>
                             <div class="row mt-25">

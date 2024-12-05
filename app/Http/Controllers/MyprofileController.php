@@ -16,7 +16,7 @@ class MyprofileController extends Controller
 
     public function appliedCareer(){
          $user = auth()->user();
-        $appliedCareers = Applicant::where('user_id', $user->id)->get();
+        $appliedCareers = Applicant::where('user_id', $user->id)->with('schedule')->get();
         return view('user/appliedjob', compact('appliedCareers'));
     }
 }
