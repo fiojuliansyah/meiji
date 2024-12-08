@@ -2,27 +2,8 @@
 
 @section('content')
     <div class="container">
-
-        <div class="row mt-4">
-            <div class="col-2 d-none d-md-block ">
-                <a href="{{ route('my.profile') }}"
-                    class="btn btn-outline-danger w-100 my-2 {{ request()->routeIs('my.profile') ? 'active' : '' }}">
-                    My Profile
-                </a>
-                <a href="" class="btn btn-outline-danger w-100 my-2">
-                    My Calendar
-                </a>
-                <a href="{{ route('applied.career') }}"
-                    class="btn btn-outline-danger w-100 my-2 {{ request()->routeIs('applied.career') ? 'active' : '' }}">
-                    Applied Jobs
-                </a>
-                <a href="{{ route('jobapplication.form') }}"
-                    class="btn btn-outline-danger w-100 my-2 {{ request()->routeIs('jobapplication.form') ? 'active' : '' }}">
-                    Job Application Form
-                </a>
-            </div>
-
-            <div class="col-md-10 p-4">
+        <div class="p-4">
+                <a href="{{ url()->previous() }}" class="btn btn-primary mb-4"><i class="fas fa-arrow-left"></i> Back</a>
                 <div class="border rounded p-3">
                     <h4 class="mb-5 text-center mt-2">Job Application Form</h4>
 
@@ -540,96 +521,104 @@
                         </fieldset>
 
                         <!-- Step 3 -->
-                      <fieldset>
-    <h2 class="fs-title">Personal Information and Last Remuneration</h2>
-    <h3 class="fs-subtitle">Please provide your personal details and remuneration information</h3>
+                        <fieldset>
+                            <h2 class="fs-title">Personal Information and Last Remuneration</h2>
+                            <h3 class="fs-subtitle">Please provide your personal details and remuneration information</h3>
 
-    <!-- Personal Information Section -->
-    <h5 class="fs-title">Personal Information</h5>
-    <div class="row">
-        <div class="col-6">
-            <label for="name">Name</label>
-            <input type="text" name="personal_info[name]" class="form-control" placeholder="Enter your name" required>
-        </div>
-        <div class="col-6">
-            <label for="occupation">Occupation</label>
-            <input type="text" name="personal_info[occupation]" class="form-control" placeholder="Enter your occupation" required>
-        </div>
-    </div>
+                            <!-- Personal Information Section -->
+                            <h5 class="fs-title">Personal Information</h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="personal_info[name]" class="form-control"
+                                        placeholder="Enter your name" required>
+                                </div>
+                                <div class="col-6">
+                                    <label for="occupation">Occupation</label>
+                                    <input type="text" name="personal_info[occupation]" class="form-control"
+                                        placeholder="Enter your occupation" required>
+                                </div>
+                            </div>
 
-    <div class="row mt-2">
-        <div class="col-6">
-            <label for="phone_number">Phone Number</label>
-            <input type="text" name="personal_info[phone_number]" class="form-control" placeholder="Enter your phone number (excluding relatives)" required>
-        </div>
-    </div>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <label for="phone_number">Phone Number</label>
+                                    <input type="text" name="personal_info[phone_number]" class="form-control"
+                                        placeholder="Enter your phone number (excluding relatives)" required>
+                                </div>
+                            </div>
 
-    <!-- Last Remuneration Section -->
-    <h5 class="fs-title mt-4">Last Remuneration</h5>
-    <div class="row">
-        <div class="col-6">
-            <label for="basic_salary">Basic Salary</label>
-            <div class="input-group">
-                <span class="input-group-text">Rp</span>
-                <input type="number" name="last_remuneration[basic_salary]" class="form-control" placeholder="Enter amount" required>
-            </div>
-            <label class="mt-1">Salary Type</label>
-            <select name="last_remuneration[basic_salary_type]" class="form-select" required>
-                <option value="nett">Nett</option>
-                <option value="gross">Gross</option>
-            </select>
-        </div>
-        <div class="col-6">
-            <label for="allowances">Allowances</label>
-            <div class="input-group">
-                <span class="input-group-text">Rp</span>
-                <input type="number" name="last_remuneration[allowances]" class="form-control" placeholder="Enter amount" required>
-            </div>
-            <label class="mt-1">Allowances Type</label>
-            <select name="last_remuneration[allowances_type]" class="form-select" required>
-                <option value="nett">Nett</option>
-                <option value="gross">Gross</option>
-            </select>
-        </div>
-    </div>
+                            <!-- Last Remuneration Section -->
+                            <h5 class="fs-title mt-4">Last Remuneration</h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="basic_salary">Basic Salary</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" name="last_remuneration[basic_salary]" class="form-control"
+                                            placeholder="Enter amount" required>
+                                    </div>
+                                    <label class="mt-1">Salary Type</label>
+                                    <select name="last_remuneration[basic_salary_type]" class="form-select" required>
+                                        <option value="nett">Nett</option>
+                                        <option value="gross">Gross</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="allowances">Allowances</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" name="last_remuneration[allowances]" class="form-control"
+                                            placeholder="Enter amount" required>
+                                    </div>
+                                    <label class="mt-1">Allowances Type</label>
+                                    <select name="last_remuneration[allowances_type]" class="form-select" required>
+                                        <option value="nett">Nett</option>
+                                        <option value="gross">Gross</option>
+                                    </select>
+                                </div>
+                            </div>
 
-    <div class="row mt-2">
-        <div class="col-6">
-            <label for="other_benefits">Other Benefits</label>
-            <div class="input-group">
-                <span class="input-group-text">Rp</span>
-                <input type="number" name="last_remuneration[other_benefits]" class="form-control" placeholder="Enter amount" required>
-            </div>
-            <label class="mt-1">Benefits Type</label>
-            <select name="last_remuneration[other_benefits_type]" class="form-select" required>
-                <option value="nett">Nett</option>
-                <option value="gross">Gross</option>
-            </select>
-        </div>
-        <div class="col-6">
-            <label for="take_home_pay">Take Home Pay</label>
-            <div class="input-group">
-                <span class="input-group-text">Rp</span>
-                <input type="number" name="last_remuneration[take_home_pay]" class="form-control" placeholder="Enter amount" required>
-            </div>
-            <label class="mt-1">Take Home Pay Type</label>
-            <select name="last_remuneration[take_home_pay_type]" class="form-select" required>
-                <option value="nett">Nett</option>
-                <option value="gross">Gross</option>
-            </select>
-        </div>
-    </div>
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <label for="other_benefits">Other Benefits</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" name="last_remuneration[other_benefits]"
+                                            class="form-control" placeholder="Enter amount" required>
+                                    </div>
+                                    <label class="mt-1">Benefits Type</label>
+                                    <select name="last_remuneration[other_benefits_type]" class="form-select" required>
+                                        <option value="nett">Nett</option>
+                                        <option value="gross">Gross</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="take_home_pay">Take Home Pay</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Rp</span>
+                                        <input type="number" name="last_remuneration[take_home_pay]"
+                                            class="form-control" placeholder="Enter amount" required>
+                                    </div>
+                                    <label class="mt-1">Take Home Pay Type</label>
+                                    <select name="last_remuneration[take_home_pay_type]" class="form-select" required>
+                                        <option value="nett">Nett</option>
+                                        <option value="gross">Gross</option>
+                                    </select>
+                                </div>
+                            </div>
 
-    <div class="row mt-2">
-        <div class="col-12">
-            <label for="other_facilities">Other Facilities</label>
-            <textarea name="last_remuneration[other_facilities]" class="form-control" placeholder="Other benefits or facilities you received" required></textarea>
-        </div>
-    </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <label for="other_facilities">Other Facilities</label>
+                                    <textarea name="last_remuneration[other_facilities]" class="form-control"
+                                        placeholder="Other benefits or facilities you received" required></textarea>
+                                </div>
+                            </div>
 
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" name="next" class="next action-button" value="Next" />
-</fieldset>
+                            <input type="button" name="previous" class="previous action-button" value="Previous" />
+                            <input type="button" name="next" class="next action-button" value="Next" />
+                        </fieldset>
 
 
 
@@ -647,7 +636,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     </div>
 @endsection
 

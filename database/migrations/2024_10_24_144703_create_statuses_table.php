@@ -9,17 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('statuses', function (Blueprint $table) {
-            $table->id();
-             $table->text('status')->nullable();
-             $table->text('color')->nullable();
-             $table->text('is_dpass')->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
-        });
-    }
+        public function up(): void
+        {
+            Schema::create('statuses', function (Blueprint $table) {
+                $table->id();
+                $table->text('status')->nullable();
+                $table->text('color')->nullable();
+                $table->text('is_dpass')->nullable();
+                $table->timestamp('created_at')->nullable();
+                $table->timestamp('updated_at')->nullable();
+            });
+        }
 
     /**
      * Reverse the migrations.
