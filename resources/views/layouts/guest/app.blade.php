@@ -22,13 +22,13 @@
 </head>
 
 <body>
-    <div id="preloader-active">
+    {{-- <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center"><img src="/fe_assets/imgs/template/loading2.gif" widthalt="JobBox"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @include('layouts.components.guest.header')
     <main class="main">

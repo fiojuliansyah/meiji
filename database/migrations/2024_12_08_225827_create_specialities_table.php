@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('institution')->nullable(); // Nama institusi atau lembaga yang memberikan pelatihan
             $table->enum('certified', ['Yes', 'No'])->default('No'); // Sertifikat atau tidak
             $table->timestamps();
-            $table->timestamps();
         });
     }
 
