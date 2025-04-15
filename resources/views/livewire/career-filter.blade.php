@@ -82,8 +82,8 @@
                                         <div class="card-grid-2 hover-up">
                                             <div class="card-grid-2-image-left"><span class="flash"></span>
                                                 <div class="image-box"><img
-                                                        src="{{ $career->departement->img_url ?? 'assets/media/logos/logo-meiji-1.png' }}"
-                                                        alt="jobBox"></div>
+                                                        src="/assets/media/logo.png"
+                                                        alt="Meiji" width="100px"></div>
                                                 <div class="right-info"><a class="name-job"
                                                         href="{{ route('career-detail', $career->id) }}">{{ $career->name }}</a><span
                                                         class="location-small">{{ $career->location->name }}</span>

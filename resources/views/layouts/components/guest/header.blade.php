@@ -3,7 +3,7 @@
          <div class="main-header">
              <div class="header-left">
                  <div class="header-logo"><a class="d-flex" href="{{ route('index') }}"><img alt="jobBox"
-                             src="{{ asset('storage/logo/logo-meiji-1.png') }}" height="50"></a>
+                             src="/assets/media/logo.png" height="50"></a>
                  </div>
              </div>
              <sub class="fs-7">PT. Meiji Indonesia</sub>
